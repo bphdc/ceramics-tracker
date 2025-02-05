@@ -11,5 +11,5 @@ Just getting through activities and exercises. No issues yet.
 
 ### Wk3
 
-
+Completed activities and exercises. watching the ent java cp1 video and planning on working on that
 
