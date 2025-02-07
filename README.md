@@ -44,9 +44,9 @@ One of my hobbies outside of work and school is ceramics. I could use an app whe
 
 ### Supporting Materials 
 
-* Link to your presentation.
-* Link to related materials, such as demo code, if appropriate. 
-* Link to references. 
+* Link to your presentation. TBD
+* Link to related materials, such as demo code, if appropriate.  TBD
+* Link to references.  TBD
 
 ### Feedback
 
