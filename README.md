@@ -39,8 +39,8 @@ One of my hobbies outside of work and school is ceramics. I could use an app whe
   * IntelliJ IDEA
 
 ### Design
-* User Stories
-* Screen Design
+* [User Stories](DesignDocuments/userStories.md)
+* [Screen Design]
 
 ### Supporting Materials 
 
