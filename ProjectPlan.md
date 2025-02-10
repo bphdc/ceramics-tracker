@@ -10,10 +10,10 @@
 - [X] List technologies, versions and how they will be used
 - [X] Write project plan
 - [X] Document user stories and select MVP stories
-- [ ] Confirm MVP stories meet Ent Java indie project objectives
-- [ ] Design screens - make sure all MVP user stories are covered
-- [ ] Triple-check for Checkpoint 1
-- [ ] Update journal/time log/reflection
+- [X] Confirm MVP stories meet Ent Java indie project objectives
+- [X] Design screens - make sure all MVP user stories are covered
+- [X] Triple-check for Checkpoint 1
+- [X] Update journal/time log/reflection
 
 For those using this as a model, continue adding weekly tasks by considering:
 1. which user story will you work on in a given week

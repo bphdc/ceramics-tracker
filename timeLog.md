@@ -11,5 +11,12 @@ Just getting through activities and exercises. No issues yet.
 
 ### Wk3
 
-Completed activities and exercises. watching the ent java cp1 video and planning on working on that
+Completed activities and exercises. watching the ent java cp1 video and planning on working on that. finsished check point 1 work
+
+### Wk4
+
+I'm on vacation so just getting week 4 materials done this week
+
+
+### Wk5
 
