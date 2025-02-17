@@ -1,20 +1,38 @@
 package entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import jakarta.persistence.*;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 
 /**
  * A class to represent a user
  *
  * @author pete
  */
+@Entity
+@Table(name="users")
 public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
+    @Column(name = "user_id")
     private int id;
+
     private String username;
+
     private String email;
+
     private String bio;
+    @Column(name = "profile_picture")
     private String profilePicture;
+
+    @Column(name = "password_hash")
+    private String password;
+
     private String role; // "admin" or "user"
+    @Column(name = "created_at")
     private Timestamp createdAt;
 
     /**
@@ -31,15 +49,17 @@ public class User {
      * @param email          The user's email address.
      * @param bio            A short bio describing the user.
      * @param profilePicture URL or path to the user's profile picture.
+     * @param password       Password hash for user
      * @param role           The role of the user (either "admin" or "user").
      * @param createdAt      The timestamp when the user was created.
      */
-    public User(int id, String username, String email, String bio, String profilePicture, String role, Timestamp createdAt) {
+    public User(int id, String username, String email, String bio, String profilePicture, String password, String role, Timestamp createdAt) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.bio = bio;
         this.profilePicture = profilePicture;
+        this.password = password;
         this.role = role;
         this.createdAt = createdAt;
     }
@@ -132,6 +152,24 @@ public class User {
      */
     public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
+    }
+
+    /**
+     * Gets the pass hash of the user.
+     *
+     * @return  pass hash
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * Sets the pass hash of the user.
+     *
+     * @param password pass hash
+     */
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     /**
