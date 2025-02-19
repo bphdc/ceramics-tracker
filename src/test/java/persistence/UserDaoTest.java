@@ -1,8 +1,9 @@
+package persistence;
+
 import entity.User;
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.*;
-import persistence.UserDao;
-import persistence.SessionFactoryProvider;
+import util.Database;
 
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -27,6 +28,7 @@ class UserDaoTest {
     static void setup() {
         sessionFactory = SessionFactoryProvider.getSessionFactory();
         userDao = new UserDao();
+        User testUser = new User();
     }
 
     /**
@@ -34,31 +36,32 @@ class UserDaoTest {
      */
     @BeforeEach
     void setupEach() {
-        testUser = new User(0, "testuser", "test@example.com", "This is a bio",
-                "profile.jpg", "passwordhash12423", "user", Timestamp.from(Instant.now()));
-        testUser.setId(userDao.insert(testUser));
+        Database database = Database.getInstance();
+        //reset db
+        database.runSQL("cleanDB.sql");
+
+        //create one user using sql
+        database.runSQL("createUser.sql");
+
+
     }
 
-    /**
-     * delete user after test
-     */
-    @AfterEach
-    void cleanup() {
-        User retrievedUser = userDao.getById(testUser.getId());
-        if (retrievedUser != null) {
-            userDao.delete(retrievedUser);
-        }
-    }
 
     /**
      * Create check
      */
     @Test
     void testInsertUser() {
+        //create data for test user
+        testUser = new User(0, "userObject", "testspec@example.com", "This is a bio",
+                "profile.jpg", "passspec12314", "user", Timestamp.from(Instant.now()));
+
+        //insert
+        testUser.setId(userDao.insert(testUser));
         assertNotEquals(0, testUser.getId(), "id shouldn't be zero after insertion!");
         User insertedUser = userDao.getById(testUser.getId());
         assertNotNull(insertedUser, "new user should be retrievable");
-        assertEquals("testuser", insertedUser.getUsername(), "username should match");
+        assertEquals("userObject", insertedUser.getUsername(), "username should match");
     }
 
     /**
@@ -66,10 +69,11 @@ class UserDaoTest {
      */
     @Test
     void testGetById() {
-        User retrievedUser = userDao.getById(testUser.getId());
-        assertNotNull(retrievedUser, "user should be able to be found by id");
-        assertEquals("testuser", retrievedUser.getUsername(), "username should match");
-        assertEquals("test@example.com", retrievedUser.getEmail(), "email should match");
+        //retrieving user added by insertion
+        testUser = userDao.getById(1);
+        assertNotNull(testUser, "user should be able to be found by id");
+        assertEquals("testuser", testUser.getUsername(), "username should match");
+        assertEquals("testuser@example.com", testUser.getEmail(), "email should match");
     }
 
     /**
@@ -77,6 +81,7 @@ class UserDaoTest {
      */
     @Test
     void testUpdateUser() {
+        testUser = userDao.getById(1);
         testUser.setUsername("updateduser");
         userDao.update(testUser);
 
@@ -90,6 +95,7 @@ class UserDaoTest {
      */
     @Test
     void testDeleteUser() {
+        testUser = userDao.getById(1);
         userDao.delete(testUser);
         User deletedUser = userDao.getById(testUser.getId());
         assertNull(deletedUser, "user should be deleted");
@@ -100,6 +106,7 @@ class UserDaoTest {
      */
     @Test
     void testGetAllUsers() {
+        testUser = userDao.getById(1);
         List<User> users = userDao.getAll();
         assertFalse(users.isEmpty(), "list shouldn't be empty");
     }
@@ -109,6 +116,7 @@ class UserDaoTest {
      */
     @Test
     void testGetByPropertyEqual() {
+        testUser = userDao.getById(1);
         List<User> users = userDao.getByPropertyEqual("username", "testuser");
         assertFalse(users.isEmpty(), "should return at least one user");
         assertEquals("testuser", users.get(0).getUsername(), "username should match");
@@ -119,6 +127,7 @@ class UserDaoTest {
      */
     @Test
     void testGetByPropertyLike() {
+        testUser = userDao.getById(1);
         List<User> users = userDao.getByPropertyLike("username", "test");
         assertFalse(users.isEmpty(), "should return users with 'test' in username");
         assertTrue(users.get(0).getUsername().contains("test"), "username should contain 'test'");
