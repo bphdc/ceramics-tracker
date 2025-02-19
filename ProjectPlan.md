@@ -23,7 +23,7 @@ For those using this as a model, continue adding weekly tasks by considering:
 5. I started a few of these below as examples
 
 ### Weeks 4-7 
-#### This week my focus is the Find Trails by Name user story
+#### Just trying to get through all of this work...
 - [ ] First cut at database design
 - [ ] Create the dev version of the database
 - [ ] Create test version of database for unit testing
