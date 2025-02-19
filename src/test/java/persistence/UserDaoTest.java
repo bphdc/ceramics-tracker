@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class UserDaoTest {
 
-    private static UserDao userDao;
+    private static GenericDao<User> userDao;
     private static SessionFactory sessionFactory;
     private User testUser;
 
@@ -27,7 +27,7 @@ class UserDaoTest {
     @BeforeAll
     static void setup() {
         sessionFactory = SessionFactoryProvider.getSessionFactory();
-        userDao = new UserDao();
+        userDao = new GenericDao<>(User.class);
         User testUser = new User();
     }
 
@@ -83,7 +83,7 @@ class UserDaoTest {
     void testUpdateUser() {
         testUser = userDao.getById(1);
         testUser.setUsername("updateduser");
-        userDao.update(testUser);
+        userDao.saveOrUpdate(testUser);
 
         User updatedUser = userDao.getById(testUser.getId());
         assertNotNull(updatedUser, "updated user shouldn't be null");
