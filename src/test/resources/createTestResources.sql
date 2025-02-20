@@ -25,7 +25,7 @@ VALUES ('test tag');
 -- create project, user must exist first
 
 INSERT INTO projects (user_id, name, description)
-VALUES (1, 'Ceramic Vase', 'A handmade ceramic vase with intricate patterns.');
+VALUES (1, 'Vase', 'Wheel thrown vase');
 
 -- create image, project must exist first
 

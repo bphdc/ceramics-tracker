@@ -59,6 +59,23 @@ public class Project {
      * @param name           the name
      * @param description    the description
      * @param createdAt      the created at
+     */
+    public Project(int projectId, User user, String name, String description, Timestamp createdAt) {
+        this.projectId = projectId;
+        this.user = user;
+        this.name = name;
+        this.description = description;
+        this.createdAt = createdAt;
+    }
+
+    /**
+     * Instantiates a new Project.
+     *
+     * @param projectId      the project id
+     * @param user           the user
+     * @param name           the name
+     * @param description    the description
+     * @param createdAt      the created at
      * @param images         the images
      * @param projectEntries the project entries
      * @param glazes         the glazes

@@ -137,6 +137,6 @@ class ProjectEntryDaoTest {
         testResource = dao.getById(1);
         List<ProjectEntry> resourceList = dao.getByPropertyLike("entryText", "entry");
         assertFalse(resourceList.isEmpty(), "should return resource with 'entry' in property");
-        assertTrue(resourceList.get(0).getEntryText().contains("entry"), "value should contain 'example'");
+        assertTrue(resourceList.get(0).getEntryText().contains("entry"), "value should contain 'entry'");
     }
 }
