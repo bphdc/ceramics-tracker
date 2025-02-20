@@ -68,6 +68,8 @@ class ImageDaoTest {
         Image insertedResource = dao.getById(testResource.getImageId());
         assertNotNull(insertedResource, "new resource should be retrievable");
         assertEquals("www.imageurl.com", insertedResource.getImageUrl(), "name should match");
+        //make sure project is there
+        assertEquals(1, insertedResource.getProject().getProjectId(), "project should match");
     }
 
     /**

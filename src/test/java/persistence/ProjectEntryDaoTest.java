@@ -68,6 +68,8 @@ class ProjectEntryDaoTest {
         ProjectEntry insertedResource = dao.getById(testResource.getId());
         assertNotNull(insertedResource, "new resource should be retrievable");
         assertEquals("some entry text", insertedResource.getEntryText(), "value should match");
+        //make sure project is there
+        assertEquals(1, insertedResource.getProject().getProjectId(), "project should match");
     }
 
     /**

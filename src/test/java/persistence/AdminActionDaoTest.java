@@ -68,6 +68,8 @@ class AdminActionDaoTest {
         AdminAction insertedResource = dao.getById(testResource.getId());
         assertNotNull(insertedResource, "new resource should be retrievable");
         assertEquals("Add Glaze", insertedResource.getActionType(), "value should match");
+        //make sure user is there
+        assertEquals(1, insertedResource.getUser().getId(), "user should match");
     }
 
     /**
