@@ -4,6 +4,8 @@ import org.hibernate.annotations.GenericGenerator;
 
 import jakarta.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A class to represent a user
@@ -34,6 +36,9 @@ public class User {
     private String role; // "admin" or "user"
     @Column(name = "created_at")
     private Timestamp createdAt;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<AdminAction> adminActions = new ArrayList<>();
 
     /**
      * Default constructor for User.

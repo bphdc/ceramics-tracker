@@ -13,5 +13,6 @@
         <mapping class="entity.Glaze"/>
         <mapping class="entity.Project"/>
         <mapping class="entity.Tag"/>
+        <mapping class="entity.AdminAction"/>
     </session-factory>
 </hibernate-configuration>
