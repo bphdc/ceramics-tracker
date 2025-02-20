@@ -21,7 +21,7 @@ public class Tag {
     @Column(name = "tag_id")
     private int tagId;
     private String name;
-    @Column(name="tag_id")
+    @Column(name="created_at")
     private Timestamp createdAt;
 
     @OneToMany(mappedBy = "tag", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
@@ -32,6 +32,18 @@ public class Tag {
      */
     public Tag() {
     }
+
+    /**
+     * Instantiates a new Tag.
+     *
+     * @param name      the name
+     * @param createdAt the created at
+     */
+    public Tag(String name, Timestamp createdAt) {
+        this.name = name;
+        this.createdAt = createdAt;
+    }
+
 
     /**
      * Instantiates a new Tag.

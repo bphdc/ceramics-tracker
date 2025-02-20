@@ -10,7 +10,7 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name="project_entries")
-public class ProjectEntries {
+public class ProjectEntry {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
@@ -31,7 +31,7 @@ public class ProjectEntries {
     /**
      * Instantiates a new Project entries.
      */
-    public ProjectEntries() {
+    public ProjectEntry() {
     }
 
     /**
@@ -42,7 +42,7 @@ public class ProjectEntries {
      * @param entryText the entry text
      * @param createdAt the created at
      */
-    public ProjectEntries(int id, Project project, String entryText, Timestamp createdAt) {
+    public ProjectEntry(int id, Project project, String entryText, Timestamp createdAt) {
         this.id = id;
         this.project = project;
         this.entryText = entryText;

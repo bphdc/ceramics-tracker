@@ -33,10 +33,10 @@ public class Project {
     private Timestamp createdAt;
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<Images> images = new ArrayList<>();
+    private List<Image> images = new ArrayList<>();
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<ProjectEntries> projectEntries = new ArrayList<>();
+    private List<ProjectEntry> projectEntries = new ArrayList<>();
 
     //these are the many to manny links
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
@@ -64,7 +64,7 @@ public class Project {
      * @param glazes         the glazes
      * @param tags           the tags
      */
-    public Project(int projectId, User user, String name, String description, Timestamp createdAt, List<Images> images, List<ProjectEntries> projectEntries, List<ProjectGlaze> glazes, List<ProjectTag> tags) {
+    public Project(int projectId, User user, String name, String description, Timestamp createdAt, List<Image> images, List<ProjectEntry> projectEntries, List<ProjectGlaze> glazes, List<ProjectTag> tags) {
         this.projectId = projectId;
         this.user = user;
         this.name = name;
@@ -171,7 +171,7 @@ public class Project {
      *
      * @return the images
      */
-    public List<Images> getImages() {
+    public List<Image> getImages() {
         return images;
     }
 
@@ -180,7 +180,7 @@ public class Project {
      *
      * @param images the images
      */
-    public void setImages(List<Images> images) {
+    public void setImages(List<Image> images) {
         this.images = images;
     }
 
@@ -189,7 +189,7 @@ public class Project {
      *
      * @return the project entries
      */
-    public List<ProjectEntries> getProjectEntries() {
+    public List<ProjectEntry> getProjectEntries() {
         return projectEntries;
     }
 
@@ -198,7 +198,7 @@ public class Project {
      *
      * @param projectEntries the project entries
      */
-    public void setProjectEntries(List<ProjectEntries> projectEntries) {
+    public void setProjectEntries(List<ProjectEntry> projectEntries) {
         this.projectEntries = projectEntries;
     }
 

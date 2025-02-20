@@ -41,7 +41,7 @@ public class User {
     private List<AdminAction> adminActions = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<Project> project = new ArrayList<>();
+    private List<Project> projects = new ArrayList<>();
 
     /**
      * Default constructor for User.
@@ -197,6 +197,44 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
+
+    /**
+     * Gets the admin actions of the user.
+     *
+     * @return admin actions
+     */
+    public List<AdminAction> getAdminActions() {
+        return adminActions;
+    }
+
+    /**
+     * Sets the admin actions on user.
+     *
+     * @param adminActions list of admn actions
+     */
+    public void setAdminActions (List<AdminAction> adminActions) {
+        this.adminActions = adminActions;
+    }
+
+
+    /**
+     * Gets the projects of the user.
+     *
+     * @return projects
+     */
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    /**
+     * Sets the projects on a user
+     *
+     * @param projects list of projects
+     */
+    public void setProjects (List<Project> projects) {
+        this.projects = projects;
+    }
+
 
     /**
      * Gets the creation timestamp of the user.

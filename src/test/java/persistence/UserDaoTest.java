@@ -1,5 +1,7 @@
 package persistence;
 
+import entity.AdminAction;
+import entity.Project;
 import entity.User;
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.*;
@@ -17,9 +19,9 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class UserDaoTest {
 
-    private static GenericDao<User> userDao;
+    private static GenericDao<User> dao;
     private static SessionFactory sessionFactory;
-    private User testUser;
+    private User resource;
 
     /**
      * Set up prior to spec running
@@ -27,8 +29,7 @@ class UserDaoTest {
     @BeforeAll
     static void setup() {
         sessionFactory = SessionFactoryProvider.getSessionFactory();
-        userDao = new GenericDao<>(User.class);
-        User testUser = new User();
+        dao = new GenericDao<>(User.class);
     }
 
     /**
@@ -41,7 +42,8 @@ class UserDaoTest {
         database.runSQL("cleanDB.sql");
 
         //create one user using sql
-        database.runSQL("createUser.sql");
+        //database.runSQL("createUser.sql");
+        database.runSQL("createTestResources.sql");
 
 
     }
@@ -53,13 +55,13 @@ class UserDaoTest {
     @Test
     void testInsertUser() {
         //create data for test user
-        testUser = new User(0, "userObject", "testspec@example.com", "This is a bio",
+        resource = new User(0, "userObject", "testspec@example.com", "This is a bio",
                 "profile.jpg", "passspec12314", "user", Timestamp.from(Instant.now()));
 
         //insert
-        testUser.setId(userDao.insert(testUser));
-        assertNotEquals(0, testUser.getId(), "id shouldn't be zero after insertion!");
-        User insertedUser = userDao.getById(testUser.getId());
+        resource.setId(dao.insert(resource));
+        assertNotEquals(0, resource.getId(), "id shouldn't be zero after insertion!");
+        User insertedUser = dao.getById(resource.getId());
         assertNotNull(insertedUser, "new user should be retrievable");
         assertEquals("userObject", insertedUser.getUsername(), "username should match");
     }
@@ -70,10 +72,10 @@ class UserDaoTest {
     @Test
     void testGetById() {
         //retrieving user added by insertion
-        testUser = userDao.getById(1);
-        assertNotNull(testUser, "user should be able to be found by id");
-        assertEquals("testuser", testUser.getUsername(), "username should match");
-        assertEquals("testuser@example.com", testUser.getEmail(), "email should match");
+        resource = dao.getById(1);
+        assertNotNull(resource, "user should be able to be found by id");
+        assertEquals("testAdmin", resource.getUsername(), "username should match");
+        assertEquals("testAdmin@example.com", resource.getEmail(), "email should match");
     }
 
     /**
@@ -81,11 +83,11 @@ class UserDaoTest {
      */
     @Test
     void testUpdateUser() {
-        testUser = userDao.getById(1);
-        testUser.setUsername("updateduser");
-        userDao.saveOrUpdate(testUser);
+        resource = dao.getById(1);
+        resource.setUsername("updateduser");
+        dao.saveOrUpdate(resource);
 
-        User updatedUser = userDao.getById(testUser.getId());
+        User updatedUser = dao.getById(resource.getId());
         assertNotNull(updatedUser, "updated user shouldn't be null");
         assertEquals("updateduser", updatedUser.getUsername(), "username should be updated");
     }
@@ -95,9 +97,9 @@ class UserDaoTest {
      */
     @Test
     void testDeleteUser() {
-        testUser = userDao.getById(1);
-        userDao.delete(testUser);
-        User deletedUser = userDao.getById(testUser.getId());
+        resource = dao.getById(1);
+        dao.delete(resource);
+        User deletedUser = dao.getById(resource.getId());
         assertNull(deletedUser, "user should be deleted");
     }
 
@@ -106,8 +108,8 @@ class UserDaoTest {
      */
     @Test
     void testGetAllUsers() {
-        testUser = userDao.getById(1);
-        List<User> users = userDao.getAll();
+        resource = dao.getById(1);
+        List<User> users = dao.getAll();
         assertFalse(users.isEmpty(), "list shouldn't be empty");
     }
 
@@ -116,10 +118,10 @@ class UserDaoTest {
      */
     @Test
     void testGetByPropertyEqual() {
-        testUser = userDao.getById(1);
-        List<User> users = userDao.getByPropertyEqual("username", "testuser");
+        resource = dao.getById(1);
+        List<User> users = dao.getByPropertyEqual("username", "testAdmin");
         assertFalse(users.isEmpty(), "should return at least one user");
-        assertEquals("testuser", users.get(0).getUsername(), "username should match");
+        assertEquals("testAdmin", users.get(0).getUsername(), "username should match");
     }
 
     /**
@@ -127,9 +129,51 @@ class UserDaoTest {
      */
     @Test
     void testGetByPropertyLike() {
-        testUser = userDao.getById(1);
-        List<User> users = userDao.getByPropertyLike("username", "test");
+        resource = dao.getById(1);
+        List<User> users = dao.getByPropertyLike("username", "test");
         assertFalse(users.isEmpty(), "should return users with 'test' in username");
         assertTrue(users.get(0).getUsername().contains("test"), "username should contain 'test'");
+    }
+
+    @Test
+    void deleteWithAdminActions() {
+        // get the user we want to delete that has an associated admin action
+        User userToBeDeleted = dao.getById(1);
+        List<AdminAction> adminActions = userToBeDeleted.getAdminActions();
+
+        // get the associated admin action
+        int adminActionId = adminActions.get(0).getId();
+
+        // delete the user
+        dao.delete(userToBeDeleted);
+
+        // verify the user was deleted
+        assertNull(dao.getById(1));
+
+        // verify the admin action was also deleted
+        GenericDao<AdminAction> adminActionsDao = new GenericDao<>(AdminAction.class);
+        assertNull(adminActionsDao.getById(adminActionId));
+
+    }
+
+    @Test
+    void deleteWithProjects() {
+        // get the user we want to delete that has 2 orders associated
+        User userToBeDeleted = dao.getById(1);
+        List<Project> projects = userToBeDeleted.getProjects();
+
+        // get the associated project id
+        int prjId = projects.get(0).getProjectId();
+
+
+        // delete the user
+        dao.delete(userToBeDeleted);
+
+        // verify the user was deleted
+        assertNull(dao.getById(1));
+
+        // verify the prject were also deleted
+        GenericDao<Project> projectDao = new GenericDao<>(Project.class);
+        assertNull(projectDao.getById(prjId));
     }
 }

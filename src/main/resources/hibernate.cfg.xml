@@ -15,8 +15,8 @@
         <mapping class="entity.Tag"/>
         <mapping class="entity.AdminAction"/>
         <mapping class="entity.Project"/>
-        <mapping class="entity.ProjectEntries"/>
-        <mapping class="entity.Images"/>
+        <mapping class="entity.ProjectEntry"/>
+        <mapping class="entity.Image"/>
         <mapping class="entity.ProjectGlaze"/>
         <mapping class="entity.ProjectTag"/>
     </session-factory>

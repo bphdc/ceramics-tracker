@@ -10,7 +10,7 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name="images")
-public class Images {
+public class Image {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
@@ -31,7 +31,7 @@ public class Images {
     /**
      * Instantiates a new Images.
      */
-    public Images() {
+    public Image() {
     }
 
     /**
@@ -42,7 +42,7 @@ public class Images {
      * @param imageUrl   the image url
      * @param uploadedAt the uploaded at
      */
-    public Images(int imageId, Project project, String imageUrl, Timestamp uploadedAt) {
+    public Image(int imageId, Project project, String imageUrl, Timestamp uploadedAt) {
         this.imageId = imageId;
         this.project = project;
         this.imageUrl = imageUrl;
