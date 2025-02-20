@@ -44,11 +44,13 @@ public class AdminAction {
      * @param user       the user
      * @param actionType the action type
      * @param targetId   the target id
+     * @param timestamp   time stamp
      */
-    public AdminAction(User user, String actionType, int targetId) {
+    public AdminAction(User user, String actionType, int targetId, Timestamp timestamp) {
         this.user = user;
         this.actionType = actionType;
         this.targetId = targetId;
+        this.timestamp =timestamp;
     }
 
     /**
