@@ -133,7 +133,7 @@ class ImageDaoTest {
     @Test
     void testGetByPropertyLike() {
         testResource = dao.getById(1);
-        List<Image> resourceList = dao.getByPropertyLike("imageUrl", "https://example.com/images/project1.jpg");
+        List<Image> resourceList = dao.getByPropertyLike("imageUrl", "example");
         assertFalse(resourceList.isEmpty(), "should return users with 'example' in resource");
         assertTrue(resourceList.get(0).getImageUrl().contains("example"), "value should contain 'example'");
     }

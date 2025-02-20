@@ -129,7 +129,7 @@ class TagDaoTest {
     @Test
     void testGetByPropertyLike() {
         testResource = dao.getById(1);
-        List<Tag> tags = dao.getByPropertyLike("name", "test tag");
+        List<Tag> tags = dao.getByPropertyLike("name", "test");
         assertFalse(tags.isEmpty(), "should return users with 'test' in resource");
         assertTrue(tags.get(0).getName().contains("test"), "value should contain 'test'");
     }

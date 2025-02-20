@@ -130,8 +130,8 @@ class GlazeDaoTest {
     @Test
     void testGetByPropertyLike() {
         testResource = dao.getById(1);
-        List<Glaze> glazes = dao.getByPropertyLike("name", "Test Glaze");
-        assertFalse(glazes.isEmpty(), "should return users with 'test' in resource");
+        List<Glaze> glazes = dao.getByPropertyLike("name", "Test");
+        assertFalse(glazes.isEmpty(), "should return glaze with 'test' in value");
         assertTrue(glazes.get(0).getName().contains("Test"), "value should contain 'test'");
     }
 }
