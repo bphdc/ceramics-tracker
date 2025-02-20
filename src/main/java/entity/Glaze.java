@@ -1,137 +1,167 @@
 package entity;
 
+import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
+
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A class to represent a glaze
  *
  * @author pete
  */
+@Entity
+@Table(name="glazes")
 public class Glaze {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
+    @Column(name = "glaze_id")
     private int glazeId;
     private String name;
     private String description;
     private String type; // "underglaze" or "overglaze"
+    @Column(name= "created_at")
     private Timestamp createdAt;
 
+    @OneToMany(mappedBy = "glaze", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<ProjectGlaze> projects = new ArrayList<>();
+
     /**
-     * Default constructor for Glaze.
+     * Instantiates a new Glaze.
      */
     public Glaze() {
     }
 
     /**
-     * Parameterized constructor to initialize a Glaze object.
+     * Instantiates a new Glaze.
      *
-     * @param glazeId     Unique identifier for the glaze.
-     * @param name        The name of the glaze.
-     * @param description A detailed description of the glaze.
-     * @param type        The type of glaze (either "underglaze" or "overglaze").
-     * @param createdAt   The timestamp when the glaze was created.
+     * @param glazeId     the glaze id
+     * @param name        the name
+     * @param description the description
+     * @param type        the type
+     * @param createdAt   the created at
+     * @param projects    the projects
      */
-    public Glaze(int glazeId, String name, String description, String type, Timestamp createdAt) {
+    public Glaze(int glazeId, String name, String description, String type, Timestamp createdAt, List<ProjectGlaze> projects) {
         this.glazeId = glazeId;
         this.name = name;
         this.description = description;
         this.type = type;
         this.createdAt = createdAt;
+        this.projects = projects;
     }
 
     /**
-     * Gets the glaze ID.
+     * Gets glaze id.
      *
-     * @return The glaze's unique identifier.
+     * @return the glaze id
      */
     public int getGlazeId() {
         return glazeId;
     }
 
     /**
-     * Sets the glaze ID.
+     * Sets glaze id.
      *
-     * @param glazeId The glaze's unique identifier.
+     * @param glazeId the glaze id
      */
     public void setGlazeId(int glazeId) {
         this.glazeId = glazeId;
     }
 
     /**
-     * Gets the name of the glaze.
+     * Gets name.
      *
-     * @return The name of the glaze.
+     * @return the name
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Sets the name of the glaze.
+     * Sets name.
      *
-     * @param name The name to set.
+     * @param name the name
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * Gets the description of the glaze.
+     * Gets description.
      *
-     * @return The glaze description.
+     * @return the description
      */
     public String getDescription() {
         return description;
     }
 
     /**
-     * Sets the description of the glaze.
+     * Sets description.
      *
-     * @param description The description to set.
+     * @param description the description
      */
     public void setDescription(String description) {
         this.description = description;
     }
 
     /**
-     * Gets the type of glaze.
+     * Gets type.
      *
-     * @return The type of glaze (either "underglaze" or "overglaze").
+     * @return the type
      */
     public String getType() {
         return type;
     }
 
     /**
-     * Sets the type of glaze.
+     * Sets type.
      *
-     * @param type The type to set (either "underglaze" or "overglaze").
+     * @param type the type
      */
     public void setType(String type) {
         this.type = type;
     }
 
     /**
-     * Gets the creation timestamp of the glaze.
+     * Gets created at.
      *
-     * @return The timestamp when the glaze was created.
+     * @return the created at
      */
     public Timestamp getCreatedAt() {
         return createdAt;
     }
 
     /**
-     * Sets the creation timestamp of the glaze.
+     * Sets created at.
      *
-     * @param createdAt The timestamp to set.
+     * @param createdAt the created at
      */
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
     /**
-     * Returns a string representation of the Glaze object.
+     * Gets projects.
      *
-     * @return A string containing glaze details.
+     * @return the projects
      */
+    public List<ProjectGlaze> getProjects() {
+        return projects;
+    }
+
+    /**
+     * Sets projects.
+     *
+     * @param projects the projects
+     */
+    public void setProjects(List<ProjectGlaze> projects) {
+        this.projects = projects;
+    }
+
     @Override
     public String toString() {
         return "Glaze{" +
@@ -140,6 +170,7 @@ public class Glaze {
                 ", description='" + description + '\'' +
                 ", type='" + type + '\'' +
                 ", createdAt=" + createdAt +
+                ", projects=" + projects +
                 '}';
     }
 }

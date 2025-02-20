@@ -1,101 +1,132 @@
 package entity;
 
+import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
+
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A class to represent a tag
  *
  * @author pete
  */
+@Entity
+@Table(name="tags")
 public class Tag {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
+    @Column(name = "tag_id")
     private int tagId;
     private String name;
+    @Column(name="tag_id")
     private Timestamp createdAt;
 
+    @OneToMany(mappedBy = "tag", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<ProjectTag> projects = new ArrayList<>();
+
     /**
-     * Default constructor for Tag.
+     * Instantiates a new Tag.
      */
     public Tag() {
     }
 
     /**
-     * Parameterized constructor to initialize a Tag object.
+     * Instantiates a new Tag.
      *
-     * @param tagId     Unique identifier for the tag.
-     * @param name      The name of the tag.
-     * @param createdAt The timestamp when the tag was created.
+     * @param tagId     the tag id
+     * @param name      the name
+     * @param createdAt the created at
+     * @param projects  the projects
      */
-    public Tag(int tagId, String name, Timestamp createdAt) {
+    public Tag(int tagId, String name, Timestamp createdAt, List<ProjectTag> projects) {
         this.tagId = tagId;
         this.name = name;
         this.createdAt = createdAt;
+        this.projects = projects;
     }
 
     /**
-     * Gets the tag ID.
+     * Gets tag id.
      *
-     * @return The tag's unique identifier.
+     * @return the tag id
      */
     public int getTagId() {
         return tagId;
     }
 
     /**
-     * Sets the tag ID.
+     * Sets tag id.
      *
-     * @param tagId The tag's unique identifier.
+     * @param tagId the tag id
      */
     public void setTagId(int tagId) {
         this.tagId = tagId;
     }
 
     /**
-     * Gets the name of the tag.
+     * Gets name.
      *
-     * @return The name of the tag.
+     * @return the name
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Sets the name of the tag.
+     * Sets name.
      *
-     * @param name The name to set.
+     * @param name the name
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * Gets the creation timestamp of the tag.
+     * Gets created at.
      *
-     * @return The timestamp when the tag was created.
+     * @return the created at
      */
     public Timestamp getCreatedAt() {
         return createdAt;
     }
 
     /**
-     * Sets the creation timestamp of the tag.
+     * Sets created at.
      *
-     * @param createdAt The timestamp to set.
+     * @param createdAt the created at
      */
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
     /**
-     * Returns a string representation of the Tag object.
+     * Gets projects.
      *
-     * @return A string containing tag details.
+     * @return the projects
      */
+    public List<ProjectTag> getProjects() {
+        return projects;
+    }
+
+    /**
+     * Sets projects.
+     *
+     * @param projects the projects
+     */
+    public void setProjects(List<ProjectTag> projects) {
+        this.projects = projects;
+    }
+
     @Override
     public String toString() {
         return "Tag{" +
                 "tagId=" + tagId +
                 ", name='" + name + '\'' +
                 ", createdAt=" + createdAt +
+                ", projects=" + projects +
                 '}';
     }
 }

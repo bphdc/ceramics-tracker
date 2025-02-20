@@ -17,5 +17,7 @@
         <mapping class="entity.Project"/>
         <mapping class="entity.ProjectEntries"/>
         <mapping class="entity.Images"/>
+        <mapping class="entity.ProjectGlaze"/>
+        <mapping class="entity.ProjectTag"/>
     </session-factory>
 </hibernate-configuration>
