@@ -38,6 +38,25 @@ public class Glaze {
     /**
      * Instantiates a new Glaze.
      *
+     * @param name        the name
+     * @param description the description
+     * @param type        the type
+     * @param createdAt   the created at
+
+     */
+    public Glaze(String name, String description, String type, Timestamp createdAt) {
+        this.name = name;
+        this.description = description;
+        this.type = type;
+        this.createdAt = createdAt;
+
+    }
+
+
+
+    /**
+     * Instantiates a new Glaze.
+     *
      * @param glazeId     the glaze id
      * @param name        the name
      * @param description the description
