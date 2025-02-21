@@ -147,6 +147,54 @@ class ProjectDaoTest {
         assertNull(imageDao.getById(imgId));
     }
 
+    @Test
+    void deleteWithGlazeLinkage() {
+        // get the user we want to delete that has 2 orders associated
+        Project prjToBeDeleted = dao.getById(1);
+        List<ProjectGlaze> projectGlazes = prjToBeDeleted.getGlazes();
+
+        // get the link entity
+        ProjectGlaze projectGlaze = projectGlazes.get(0);
+
+        //there's a value there
+        assertNotNull(projectGlaze, "there should be a a project-glaze link");
+
+        // delete the prj
+        dao.delete(prjToBeDeleted);
+
+        // verify the prj was deleted
+        assertNull(dao.getById(1));
+
+        // verify the link was also deleted
+        GenericDao<ProjectGlaze> prjGlazeDao = new GenericDao<>(ProjectGlaze.class);
+        assert(prjGlazeDao.getAll().isEmpty());
+    }
+
+    @Test
+    void deleteWithTagLinkage() {
+        // get the user we want to delete that has 2 orders associated
+        Project prjToBeDeleted = dao.getById(1);
+        List<ProjectTag> projectTags = prjToBeDeleted.getTags();
+
+        // get the link entity
+        ProjectTag projectTag = projectTags.get(0);
+
+        //there's a value there
+        assertNotNull(projectTag, "there should be a a project-tag link");
+
+        // delete the prj
+        dao.delete(prjToBeDeleted);
+
+        // verify the prj was deleted
+        assertNull(dao.getById(1));
+
+        // verify the link was also deleted
+        GenericDao<ProjectTag> prjTagDao = new GenericDao<>(ProjectTag.class);
+        assert(prjTagDao.getAll().isEmpty());
+    }
+
+
+
     /**
      * Get all check
      */

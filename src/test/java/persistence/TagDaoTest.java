@@ -1,7 +1,6 @@
 package persistence;
 
-import entity.Tag;
-import entity.User;
+import entity.*;
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -100,6 +99,29 @@ class TagDaoTest {
         dao.delete(testResource);
         Tag deletedTag = dao.getById(testResource.getTagId());
         assertNull(deletedTag, "resource should be deleted");
+    }
+
+    @Test
+    void deleteWithProjectLinkage() {
+        // get the user we want to delete that has 2 orders associated
+        Tag tagToBeDeleted = dao.getById(1);
+        List<ProjectTag> projectTags = tagToBeDeleted.getProjects();
+
+        // get the link entity
+        ProjectTag projectTag = projectTags.get(0);
+
+        //there's a value there
+        assertNotNull(projectTag, "there should be a a project-glaze link");
+
+        // delete the glz
+        dao.delete(tagToBeDeleted);
+
+        // verify the glaze was deleted
+        assertNull(dao.getById(1));
+
+        // verify the link was also deleted
+        GenericDao<ProjectTag> prjTagDao = new GenericDao<>(ProjectTag.class);
+        assert(prjTagDao.getAll().isEmpty());
     }
 
     /**

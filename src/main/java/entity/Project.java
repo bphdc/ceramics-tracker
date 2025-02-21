@@ -38,7 +38,7 @@ public class Project {
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<ProjectEntry> projectEntries = new ArrayList<>();
 
-    //these are the many to manny links
+    //these are the many-to-many links
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<ProjectGlaze> glazes = new ArrayList<>();
 
