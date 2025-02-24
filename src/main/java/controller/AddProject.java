@@ -1,5 +1,8 @@
 package controller;
 
+import entity.User;
+import persistence.GenericDao;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,6 +28,8 @@ public class AddProject extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        GenericDao<User> userDao = new GenericDao<>(User.class);
+        req.setAttribute("users", userDao.getAll());
         RequestDispatcher dispatcher = req.getRequestDispatcher("/addProject.jsp");
         dispatcher.forward(req, resp);
     }

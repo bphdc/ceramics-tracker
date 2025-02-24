@@ -7,7 +7,7 @@
 <body>
 
 <p>eventually a form goes here</p>
-
+<p>users from the db: ${users}</p>
 
 </body>
 </html>
