@@ -1,6 +1,6 @@
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:mysql://awseb-e-pfard3udvy-stack-awsebrdsdatabase-jr3nwhqwgro2.c5uu426g425k.us-east-2.rds.amazonaws.com:3306 </property>
+        <property name="connection.url">jdbc:mysql://awseb-e-pfard3udvy-stack-awsebrdsdatabase-jr3nwhqwgro2.c5uu426g425k.us-east-2.rds.amazonaws.com:3306/aws_ceramics_tracker</property>
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="connection.username">root</property>
         <property name="connection.password">Inf0rmaCast.</property>
