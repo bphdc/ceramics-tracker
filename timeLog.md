@@ -20,3 +20,26 @@ I'm on vacation so just getting week 4 materials done this week
 
 ### Wk5
 
+I probably spent 8-10 hrs getting materials ready this week. Took forever. Just adding in stuff for project but via the exercise
+
+### Wk6
+
+1-2 hrs on AWS setup
+2 hrs on peer review
+
+### Wk7
+1 hr on checkpt 2
+Still need to do exercise
+
+### Wk8
+
+### Wk9
+### Wk10
+### Wk11
+### Wk12
+### Wk13
+### Wk14
+### Wk15
+### Wk16
+
+
