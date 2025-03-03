@@ -259,14 +259,9 @@ public class Project {
     public String toString() {
         return "Project{" +
                 "projectId=" + projectId +
-                ", user=" + user +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", createdAt=" + createdAt +
-                ", images=" + images +
-                ", projectEntries=" + projectEntries +
-                ", glazes=" + glazes +
-                ", tags=" + tags +
                 '}';
     }
 }

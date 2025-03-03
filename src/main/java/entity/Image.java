@@ -125,7 +125,6 @@ public class Image {
     public String toString() {
         return "Images{" +
                 "imageId=" + imageId +
-                ", project=" + project +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", uploadedAt=" + uploadedAt +
                 '}';

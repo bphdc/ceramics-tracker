@@ -125,7 +125,6 @@ public class ProjectEntry {
     public String toString() {
         return "ProjectEntries{" +
                 "id=" + id +
-                ", project=" + project +
                 ", entryText='" + entryText + '\'' +
                 ", createdAt=" + createdAt +
                 '}';

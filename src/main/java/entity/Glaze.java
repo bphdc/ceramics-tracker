@@ -189,7 +189,6 @@ public class Glaze {
                 ", description='" + description + '\'' +
                 ", type='" + type + '\'' +
                 ", createdAt=" + createdAt +
-                ", projects=" + projects +
                 '}';
     }
 }

@@ -138,7 +138,6 @@ public class Tag {
                 "tagId=" + tagId +
                 ", name='" + name + '\'' +
                 ", createdAt=" + createdAt +
-                ", projects=" + projects +
                 '}';
     }
 }

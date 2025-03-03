@@ -75,7 +75,6 @@ public class ProjectGlaze {
     @Override
     public String toString() {
         return "ProjectGlaze{" +
-                "project=" + project +
                 ", glaze=" + glaze +
                 '}';
     }

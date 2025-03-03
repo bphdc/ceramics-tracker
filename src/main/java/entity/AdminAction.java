@@ -147,7 +147,6 @@ public class AdminAction {
     public String toString() {
         return "AdminAction{" +
                 "id=" + id +
-                ", user=" + user +
                 ", actionType='" + actionType + '\'' +
                 ", targetId=" + targetId +
                 ", timestamp=" + timestamp +

@@ -75,7 +75,6 @@ public class ProjectTag {
     @Override
     public String toString() {
         return "ProjectTag{" +
-                "project=" + project +
                 ", tag=" + tag +
                 '}';
     }
