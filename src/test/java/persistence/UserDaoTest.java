@@ -56,7 +56,7 @@ class UserDaoTest {
     void testInsertUser() {
         //create data for test user
         resource = new User(0, "userObject", "testspec@example.com", "This is a bio",
-                "profile.jpg", "passspec12314", "user", Timestamp.from(Instant.now()));
+                "profile.jpg",  "user", Timestamp.from(Instant.now()));
 
         //insert
         resource.setId(dao.insert(resource));
