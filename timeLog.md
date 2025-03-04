@@ -28,8 +28,8 @@ I probably spent 8-10 hrs getting materials ready this week. Took forever. Just 
 2 hrs on peer review
 
 ### Wk7
-1 hr on checkpt 2
-Still need to do exercise
+- 1 hr on checkpt 2
+- 1 hr on wk 7 exercise
 
 ### Wk8
 
