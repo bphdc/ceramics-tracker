@@ -33,7 +33,12 @@ I probably spent 8-10 hrs getting materials ready this week. Took forever. Just 
 
 ### Wk8
 
+- 3 hrs on weekly assignment
+
 ### Wk9
+
+- spring break - just work on individual project for next checkpoint 
+
 ### Wk10
 ### Wk11
 ### Wk12
