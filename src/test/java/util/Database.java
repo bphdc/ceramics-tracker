@@ -1,5 +1,8 @@
 package util;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -24,6 +27,7 @@ public class Database {
 
     private Properties properties;
     private Connection connection;
+    private Logger logger = LogManager.getLogger(this.getClass());
 
     /** private constructor prevents instantiating this class anywhere else
 	**/
@@ -40,10 +44,10 @@ public class Database {
         try {
             properties.load (this.getClass().getResourceAsStream("/database.properties"));
         } catch (IOException ioe) {
-            System.out.println("Database.loadProperties()...Cannot load the properties file");
+            logger.info("Database.loadProperties()...Cannot load the properties file");
             ioe.printStackTrace();
         } catch (Exception e) {
-            System.out.println("Database.loadProperties()..." + e);
+            logger.info("Database.loadProperties()...{}", String.valueOf(e));
             e.printStackTrace();
         }
 
@@ -86,7 +90,7 @@ public class Database {
             try {
                 connection.close();
             } catch (SQLException e) {
-                System.out.println("Cannot close connection" + e);
+                logger.info("Cannot close connection{}", String.valueOf(e));
             }
         }
 
@@ -122,9 +126,9 @@ public class Database {
             }
 
         } catch (SQLException se) {
-            System.out.println("SQL Exception" + se);
+            logger.info("SQL Exception{}", String.valueOf(se));
         } catch (Exception e) {
-            System.out.println("Exception" + e);
+            logger.info("Exception{}", String.valueOf(e));
         } finally {
             disconnect();
         }
