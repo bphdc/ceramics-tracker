@@ -86,10 +86,10 @@ public class Auth extends HttpServlet implements PropertiesLoader {
                 userName = validate(tokenResponse);
                 req.setAttribute("userName", userName);
             } catch (IOException e) {
-                logger.error("Error getting or validating the token: " + e.getMessage(), e);
+                logger.error("Error getting or validating the token: {}", e.getMessage(), e);
                 //TODO forward to an error page
             } catch (InterruptedException e) {
-                logger.error("Error getting token from Cognito oauth url " + e.getMessage(), e);
+                logger.error("Error getting token from Cognito oauth url {}", e.getMessage(), e);
                 //TODO forward to an error page
             }
         }
@@ -149,9 +149,9 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         try {
             publicKey = KeyFactory.getInstance("RSA").generatePublic(new RSAPublicKeySpec(modulus, exponent));
         } catch (InvalidKeySpecException e) {
-            logger.error("Invalid Key Error " + e.getMessage(), e);
+            logger.error("Invalid Key Error {}", e.getMessage(), e);
         } catch (NoSuchAlgorithmException e) {
-            logger.error("Algorithm Error " + e.getMessage(), e);
+            logger.error("Algorithm Error {}", e.getMessage(), e);
         }
 
         // get an algorithm instance
@@ -168,9 +168,9 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         // Verify the token
         DecodedJWT jwt = verifier.verify(tokenResponse.getIdToken());
         String userName = jwt.getClaim("cognito:username").asString();
-        logger.debug("here's the username: " + userName);
+        logger.debug("here's the username: {}", userName);
 
-        logger.debug("here are all the available claims: " + jwt.getClaims());
+        logger.debug("here are all the available claims: {}", jwt.getClaims());
 
         // TODO decide what you want to do with the info!
         // for now, I'm just returning username for display back to the browser
