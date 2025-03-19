@@ -7,9 +7,13 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import auth.*;
+import entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.commons.io.*;
+import org.hibernate.SessionFactory;
+import persistence.GenericDao;
+import persistence.SessionFactoryProvider;
 import util.PropertiesLoader;
 
 import javax.servlet.RequestDispatcher;
@@ -76,6 +80,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String authCode = req.getParameter("code");
         String userName = null;
+        String email = null;
 
         if (authCode == null) {
             //TODO forward to an error page or back to the login
@@ -112,12 +117,12 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         response = client.send(authRequest, HttpResponse.BodyHandlers.ofString());
 
 
-        logger.debug("Response headers: " + response.headers().toString());
-        logger.debug("Response body: " + response.body().toString());
+        logger.debug("Response headers: {}", response.headers().toString());
+        logger.debug("Response body: {}", response.body().toString());
 
         ObjectMapper mapper = new ObjectMapper();
         TokenResponse tokenResponse = mapper.readValue(response.body().toString(), TokenResponse.class);
-        logger.debug("Id token: " + tokenResponse.getIdToken());
+        logger.debug("Id token: {}", tokenResponse.getIdToken());
 
         return tokenResponse;
 
@@ -136,12 +141,22 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
         // Header should have kid and alg- https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-the-id-token.html
         String keyId = tokenHeader.getKid();
+        logger.debug("KeyId is: {}", keyId);
         String alg = tokenHeader.getAlg();
+        logger.debug("alg is: {}", alg);
 
-        // todo pick proper key from the two - it just so happens that the first one works for my case
+        logger.debug("first key is: {}", jwks.getKeys().get(0) );
+        logger.debug("second key is: {}", jwks.getKeys().get(1) );
+
+        KeysItem matchingKey = jwks.getKeys().stream()
+                .filter(key -> keyId.equals(key.getKid()))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("No matching key found for kid: " + keyId));
+
+
         // Use Key's N and E
-        BigInteger modulus = new BigInteger(1, org.apache.commons.codec.binary.Base64.decodeBase64(jwks.getKeys().get(0).getN()));
-        BigInteger exponent = new BigInteger(1, org.apache.commons.codec.binary.Base64.decodeBase64(jwks.getKeys().get(0).getE()));
+        BigInteger modulus = new BigInteger(1, org.apache.commons.codec.binary.Base64.decodeBase64(matchingKey.getN()));
+        BigInteger exponent = new BigInteger(1, org.apache.commons.codec.binary.Base64.decodeBase64(matchingKey.getE()));
 
         // TODO the following is "happy path", what if the exceptions are caught?
         // Create a public key
@@ -168,14 +183,41 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         // Verify the token
         DecodedJWT jwt = verifier.verify(tokenResponse.getIdToken());
         String userName = jwt.getClaim("cognito:username").asString();
-        logger.debug("here's the username: {}", userName);
+        String email = jwt.getClaim("email").asString();
 
+        logger.debug("here's the username: {}", userName);
+        logger.debug("here's the email: {}", email);
         logger.debug("here are all the available claims: {}", jwt.getClaims());
 
         // TODO decide what you want to do with the info!
-        // for now, I'm just returning username for display back to the browser
+        Boolean added = addUserToDB(userName, email);
+        if (added) {
+            logger.info("user added to the database");}
+        else {
+            logger.info("user not added to the database");
+        }
 
         return userName;
+    }
+
+    /**
+     * checks if user exists and adds to db if not
+     * @param userName userName to add and to check if already exists
+     *
+     */
+    private Boolean addUserToDB (String userName, String email) {
+        SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
+        GenericDao<User> userDao = new GenericDao<>(User.class);
+        //determine if user exists already
+        List<User> users = userDao.getByPropertyEqual("username", userName);
+        if (users.isEmpty()) {
+            User user = new User();
+            user.setUsername(userName);
+            user.setEmail(email);
+            userDao.insert(user);
+            return true;
+        }
+        return false;
     }
 
     /** Create the auth url and use it to build the request.
