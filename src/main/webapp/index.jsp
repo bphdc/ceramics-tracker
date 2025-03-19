@@ -1,20 +1,30 @@
 <%@include file="head.jsp"%>
 <%@include file="taglib.jsp"%>
 <html>
+
 <body>
-<h2>Hello World!</h2>
+    <div class="container">
+        <h1>Welcome to the Ceramics Tracker</h1>
+        <p>Track your ceramic projects, glazes, and more with our easy-to-use tool.</p>
 
-<c:choose>
-    <c:when test="${empty userName}">
-        <a href = "logIn">Log in</a>
-    </c:when>
-    <c:otherwise>
-        <h3>Welcome ${userName}</h3>
-        <a href = "addProject">Add a New Project</a>
-    </c:otherwise>
-</c:choose>
+        <c:choose>
+            <c:when test="${empty userName}">
+                <p><a href="logIn">Log In</a></p>
+            </c:when>
+            <c:otherwise>
+                <div class="nav">
+                    <p>Welcome, <c:out value="${userName}" />!</p>
+                    <a href="profile">Update Profile</a>
+                    <a href="addProject">Add a New Project</a>
+                    <a href="searchProjects">Search Projects</a>
 
-
-
+                    <c:if test="${userRole == 'admin'}">
+                        <a href="glazeLibrary">Glaze Library</a>
+                        <a href="tagLibrary">Tag Library</a>
+                    </c:if>
+                </div>
+            </c:otherwise>
+        </c:choose>
+    </div>
 </body>
 </html>

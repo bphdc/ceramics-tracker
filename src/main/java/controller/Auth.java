@@ -22,6 +22,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.math.BigInteger;
 import java.net.URI;
@@ -61,12 +62,16 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     Keys jwks;
 
     private final Logger logger = LogManager.getLogger(this.getClass());
+    private GenericDao<User> userDao;
+    private SessionFactory sessionFactory;
 
     @Override
     public void init() throws ServletException {
         super.init();
         loadProperties();
         loadKey();
+        userDao = new GenericDao<>(User.class);
+        sessionFactory = SessionFactoryProvider.getSessionFactory();
     }
 
     /**
@@ -90,6 +95,8 @@ public class Auth extends HttpServlet implements PropertiesLoader {
                 TokenResponse tokenResponse = getToken(authRequest);
                 userName = validate(tokenResponse);
                 req.setAttribute("userName", userName);
+                HttpSession session = req.getSession();
+                session.setAttribute("userName", userName);
             } catch (IOException e) {
                 logger.error("Error getting or validating the token: {}", e.getMessage(), e);
                 //TODO forward to an error page
@@ -194,7 +201,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         if (added) {
             logger.info("user added to the database");}
         else {
-            logger.info("user not added to the database");
+            logger.info("user already in database");
         }
 
         return userName;
@@ -206,8 +213,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      *
      */
     private Boolean addUserToDB (String userName, String email) {
-        SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
-        GenericDao<User> userDao = new GenericDao<>(User.class);
+
         //determine if user exists already
         List<User> users = userDao.getByPropertyEqual("username", userName);
         if (users.isEmpty()) {

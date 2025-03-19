@@ -3,6 +3,7 @@ package com.hiveai;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -40,6 +41,7 @@ public class HiveAIClientTest {
     }
 
     @Test
+    @Ignore //ignore for now so i'm not constantly making api requests when i deploy my server
     public void testGenerateImageFromRealServer() throws Exception {
         // Make the actual API call through the HiveAIClient
         Response response = hiveAIClient.generateImage("some hand thrown vases");
