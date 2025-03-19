@@ -91,3 +91,4 @@ fabric.properties
 # other stuff
 cognito.properties
 hiveai.properties
+database.properties
