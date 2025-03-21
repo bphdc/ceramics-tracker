@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * A servlet to add the prj.
@@ -65,8 +65,16 @@ public class SearchProjects extends HttpServlet {
                 break;
             case "byKeyword":
                 String keyword = request.getParameter("keyword");
-                projects = (projectDao.getByPropertyLike("name", keyword));
-                projects.addAll(projectDao.getByPropertyLike("description", keyword));
+                List<Project> initialProjects;
+                initialProjects = (projectDao.getByPropertyLike("name", keyword));
+                initialProjects.addAll(projectDao.getByPropertyLike("description", keyword));
+                //remove dups
+                Set<Integer> finalProjects = new HashSet<>();
+                for (Project project : initialProjects) {
+                    if (finalProjects.add(project.getProjectId())) {
+                        projects.add(project);
+                    }
+                }
                 break;
         }
 
