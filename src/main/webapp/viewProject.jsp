@@ -6,7 +6,7 @@
 
 <body>
     <div class="container">
-        <h2>${project.title}</h2>
+        <h2>${project.name}</h2>
         <p>${project.description}</p>
 
         <h3>Project Entries</h3>

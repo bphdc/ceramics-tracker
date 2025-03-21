@@ -1,6 +1,7 @@
 package controller;
 
 import entity.Project;
+import entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import persistence.GenericDao;
@@ -22,22 +23,34 @@ import java.util.List;
 @WebServlet("/searchProjects")
 public class SearchProjects extends HttpServlet {
 
-    private static final Logger log = LoggerFactory.getLogger(AddProject.class);
+    private static final Logger log = LoggerFactory.getLogger(SearchProjects.class);
     private GenericDao<Project> projectDao;
+    private GenericDao<User> userDao;
+    User loggedInUser;
 
     @Override
     public void init() {
         projectDao = new GenericDao<>(Project.class);
+        userDao = new GenericDao<>(User.class);
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String searchType = request.getParameter("searchType");
         List<Project> projects = new ArrayList<>();
-        String userId = (String) request.getSession().getAttribute("userId"); // Assuming session holds user info
+        int userId = (int) request.getSession().getAttribute("userId");
+        loggedInUser = userDao.getById(userId);
+
+
+        //go to search projects page if a search request isn't made yet - otherwise go thru switch statement and send user to results page
+        if (searchType == null || searchType.isEmpty()) {
+            request.getRequestDispatcher("searchProjects.jsp").forward(request, response);
+            return;
+        }
 
         switch (searchType) {
             case "myProjects":
-                projects = projectDao.getByPropertyEqual("user_id", userId);
+                projects = projectDao.getByPropertyEqual("user", loggedInUser);
                 break;
             case "allProjects":
                 projects = projectDao.getAll();
@@ -58,7 +71,7 @@ public class SearchProjects extends HttpServlet {
         }
 
         request.setAttribute("projects", projects);
-        request.getRequestDispatcher("searchResults.jsp").forward(request, response);
+        request.getRequestDispatcher("resultsProjects.jsp").forward(request, response);
     }
 }
 

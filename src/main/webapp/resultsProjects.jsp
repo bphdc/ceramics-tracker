@@ -16,7 +16,7 @@
             <ul class="project-list">
                 <c:forEach var="project" items="${projects}">
                     <li>
-                        <a href="viewProject.jsp?projectId=${project.id}">${project.title}</a>
+                        <a href="viewProject.jsp?projectId=${project.projectId}">${project.name}</a>
                         <p>${project.description}</p>
                     </li>
                 </c:forEach>
@@ -25,7 +25,7 @@
     </c:choose>
 
     <br>
-    <a href="searchProjects.jsp">Back to Search</a>
+    <a href="searchProjects">Back to Search</a>
 </div>
 </body>
 </html>
