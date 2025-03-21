@@ -85,6 +85,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String authCode = req.getParameter("code");
         String userName = null;
+        int userId = -1;
         String email = null;
 
         if (authCode == null) {
@@ -93,10 +94,13 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             HttpRequest authRequest = buildAuthRequest(authCode);
             try {
                 TokenResponse tokenResponse = getToken(authRequest);
-                userName = validate(tokenResponse);
+                Map userMap = validate(tokenResponse);
+                userName = userMap.get("userName").toString();
+                userId = Integer.parseInt(userMap.get("userId").toString());
                 req.setAttribute("userName", userName);
                 HttpSession session = req.getSession();
                 session.setAttribute("userName", userName);
+                session.setAttribute("userId", userId);
             } catch (IOException e) {
                 logger.error("Error getting or validating the token: {}", e.getMessage(), e);
                 //TODO forward to an error page
@@ -142,7 +146,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      * @return
      * @throws IOException
      */
-    private String validate(TokenResponse tokenResponse) throws IOException {
+    private Map<String, Object> validate(TokenResponse tokenResponse) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         CognitoTokenHeader tokenHeader = mapper.readValue(CognitoJWTParser.getHeader(tokenResponse.getIdToken()).toString(), CognitoTokenHeader.class);
 
@@ -196,23 +200,23 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         logger.debug("here's the email: {}", email);
         logger.debug("here are all the available claims: {}", jwt.getClaims());
 
-        // TODO decide what you want to do with the info!
-        Boolean added = addUserToDB(userName, email);
-        if (added) {
-            logger.info("user added to the database");}
-        else {
-            logger.info("user already in database");
-        }
 
-        return userName;
+        int userId = addUserToDB(userName, email);
+        Map<String, Object> userMap = new HashMap<>();
+        userMap.put("userId", userId);
+        userMap.put("userName", userName);
+
+        return userMap;
     }
 
     /**
      * checks if user exists and adds to db if not
      * @param userName userName to add and to check if already exists
+     * @param email email to add
+     * @return the user id of new or existing user
      *
      */
-    private Boolean addUserToDB (String userName, String email) {
+    private int addUserToDB (String userName, String email) {
 
         //determine if user exists already
         List<User> users = userDao.getByPropertyEqual("username", userName);
@@ -220,10 +224,12 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             User user = new User();
             user.setUsername(userName);
             user.setEmail(email);
-            userDao.insert(user);
-            return true;
+            int userId = userDao.insert(user);
+            return userId;
         }
-        return false;
+        else {
+           return users.get(0).getId();
+        }
     }
 
     /** Create the auth url and use it to build the request.
