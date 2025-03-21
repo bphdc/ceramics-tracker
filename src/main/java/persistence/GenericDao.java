@@ -119,6 +119,24 @@ public class GenericDao<T> {
     }
 
     /**
+     * Get entities by property (exact match).
+     *
+     * @param propertyName the property name
+     * @param value        the property value as an object
+     * @return list of matching entities
+     */
+    public List<T> getByPropertyEqual(String propertyName, Object value) {
+        Session session = getSession();
+        HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(type);
+        Root<T> root = query.from(type);
+        query.select(root).where(builder.equal(root.get(propertyName), value));
+        List<T> entities = session.createSelectionQuery(query).getResultList();
+        session.close();
+        return entities;
+    }
+
+    /**
      * Get entities by property (like).
      *
      * @param propertyName the property name
