@@ -239,6 +239,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `user_id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
+  `name` varchar(100),
   `email` varchar(100) NOT NULL,
   `bio` text,
   `profile_picture` varchar(255) DEFAULT NULL,

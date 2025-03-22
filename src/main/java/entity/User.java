@@ -24,6 +24,8 @@ public class User {
 
     private String username;
 
+    private String name;
+
     private String email;
 
     private String bio;
@@ -53,15 +55,17 @@ public class User {
      * @param id             Unique identifier for the user.
      * @param username       The username of the user.
      * @param email          The user's email address.
+     * @param name           the user's name
      * @param bio            A short bio describing the user.
      * @param profilePicture URL or path to the user's profile picture.
      * @param role           The role of the user (either "admin" or "user").
      * @param createdAt      The timestamp when the user was created.
      */
-    public User(int id, String username, String email, String bio, String profilePicture, String role, Timestamp createdAt) {
+    public User(int id, String username, String email, String name, String bio, String profilePicture, String role, Timestamp createdAt) {
         this.id = id;
         this.username = username;
         this.email = email;
+        this.name = name;
         this.bio = bio;
         this.profilePicture = profilePicture;
         this.role = role;
@@ -120,6 +124,24 @@ public class User {
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    /**
+     * Gets the name of the user.
+     *
+     * @return The user's name.
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Sets the name of the user.
+     *
+     * @param name The name to set.
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**

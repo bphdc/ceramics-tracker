@@ -199,8 +199,11 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         DecodedJWT jwt = verifier.verify(tokenResponse.getIdToken());
         String userName = jwt.getClaim("cognito:username").asString();
         String email = jwt.getClaim("email").asString();
+        //i think i'll just have users add their name in profile and not bother trying to scrape this from aws first
+        //String name = jwt.getClaim("name").asString();
 
         logger.debug("here's the username: {}", userName);
+        //logger.debug("here's the name: {}", name);
         logger.debug("here's the email: {}", email);
         logger.debug("here are all the available claims: {}", jwt.getClaims());
 
@@ -227,6 +230,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         if (users.isEmpty()) {
             User user = new User();
             user.setUsername(userName);
+            //user.setName(name);
             user.setEmail(email);
             user.setCreatedAt(Timestamp.from(Instant.now()));
             int userId = userDao.insert(user);

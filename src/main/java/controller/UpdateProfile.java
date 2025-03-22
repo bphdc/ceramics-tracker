@@ -48,15 +48,21 @@ public class UpdateProfile extends HttpServlet {
             List<FileItem> formItems = upload.parseRequest(request);
 
             String bio = null;
+            String name=null;
             String profilePictureUrl = null;
 
             for (FileItem item : formItems) {
                 if (item.isFormField()) {
-                    //figre out the bio first
+                    //figure out the bio first and name first
                     if ("bio".equals(item.getFieldName())) {
                         bio = item.getString();
                         log.info("received bio: " + bio);
                     }
+                    if ("name".equals(item.getFieldName())) {
+                        name = item.getString();
+                        log.info("received name: " + name);
+                    }
+
                 } else {
                     //now figure out the profile pic
                     if ("profilePicture".equals(item.getFieldName()) && item.getSize() > 0) {
@@ -78,6 +84,10 @@ public class UpdateProfile extends HttpServlet {
             //update fields on user object
             if (bio != null) {
                 user.setBio(bio);
+            }
+
+            if (name != null) {
+                user.setName(name);
             }
             if (profilePictureUrl != null) {
                 user.setProfilePicture(profilePictureUrl);

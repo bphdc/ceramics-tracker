@@ -9,6 +9,9 @@
     <label for="profilePicture">Profile Picture:</label><br>
     <input type="file" name="profilePicture" id="profilePicture"><br><br>
 
+    <label for="name">Name:</label><br>
+    <input type="text" name="name" id="name">
+
     <label for="bio">Bio:</label><br>
     <textarea name="bio" id="bio" rows="4" cols="50">${user.bio}</textarea><br><br>
 

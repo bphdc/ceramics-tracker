@@ -55,7 +55,7 @@ class UserDaoTest {
     @Test
     void testInsertUser() {
         //create data for test user
-        resource = new User(0, "userObject", "testspec@example.com", "This is a bio",
+        resource = new User(0, "userObject", "testspec@example.com", "Joe User" ,"This is a bio",
                 "profile.jpg",  "user", Timestamp.from(Instant.now()));
 
         //insert

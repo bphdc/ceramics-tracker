@@ -1,13 +1,15 @@
 -- create admin user
 
-INSERT INTO users (username, email, bio, profile_picture, role, created_at)
+INSERT INTO users (username, email, name, bio, profile_picture, role, created_at)
 VALUES (
            'testAdmin',
            'testAdmin@example.com',
+        'test admin name'
            'This is an admin user.',
            'profile_pic_admin.jpg',
            'admin',
-           NOW()
+           'admin',
+        NOW()
        );
 
 -- create glaze
