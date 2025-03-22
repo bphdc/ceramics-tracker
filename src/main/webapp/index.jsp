@@ -14,7 +14,7 @@
             <c:otherwise>
                 <div class="nav">
                     <p>Welcome, <c:out value="${userName}" />!</p>
-                    <a href="profile">Update Profile</a>
+                    <a href="updateProfile">Update Profile</a>
                     <a href="addProject">Add a New Project</a>
                     <a href="searchProjects">Search Projects</a>
 
