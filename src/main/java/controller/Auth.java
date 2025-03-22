@@ -38,6 +38,10 @@ import java.security.PublicKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.RSAPublicKeySpec;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -224,6 +228,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             User user = new User();
             user.setUsername(userName);
             user.setEmail(email);
+            user.setCreatedAt(Timestamp.from(Instant.now()));
             int userId = userDao.insert(user);
             return userId;
         }
