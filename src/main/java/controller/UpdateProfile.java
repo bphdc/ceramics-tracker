@@ -8,6 +8,9 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import persistence.GenericDao;
+import util.S3Uploader;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -28,6 +31,9 @@ public class UpdateProfile extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+        ServletContext context = getServletContext();
+        String ACCESS_KEY = (String) context.getAttribute("ACCESS_KEY");
+        String SECRET_KEY = (String) context.getAttribute("SECRET_KEY");
         GenericDao<User> userDao = new GenericDao<>(User.class);
         int userId = (int) session.getAttribute("userId");
         User user = userDao.getById(userId);
@@ -67,16 +73,11 @@ public class UpdateProfile extends HttpServlet {
                     //now figure out the profile pic
                     if ("profilePicture".equals(item.getFieldName()) && item.getSize() > 0) {
                         String fileName = new File(item.getName()).getName();
-                        String filePath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIR;
-                        File uploadDir = new File(filePath);
-                        if (!uploadDir.exists()) {
-                            uploadDir.mkdirs();
-                        }
+                        File tempFile = new File(System.getProperty("java.io.tmpdir"), fileName);
+                        item.write(tempFile);
 
-                        File storeFile = new File(uploadDir, fileName);
-                        item.write(storeFile); // Save the file
-                        profilePictureUrl = UPLOAD_DIR + "/" + fileName;
-                        log.info("uploaded file: " + profilePictureUrl);
+                        profilePictureUrl = S3Uploader.uploadFile(tempFile, "profile_pictures/" + fileName, ACCESS_KEY, SECRET_KEY);
+                        user.setProfilePicture(profilePictureUrl);
                     }
                 }
             }
