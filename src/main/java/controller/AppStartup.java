@@ -41,6 +41,11 @@ public class AppStartup extends HttpServlet implements PropertiesLoader {
             Properties hiveProperties = loadProperties("/hiveai.properties");
             context.setAttribute("cognitoProperties", cognitoProps);
 
+            //determine if it's local run or not - i'm setting this env variable in my tomcat config on intellij
+            String env = System.getenv("APP_ENV");
+            boolean isLocalhost = "local".equals(env);
+            logger.info("App startup env: " + isLocalhost);
+
             String clientId = cognitoProps.getProperty("client.id");
             String clientSecret = cognitoProps.getProperty("client.secret");
             String oauthUrl = cognitoProps.getProperty("oauthURL");
@@ -55,9 +60,11 @@ public class AppStartup extends HttpServlet implements PropertiesLoader {
 
             String environment = System.getenv("ELASTIC_BEANSTALK_ENVIRONMENT_NAME");
 
-            String redirectUrl = (environment != null)
+            String redirectUrl = (!isLocalhost)
                     ? cognitoProps.getProperty("redirectURL.aws")
                     : cognitoProps.getProperty("redirectURL.local");
+
+            logger.info("using this redirect url: " + redirectUrl);
 
             context.setAttribute("CLIENT_ID", clientId);
             context.setAttribute("CLIENT_SECRET", clientSecret);

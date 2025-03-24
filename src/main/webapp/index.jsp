@@ -23,6 +23,8 @@
 
                     <a href="searchAI">Get inspo (TODO implement)</a> <br>
 
+                    <a href="logout">Log out</a> <br>
+
                     <c:if test="${userRole == 'admin'}">
                         <a href="glazeLibrary">Glaze Library</a>
                         <a href="tagLibrary">Tag Library</a>
