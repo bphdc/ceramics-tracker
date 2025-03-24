@@ -16,7 +16,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Random;
 
 
 /**
@@ -72,7 +75,20 @@ public class UpdateProfile extends HttpServlet {
                 } else {
                     //now figure out the profile pic
                     if ("profilePicture".equals(item.getFieldName()) && item.getSize() > 0) {
+                        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
                         String fileName = new File(item.getName()).getName();
+                        String originalFileName = fileName;
+
+                        //get file extension
+                        String fileExtension = "";
+                        int dotIndex = fileName.lastIndexOf(".");
+                        if (dotIndex != -1) {
+                            fileExtension = originalFileName.substring(dotIndex); // Includes the dot (.)
+                            originalFileName = originalFileName.substring(0, dotIndex); // Remove extension
+                        }
+
+                        fileName = originalFileName + "_" + timestamp + fileExtension;
+
                         File tempFile = new File(System.getProperty("java.io.tmpdir"), fileName);
                         item.write(tempFile);
 
