@@ -17,6 +17,7 @@ import persistence.SessionFactoryProvider;
 import util.PropertiesLoader;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -295,25 +296,18 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     }
 
     /**
-     * Read in the cognito props file and get/set the client id, secret, and required urls
-     * for authenticating a user.
+     * Read in the cognito props stored in context
      */
-    // TODO This code appears in a couple classes, consider using a startup servlet similar to adv java project
+
     private void loadProperties() {
-        try {
-            properties = loadProperties("/cognito.properties");
-            CLIENT_ID = properties.getProperty("client.id");
-            CLIENT_SECRET = properties.getProperty("client.secret");
-            OAUTH_URL = properties.getProperty("oauthURL");
-            LOGIN_URL = properties.getProperty("loginURL");
-            REDIRECT_URL = properties.getProperty("redirectURL");
-            REGION = properties.getProperty("region");
-            POOL_ID = properties.getProperty("poolId");
-        } catch (IOException ioException) {
-            logger.error("Cannot load properties..." + ioException.getMessage(), ioException);
-        } catch (Exception e) {
-            logger.error("Error loading properties" + e.getMessage(), e);
-        }
+        ServletContext context = getServletContext();
+        CLIENT_ID = context.getAttribute("CLIENT_ID").toString();
+        CLIENT_SECRET = context.getAttribute("CLIENT_SECRET").toString();
+        OAUTH_URL = context.getAttribute("OAUTH_URL").toString();
+        LOGIN_URL = context.getAttribute("LOGIN_URL").toString();
+        REDIRECT_URL = context.getAttribute("REDIRECT_URL").toString();
+        REGION = context.getAttribute("REGION").toString();
+        POOL_ID = context.getAttribute("POOL_ID").toString();
     }
 }
 

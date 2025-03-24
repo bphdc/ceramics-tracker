@@ -35,10 +35,10 @@ public class AppStartup extends HttpServlet implements PropertiesLoader {
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         context = config.getServletContext();
-        Properties prop = new Properties();
         try {
             Properties cognitoProps = loadProperties("/cognito.properties");
             Properties awsProps = loadProperties("/aws.properties");
+            Properties hiveProperties = loadProperties("/hiveai.properties");
             context.setAttribute("cognitoProperties", cognitoProps);
 
             String clientId = cognitoProps.getProperty("client.id");
@@ -50,6 +50,8 @@ public class AppStartup extends HttpServlet implements PropertiesLoader {
 
             String accessKey = awsProps.getProperty("access.key");
             String secretKey = awsProps.getProperty("secret.key");
+
+            String hiveApiKey = hiveProperties.getProperty("apikey");
 
             String environment = System.getenv("AWS_EXECUTION_ENV");
 
@@ -67,6 +69,8 @@ public class AppStartup extends HttpServlet implements PropertiesLoader {
 
             context.setAttribute("ACCESS_KEY", accessKey);
             context.setAttribute("SECRET_KEY", secretKey);
+
+            context.setAttribute("HIVE_API_KEY", hiveApiKey);
 
             logger.info("properties successfully loaded at startup.");
 
