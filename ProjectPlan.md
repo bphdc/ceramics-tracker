@@ -27,7 +27,7 @@ For those using this as a model, continue adding weekly tasks by considering:
 - [X] First cut at database design
 - [X] Create the dev version of the database
 - [X] Create test version of database for unit testing
-- [ ] Figure out what jsps i need and stub them out
+- [ ] ~~Figure out what jsps i need and stub them out~~ decided to just do this as i get to it
 - [X] Figure out what persistence classes I need and stub them out
 - [X] Figure out what controller classes I need and stub them out
 - [X] Figure out what entities i need and stub them out
@@ -40,38 +40,40 @@ For those using this as a model, continue adding weekly tasks by considering:
 
 ### Week 7 (check point 2 so do that too)
 #### User Sign Up (MVP)
-- [ ] Design Sign Up JSP
-- [ ] Implement Sign Up form (name, email, password)
-- [ ] Implement AWS Cognito sign-up functionality
-- [ ] Validate Sign Up form
-- [ ] Test user creation in AWS Cognito
-- [ ] Write unit tests for Sign Up functionality
-- [ ] Integrate with backend services (AWS Cognito)
+- [] ~~Design Sign Up JSP~~
+- [X] Implement Sign Up form (name, email, password)
+- [X] Implement AWS Cognito sign-up functionality
+- [ ] ~~Validate Sign Up form~~
+- [X] Test user creation in AWS Cognito
+- [ ] ~~Write unit tests for Sign Up functionality~~ not needed bc it's through aws
+- [X] Integrate with backend services (AWS Cognito)
 
 #### User Sign In (MVP)
-- [ ] Design Sign In JSP
-- [ ] Implement Sign In form (email, password)
-- [ ] Implement AWS Cognito sign-in functionality
-- [ ] Validate Sign In form
-- [ ] Test user login via AWS Cognito
-- [ ] Write unit tests for Sign In functionality
+- [ ] ~~Design Sign In JSP~~
+- [ ] ~~Implement Sign In form (email, password)~~
+- [X] Implement AWS Cognito sign-in functionality
+- [ ] ~~Validate Sign In form~~
+- [X] Test user login via AWS Cognito
+- [ ] ~~Write unit tests for Sign In functionality~~
+
+^^ most of this doesn't apply as it's via Cognito
 
 #### User Create New Project (MVP)
-- [ ] Design Create Project JSP
-- [ ] Implement form to add new project (title, description, etc.)
-- [ ] Implement backend logic for creating a new project
-- [ ] Persist project data in the database
-- [ ] Test project creation functionality
-- [ ] Write unit tests for Create Project functionality
+- [X] Design Create Project JSP
+- [X] Implement form to add new project (title, description, etc.)
+- [X] Implement backend logic for creating a new project
+- [X] Persist project data in the database
+- [X] Test project creation functionality 
+- [X] Write unit tests for Create Project functionality (dao test)
 
 ### Week 8
 #### User Edit Profile
-- [ ] Design Edit Profile JSP
-- [ ] Implement form to update user profile (email, name, etc.)
-- [ ] Implement backend logic for updating user profile
-- [ ] Validate profile edit form
-- [ ] Test profile edit functionality
-- [ ] Write unit tests for Edit Profile functionality
+- [X] Design Edit Profile JSP
+- [X] Implement form to update user profile (email, name, etc.)
+- [X] Implement backend logic for updating user profile
+- [X] Validate profile edit form
+- [X] Test profile edit functionality
+- [X] Write unit tests for Edit Profile functionality (dao test)
 
 #### User Delete Profile
 - [ ] Implement delete user profile functionality in the backend
@@ -95,19 +97,19 @@ For those using this as a model, continue adding weekly tasks by considering:
 
 ### Week 9 (Checkpoint 3 so do chkpt 3 too)
 #### User Add Picture (MVP)
-- [ ] Design Add Picture JSP (file upload form)
-- [ ] Implement image upload functionality (support for multiple images)
-- [ ] Integrate file upload with the database
-- [ ] Implement image display in the project details
-- [ ] Test image upload and display functionality
-- [ ] Write unit tests for Add Picture functionality
+- [X] Design Add Picture JSP (file upload form)
+- [X] Implement image upload functionality (support for multiple images)
+- [X] Integrate file upload with the database
+- [X] Implement image display in the project details
+- [X] Test image upload and display functionality
+- [X] Write unit tests for Add Picture functionality (dao)
 
 #### User View Projects
-- [ ] Design View Projects JSP
-- [ ] Implement functionality to display list of projects
-- [ ] Implement pagination and sorting for projects
-- [ ] Test project display functionality
-- [ ] Write unit tests for View Projects functionality
+- [X] Design View Projects JSP
+- [X] Implement functionality to display list of projects
+- [X] Implement pagination and sorting for projects
+- [X] Test project display functionality
+- [X] Write unit tests for View Projects  (dao)
 
 #### User Add Glaze
 - [ ] Design Add Glaze JSP
@@ -175,12 +177,12 @@ For those using this as a model, continue adding weekly tasks by considering:
 - [ ] Write unit tests for Admin Delete Tags functionality
 
 ### Week 12
-#### User Calculate Shrinkage (MVP)
-- [ ] Design Shrinkage Calculator JSP
-- [ ] Implement clay shrinkage calculation logic (based on user input)
-- [ ] Validate shrinkage calculation form
-- [ ] Test Shrinkage Calculator functionality
-- [ ] Write unit tests for Shrinkage Calculator functionality
+#### ~~User Calculate Shrinkage (MVP)~~ Changed this to Hive AI image search
+- [ ] Hive JSP
+- [ ] Implement logic (based on user input)
+- [ ] Validate form
+- [ ] Test external api
+- [X] Write unit tests for Shrinkage Calculator functionality
 
 ### Week 13-14
 #### Testing and Refinement
