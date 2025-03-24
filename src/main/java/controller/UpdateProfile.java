@@ -114,7 +114,7 @@ public class UpdateProfile extends HttpServlet {
             userDao.saveOrUpdate(user);
             log.info("Updated user: " + user);
 
-            response.sendRedirect("viewProfile.jsp");
+            response.sendRedirect("viewProfile?userId=" + userId);
         } catch (Exception ex) {
             log.error("Error processing form: ", ex);
             response.sendRedirect("updateProfile.jsp?error=uploadFailed");
