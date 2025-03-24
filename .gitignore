@@ -92,3 +92,4 @@ fabric.properties
 cognito.properties
 hiveai.properties
 database.properties
+aws.properties
