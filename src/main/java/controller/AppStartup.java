@@ -53,9 +53,9 @@ public class AppStartup extends HttpServlet implements PropertiesLoader {
 
             String hiveApiKey = hiveProperties.getProperty("apikey");
 
-            String environment = System.getenv("AWS_EXECUTION_ENV");
+            String environment = System.getenv("ELASTIC_BEANSTALK_ENVIRONMENT_NAME");
 
-            String redirectUrl = (environment != null && environment.contains("AWS"))
+            String redirectUrl = (environment != null)
                     ? cognitoProps.getProperty("redirectURL.aws")
                     : cognitoProps.getProperty("redirectURL.local");
 

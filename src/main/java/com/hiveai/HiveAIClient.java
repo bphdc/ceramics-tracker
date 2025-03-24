@@ -36,7 +36,7 @@ public class HiveAIClient implements PropertiesLoader {
     }
 
     /**
-     * Read in the cognito props file and get/set the client id, secret, and required urls
+     * Read in the props file and get/set the client id, secret, and required urls
      * for authenticating a user.
      */
     // TODO This code appears in a couple classes, consider using a startup servlet similar to adv java project
