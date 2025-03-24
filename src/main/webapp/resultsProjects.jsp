@@ -16,7 +16,7 @@
             <ul class="project-list">
                 <c:forEach var="project" items="${projects}">
                     <li>
-                        <a href="viewProject.jsp?projectId=${project.projectId}">${project.name}</a>
+                        <a href="viewProject?projectId=${project.projectId}">${project.name}</a>
                         <p>${project.description}</p>
                     </li>
                 </c:forEach>
