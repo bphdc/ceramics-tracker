@@ -9,20 +9,20 @@
         <h2>${project.name}</h2>
         <p>${project.description}</p>
 
-        <c:if test="${project.getProjectEntries !=null}">
+        <c:if test="${not empty projectEntries}">
         <h3>Project Entries</h3>
         <ul>
-            <c:forEach var="entry" items="${project.getProjectEntries}">
-                <li>${entry.getCreatedAt} - ${entry.getEntryText}</li>
+            <c:forEach var="entry" items="${projectEntries}">
+                <li>${entry.createdAt} - ${entry.extryText}</li>
             </c:forEach>
         </ul>
         </c:if>
 
-        <c:if test="${project.getImages !=null}">
+        <c:if test="${not empty projectImages}">
         <h3>Image Gallery</h3>
         <div class="image-gallery">
-            <c:forEach var="image" items="${project.getImages}">
-                <img src="${image.url}" alt="Project Image">
+            <c:forEach var="image" items="${projectImages}">
+                <img src="${projectImages.url}" alt="Project Image">
             </c:forEach>
         </div>
         </c:if>
@@ -30,11 +30,11 @@
         <br>
         <a href="searchProjects">Back to Search</a>
 
-        <c:if test="${user == project.getUser}">
+        <c:if test="${loggedInUser.id == projectUser.id}">
             <br>
-            <a href="editProject?projectId=${project.getProjectId}">Edit Project</a>
+            <a href="editProject?projectId=${project.projectId}">Edit Project</a>
             <br>
-            <a href="deleteProject?projectId=${project.getProjectId}">Delete Project</a>
+            <a href="deleteProject?projectId=${project.projectId}">Delete Project</a>
         </c:if>
     </div>
 </body>

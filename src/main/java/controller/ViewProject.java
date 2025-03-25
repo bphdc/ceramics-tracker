@@ -1,5 +1,7 @@
 package controller;
 
+import entity.Image;
+import entity.ProjectEntry;
 import entity.User;
 import entity.Project;
 import org.slf4j.Logger;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/viewProject")
@@ -51,11 +54,17 @@ public class ViewProject extends HttpServlet {
 
         Project project = projectDao.getById(projectId);
         log.info("project is " + project);
-        User user = userDao.getById(userId);
+        List<ProjectEntry> projectEntries = project.getProjectEntries();
+        List<Image> projectImages = project.getImages();
+        User loggedInUser = userDao.getById(userId);
+        User projectUser = project.getUser();
 
-        if (user != null) {
-            request.setAttribute("user", user);
+        if (loggedInUser != null) {
+            request.setAttribute("loggedInUser", loggedInUser);
+            request.setAttribute("projectUser", projectUser);
             request.setAttribute("project", project);
+            request.setAttribute("projectEntries", projectEntries);
+            request.setAttribute("projectImages", projectImages);
             request.getRequestDispatcher("/viewProject.jsp").forward(request, response);
         } else {
             log.error("User not found with ID: " + userId);

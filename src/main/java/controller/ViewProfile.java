@@ -1,5 +1,7 @@
 package controller;
 
+import entity.Image;
+import entity.ProjectEntry;
 import entity.User;
 import entity.Project;
 import org.slf4j.Logger;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/viewProfile")
@@ -31,14 +34,14 @@ public class ViewProfile extends HttpServlet {
 
         if (userIdParam != null) {
             try {
-                userId = Integer.parseInt(userIdParam); // View any user's profile
+                userId = Integer.parseInt(userIdParam); //view any user's profile
             } catch (NumberFormatException e) {
                 log.error("Invalid userId parameter: " + userIdParam);
                 response.sendRedirect("error.jsp");
                 return;
             }
         } else {
-            userId = (Integer) session.getAttribute("userId"); // Default to logged-in user
+            userId = (Integer) session.getAttribute("userId"); //default to logged-in user
             if (userId == null) {
                 response.sendRedirect("login.jsp");
                 return;
