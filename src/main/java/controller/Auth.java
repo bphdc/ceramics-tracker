@@ -90,6 +90,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String authCode = req.getParameter("code");
         String userName = null;
+        String userRole = "user";
         int userId = -1;
         String email = null;
 
@@ -101,8 +102,10 @@ public class Auth extends HttpServlet implements PropertiesLoader {
                 TokenResponse tokenResponse = getToken(authRequest);
                 Map userMap = validate(tokenResponse);
                 userName = userMap.get("userName").toString();
+                userRole = userMap.get("userRole").toString();
                 userId = Integer.parseInt(userMap.get("userId").toString());
                 req.setAttribute("userName", userName);
+                req.setAttribute("userRole", userRole);
                 HttpSession session = req.getSession();
                 session.setAttribute("userName", userName);
                 session.setAttribute("userId", userId);
@@ -210,9 +213,12 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
 
         int userId = addUserToDB(userName, email);
+        GenericDao<User> userDao = new GenericDao<>(User.class);
+        User user = userDao.getById(userId);
         Map<String, Object> userMap = new HashMap<>();
         userMap.put("userId", userId);
         userMap.put("userName", userName);
+        userMap.put("userRole", user.getRole());
 
         return userMap;
     }
