@@ -21,7 +21,8 @@
 <p>Current Profile Picture: </p>
 <img src="<c:out value='${user.profilePicture}'/>" alt="Profile Picture" width="100"><br><br>
 
-<p><a href=""viewProfile?userId=${user.id}"">Back to Profile</a></p>
+<p><a href="viewProfile?userId=${user.id}">Back to Profile</a></p>
+<p><a href="deleteUser?userId=${user.id}">Delete Profile</a></p>
 </body>
 
 </html>
