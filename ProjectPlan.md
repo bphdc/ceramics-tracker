@@ -111,6 +111,8 @@ For those using this as a model, continue adding weekly tasks by considering:
 - [X] Test project display functionality
 - [X] Write unit tests for View Projects  (dao)
 
+
+DECIDED TO REMOVE ABILITY TO LET USER ADD GLAZE TO DB. KEEP IT ADMIN FOR NOW FOR SIMPLICITY
 #### User Add Glaze
 - [ ] Design Add Glaze JSP
 - [ ] Implement form to add new glaze (name, description)
@@ -119,62 +121,70 @@ For those using this as a model, continue adding weekly tasks by considering:
 - [ ] Write unit tests for Add Glaze functionality
 
 #### User View Glazes
-- [ ] Design View Glazes JSP
-- [ ] Implement functionality to display glaze library
-- [ ] Implement search/filtering for glazes
+- [ ] ~~Design View Glazes JSP~~ users will see glazes from dropdown list in prj
+- [ ] Implement functionality
+- [ ] Implement search for glazes
 - [ ] Test glaze view functionality
-- [ ] Write unit tests for View Glazes functionality
+- [X] Write unit tests for View Glazes functionality
 
 #### User Add Existing Tags to Project
 - [ ] Design Add Tags JSP
 - [ ] Implement form to select and add tags to projects
 - [ ] Implement backend logic to associate tags with projects
 - [ ] Test tag addition functionality
-- [ ] Write unit tests for Add Tags functionality
+- [X] Write unit tests for Add Tags functionality
 
 #### User Search Projects by Tag
 - [ ] Implement tag-based search functionality
 - [ ] Update View Projects JSP to support filtering by tags
 - [ ] Test tag search functionality
-- [ ] Write unit tests for Search by Tag functionality
+- [X] Write unit tests for Search by Tag functionality
 
 #### User Search Projects by Glaze
 - [ ] Implement glaze-based search functionality
 - [ ] Update View Projects JSP to support filtering by glaze
 - [ ] Test glaze search functionality
-- [ ] Write unit tests for Search by Glaze functionality
+- [X] Write unit tests for Search by Glaze functionality
 
 ### Week 10
+#### Admin Add Glaze
+- [ ] Design Add Glaze JSP
+- [ ] Implement form to add new glaze (name, description)
+- [ ] Persist glaze data in the database
+- [ ] Test glaze creation functionality
+- [X] Write unit tests for Add Glaze functionality
+
+
 #### Admin Edit Glazes
 - [ ] Design Admin Edit Glaze JSP
 - [ ] Implement functionality to update glaze details
 - [ ] Test Admin Edit Glaze functionality
-- [ ] Write unit tests for Admin Edit Glazes functionality
+- [X] Write unit tests for Admin Edit Glazes functionality
 
 #### Admin Delete Glazes
 - [ ] Design Admin Delete Glaze JSP
 - [ ] Implement functionality to delete glaze from library
 - [ ] Test Admin Delete Glaze functionality
-- [ ] Write unit tests for Admin Delete Glazes functionality
+- [X] Write unit tests for Admin Delete Glazes functionality
 
 #### Admin Add New Tags
 - [ ] Design Admin Add Tag JSP
 - [ ] Implement functionality to add new tags to library
 - [ ] Test Admin Add Tag functionality
-- [ ] Write unit tests for Admin Add New Tags functionality
+- [X] Write unit tests for Admin Add New Tags functionality
 
 ### Week 11
 #### Admin Edit Tags
 - [ ] Design Admin Edit Tag JSP
 - [ ] Implement functionality to update tags
 - [ ] Test Admin Edit Tag functionality
-- [ ] Write unit tests for Admin Edit Tags functionality
+- [X] Write unit tests for Admin Edit Tags functionality
 
 #### Admin Delete Tags
 - [ ] Design Admin Delete Tag JSP
 - [ ] Implement functionality to delete tags from library
 - [ ] Test Admin Delete Tag functionality
-- [ ] Write unit tests for Admin Delete Tags functionality
+- [X] Write unit tests for Admin Delete Tags functionality
 
 ### Week 12
 #### ~~User Calculate Shrinkage (MVP)~~ Changed this to Hive AI image search
