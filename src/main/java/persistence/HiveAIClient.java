@@ -1,4 +1,4 @@
-package com.hiveai;
+package persistence;
 
 
 import com.hiveai.Response;
@@ -11,7 +11,6 @@ import org.springframework.web.client.RestTemplate;
 import util.PropertiesLoader;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Properties;
 
 @Service
@@ -24,9 +23,7 @@ public class HiveAIClient implements PropertiesLoader {
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     public HiveAIClient() {
-        loadProperties();
-        this.restTemplate = new RestTemplate();
-        this.objectMapper = new ObjectMapper();
+        this(new RestTemplate());
     }
 
     public HiveAIClient(RestTemplate restTemplate) {

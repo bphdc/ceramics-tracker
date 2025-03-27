@@ -11,6 +11,8 @@ import org.mockito.Mock;
 import org.springframework.http.*;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.RestTemplate;
+import persistence.HiveAIClient;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
