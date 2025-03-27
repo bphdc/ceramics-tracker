@@ -76,24 +76,24 @@ For those using this as a model, continue adding weekly tasks by considering:
 - [X] Write unit tests for Edit Profile functionality (dao test)
 
 #### User Delete Profile
-- [ ] Implement delete user profile functionality in the backend
-- [ ] Design confirmation JSP for profile deletion
-- [ ] Integrate with AWS Cognito to delete user account
-- [ ] Test profile deletion functionality
-- [ ] Write unit tests for Delete Profile functionality
+- [X] Implement delete user profile functionality in the backend
+- [X] Design confirmation JSP for profile deletion
+- [X] Integrate with AWS Cognito to delete user account
+- [X] Test profile deletion functionality
+- [X] Write unit tests for Delete Profile functionality
 
 #### User Edit Project
-- [ ] Design Edit Project JSP
-- [ ] Implement form to edit project details
-- [ ] Implement backend logic for updating project details
-- [ ] Test project edit functionality
-- [ ] Write unit tests for Edit Project functionality
+- [X] Design Edit Project JSP
+- [X] Implement form to edit project details
+- [X] Implement backend logic for updating project details
+- [X] Test project edit functionality
+- [X] Write unit tests for Edit Project functionality
 
 #### User Delete Project
-- [ ] Implement delete project functionality in the backend
-- [ ] Design confirmation JSP for project deletion
-- [ ] Test project deletion functionality
-- [ ] Write unit tests for Delete Project functionality
+- [X] Implement delete project functionality in the backend
+- [X] Design confirmation JSP for project deletion
+- [X] Test project deletion functionality
+- [X] Write unit tests for Delete Project functionality
 
 ### Week 9 (Checkpoint 3 so do chkpt 3 too)
 #### User Add Picture (MVP)
@@ -181,7 +181,7 @@ For those using this as a model, continue adding weekly tasks by considering:
 - [ ] Hive JSP
 - [ ] Implement logic (based on user input)
 - [ ] Validate form
-- [ ] Test external api
+- [X] Test external api
 - [X] Write unit tests for Shrinkage Calculator functionality
 
 ### Week 13-14

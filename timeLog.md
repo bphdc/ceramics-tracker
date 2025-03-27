@@ -39,6 +39,8 @@ I probably spent 8-10 hrs getting materials ready this week. Took forever. Just 
 
 - spring break - just work on individual project for next checkpoint 
 - probably spent 15-20 hrs on the project during this spring break/Monday of week 9
+- spent maybe 5 hrs so far on the team project. possibly a few more tomorrow
+
 
 ### Wk10
 ### Wk11
