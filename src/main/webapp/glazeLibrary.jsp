@@ -8,7 +8,7 @@
 <body>
 <h1>Glaze Library</h1>
 
-<a href="addGlaze">"Add a New Glaze to Library"</a>
+<a href="addGlaze">Add a New Glaze to Library</a>
 
 <table border="1">
     <thead>

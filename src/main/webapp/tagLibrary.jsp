@@ -8,7 +8,7 @@
 <body>
 <h1>Tag Library</h1>
 
-<a href="addTag">"Add a New Tag to Library"</a>
+<a href="addTag">Add a New Tag to Library</a>
 
 <table border="1">
     <thead>
