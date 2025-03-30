@@ -27,8 +27,8 @@
             <td>${glaze.description}</td>
             <td>${glaze.type}</td>
             <td>
-                <a href="editGlaze?glazeId=${glaze.id}">Edit</a>
-                <a href="deleteGlaze?glazeId=${glaze.id}">Delete</a>
+                <a href="editGlaze?glazeId=${glaze.glazeId}">Edit</a>
+                <a href="deleteGlaze?glazeId=${glaze.glazeId}">Delete</a>
             </td>
         </tr>
     </c:forEach>

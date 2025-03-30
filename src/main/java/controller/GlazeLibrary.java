@@ -27,7 +27,6 @@ public class GlazeLibrary extends HttpServlet {
 
     private static final Logger log = LoggerFactory.getLogger(GlazeLibrary.class);
     private static GenericDao<Glaze> glazeDao = new GenericDao<>(Glaze.class);
-    private static ServletHelper servletHelper = new ServletHelper();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        User user = ServletHelper.getLoggedInUser(request);
@@ -38,7 +37,7 @@ public class GlazeLibrary extends HttpServlet {
             request.getRequestDispatcher("glazeLibrary.jsp").forward(request, response);
         }
         else {
-            servletHelper.sendToErrorPageWithMessage(request, response, "Permission denied - reach out to site administrator");
+            ServletHelper.sendToErrorPageWithMessage(request, response, "Permission denied - reach out to site administrator");
         }
 
     }

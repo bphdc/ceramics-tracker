@@ -23,8 +23,8 @@
             <td>${tag.tagId}</td>
             <td>${tag.name}</td>
             <td>
-                <a href="editTag?tagId=${tag.id}">Edit</a>
-                <a href="deleteTag?tagId=${tag.id}">Delete</a>
+                <a href="editTag?tagId=${tag.tagId}">Edit</a>
+                <a href="deleteTag?tagId=${tag.tagId}">Delete</a>
             </td>
         </tr>
     </c:forEach>
