@@ -6,69 +6,88 @@
 <html>
 
 <body>
+    <h2>Edit Your Project</h2>
 
-<h2>Edit Your Project</h2>
+    <!-- Basic Info Section -->
+    <fieldset>
+        <legend><h3>Basic Info</h3></legend>
+        <form action="editProject" method="post" enctype="multipart/form-data">
+            <label for="name">Project Name:</label>
+            <input type="text" id="name" name="name" value="${project.name}" required>
 
-<form action="editProject" method="post" enctype="multipart/form-data">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" required>${project.description}</textarea>
 
-    <label for="name">Project Name:</label>
-    <input type="text" id="name" name="name" value="${project.name}" required>
+            <label for="glazes">Add Glazes:</label>
+            <select id="glazes" name="glazes" multiple>
+                <c:forEach var="glaze" items="${availableGlazes}">
+                    <option value="${glaze.name}" <c:if test="${fn:contains(selectedGlazes, glaze)}">selected</c:if>>${glaze}</option>
+                </c:forEach>
+            </select>
 
-    <label for="description">Description:</label>
-    <textarea id="description" name="description" rows="4" required>${project.description}</textarea>
+            <label for="tags">Add Tags:</label>
+            <select id="tags" name="tags" multiple>
+                <c:forEach var="tag" items="${availableTags}">
+                    <option value="${tag.name}" <c:if test="${fn:contains(selectedTags, tag)}">selected</c:if>>${tag}</option>
+                </c:forEach>
+            </select>
 
-    <label for="fileUpload">Upload Images (up to 5 at a time):</label>
-    <input type="file" id="fileUpload" name="images" multiple accept="image/*" onchange="handleFileUpload()">
-    <div class="image-preview" id="imagePreview"></div>
+            <button type="submit">Save Changes</button>
+        </form>
+    </fieldset>
 
-    <div id="addMoreImages" class="hidden">
-        <p>Would you like to add more images?</p>
-        <button type="button" onclick="toggleAddMoreImages('yes')">Yes</button>
-        <button type="button" onclick="toggleAddMoreImages('no')">No</button>
-    </div>
+    <hr>
 
-    <label for="glazes">Add Glazes:</label>
-    <select id="glazes" name="glazes" multiple>
-        <c:forEach var="glaze" items="${availableGlazes}">
-            <option value="${glaze.name}"
-                <c:if test="${fn:contains(selectedGlazes, glaze)}">selected</c:if>
-            >${glaze}</option>
-        </c:forEach>
-    </select>
+    <!-- Image Upload Section -->
+    <fieldset>
+        <legend><h3>Images</h3></legend>
+        <label for="fileUpload">Upload Images (up to 5 at a time):</label>
+        <input type="file" id="fileUpload" name="images" multiple accept="image/*" onchange="handleFileUpload()">
+        <div class="image-preview" id="imagePreview"></div>
 
-    <label for="tags">Add Tags:</label>
-    <select id="tags" name="tags" multiple>
-        <c:forEach var="tag" items="${availableTags}">
-            <option value="${tag.name}"
-                <c:if test="${fn:contains(selectedTags, tag)}">selected</c:if>
-            >${tag}</option>
-        </c:forEach>
-    </select>
+        <div id="addMoreImages" class="hidden">
+            <p>Would you like to add more images?</p>
+            <button type="button" onclick="toggleAddMoreImages('yes')">Yes</button>
+            <button type="button" onclick="toggleAddMoreImages('no')">No</button>
+        </div>
 
-    <button type="submit">Save Changes</button>
-</form>
+        <c:if test="${not empty images}">
+            <h4>Previously Uploaded Images</h4>
+            <div style="display: flex; flex-wrap: wrap;">
+                <c:forEach var="image" items="${images}">
+                    <div>
+                        <img src="${image.imageUrl}" alt="Uploaded Image" width="150" height="150" style="margin: 5px; border-radius: 5px;">
+                    </div>
+                </c:forEach>
+            </div>
+        </c:if>
+    </fieldset>
 
-<hr>
+    <hr>
 
-<!-- Blog Entries Section -->
-<h3>Project Blog</h3>
+    <!-- Blog Entries Section -->
+    <fieldset>
+        <legend><h3>Project Blog</h3></legend>
+        <form action="addEntry" method="post">
+            <label for="newEntry">Add a new blog entry:</label>
+            <textarea id="newEntry" name="newEntry" rows="3" required></textarea>
+            <button type="submit">Add Entry</button>
+            <input type="hidden" name="projectId" value="${project.projectId}">
+        </form>
 
-<form action="addEntry" method="post">
-    <label for="newEntry">Add a new blog entry:</label>
-    <textarea id="newEntry" name="newEntry" rows="3" required></textarea>
-    <button type="submit">Add Entry</button>
-    <input type="hidden" name="projectId" value="${project.projectId}">
-</form>
-
-<h4>Previous Entries</h4>
-<c:forEach var="entry" items="${entries}" varStatus="status">
-    <div class="blog-entry">
-        <p>${entry.entryText}</p>
-        <a href="editEntry?id=${entry.id}&projectId=${project.projectId}">Edit Entry</a>
-        <a href="deleteEntry?id=${entry.id}&projectId=${project.projectId}">Delete Entry</a>
-    </div>
-</c:forEach>
-
+        <c:if test="${not empty entries}">
+            <h4>Previous Entries</h4>
+            <div style="border: 1px solid #ddd; padding: 10px; border-radius: 5px;">
+                <c:forEach var="entry" items="${entries}">
+                    <div class="blog-entry">
+                        <p>${entry.entryText}</p>
+                        <a href="editEntry?id=${entry.id}&projectId=${project.projectId}">Edit</a> |
+                        <a href="deleteEntry?id=${entry.id}&projectId=${project.projectId}" style="color: red;">Delete</a>
+                    </div>
+                </c:forEach>
+            </div>
+        </c:if>
+    </fieldset>
 </body>
 
 <script>
@@ -90,6 +109,8 @@
             img.src = URL.createObjectURL(files[i]);
             img.style.width = "100px";
             img.style.height = "100px";
+            img.style.margin = "5px";
+            img.style.borderRadius = "5px";
             preview.appendChild(img);
         }
 
