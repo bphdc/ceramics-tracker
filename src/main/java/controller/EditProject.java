@@ -69,6 +69,9 @@ public class EditProject extends HttpServlet {
             req.setAttribute("selectedGlazes", project.getGlazes());
             req.setAttribute("selectedTags", project.getTags());
 
+            //and entries
+            req.setAttribute("entries", project.getProjectEntries());
+
         }
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/editProject.jsp");
@@ -104,10 +107,7 @@ public class EditProject extends HttpServlet {
         projectDao.saveOrUpdate(project);
 
         //handle entries
-        String newEntry = req.getParameter("newEntry");
-        if (newEntry != null && !newEntry.trim().isEmpty()) {
-            //TODO logic for entries
-        }
+
         req.setAttribute("project", project);
         req.getRequestDispatcher("/editCeramicProject.jsp").forward(req, resp);
     }

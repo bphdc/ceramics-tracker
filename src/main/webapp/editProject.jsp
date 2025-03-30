@@ -55,7 +55,7 @@
 
 <form action="addEntry" method="post">
     <label for="newEntry">Add a new blog entry:</label>
-    <textarea id="newEntry" name="newEntry" rows="3"></textarea>
+    <textarea id="newEntry" name="newEntry" rows="3" required></textarea>
     <button type="submit">Add Entry</button>
     <input type="hidden" name="projectId" value="${project.projectId}">
 </form>
@@ -63,17 +63,9 @@
 <h4>Previous Entries</h4>
 <c:forEach var="entry" items="${entries}" varStatus="status">
     <div class="blog-entry">
-        <p>${entry}</p>
-        <form action="editEntry" method="post" style="display:inline;">
-            <input type="hidden" name="entryIndex" value="${status.index}">
-            <input type="hidden" name="projectId" value="${project.projectId}">
-            <button type="submit">Edit</button>
-        </form>
-        <form action="deleteEntry" method="post" style="display:inline;">
-            <input type="hidden" name="entryIndex" value="${status.index}">
-            <input type="hidden" name="projectId" value="${project.projectId}">
-            <button type="submit">Delete</button>
-        </form>
+        <p>${entry.entryText}</p>
+        <a href="editEntry?id=${entry.id}&projectId=${project.projectId}">Edit Entry</a>
+        <a href="deleteEntry?id=${entry.id}&projectId=${project.projectId}">Delete Entry</a>
     </div>
 </c:forEach>
 
