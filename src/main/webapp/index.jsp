@@ -16,7 +16,7 @@
                     <p>Welcome, <c:out value="${userName}" />!</p>
                     <a href="updateProfile">Update Profile</a> <br>
                     <a href="viewProfile?userId=${userId}">View My Profile</a> <br>
-                    <a href="viewAllProfiles">Member Directory(TODO implement)</a> <br>
+                    <a href="viewAllProfiles">Member Directory</a> <br>
 
                     <a href="addProject">Add a New Project</a> <br>
                     <a href="searchProjects">Search Projects</a> <br>
