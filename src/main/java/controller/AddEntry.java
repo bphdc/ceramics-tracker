@@ -41,12 +41,18 @@ public class AddEntry extends HttpServlet {
         if (ServletHelper.isLoggedInUserProjectOwner(request, project.getProjectId()) ) {
 
             String entryText = request.getParameter("newEntry");
-            ProjectEntry entry = new ProjectEntry();
-            entry.setProject(project);
-            entry.setEntryText(entryText);
-            entry.setCreatedAt(Timestamp.from(Instant.now()));
-            entryDao.insert(entry);
-            response.sendRedirect("viewProject?projectId=" + project.getProjectId());
+            if (entryText != null && !entryText.trim().isEmpty()) {
+                ProjectEntry entry = new ProjectEntry();
+                entry.setProject(project);
+                entry.setEntryText(entryText);
+                entry.setCreatedAt(Timestamp.from(Instant.now()));
+                entryDao.insert(entry);
+                response.sendRedirect("viewProject?projectId=" + project.getProjectId());
+            }
+            else {
+                ServletHelper.sendToErrorPageWithMessage(request, response, "Error - entry text is cannot be blank");
+            }
+
         }
         else {
             ServletHelper.sendToErrorPageWithMessage(request, response, "Error - if problem persists reach out to site admin for help");
