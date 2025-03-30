@@ -44,6 +44,7 @@ public class AddTag extends HttpServlet {
         if (ServletHelper.isAdmin(user)) {
             String name = request.getParameter("name");
             tag.setName(name);
+            tag.setCreatedAt(Timestamp.from(Instant.now()));
             tagDao.insert(tag);
             response.sendRedirect("tagLibrary");
         }
