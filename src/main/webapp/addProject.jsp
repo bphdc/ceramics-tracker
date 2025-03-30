@@ -28,8 +28,7 @@
                     <h2>Next Steps</h2>
                     <p>Your project has been created! What would you like to do next?</p>
                     <ul>
-                        <li><a href="addEntry?projectId=${projectId}">Add an Entry</a></li>
-                        <li><a href="uploadImage?projectId=${projectId}">Upload Images</a></li>
+                        <li><a href="editProject?projectId=${projectId}">Add Entry, Glazes, Tags, or Pictures</a></li>
                     </ul>
                 </c:if>
             </c:otherwise>

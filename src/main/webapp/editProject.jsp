@@ -7,9 +7,9 @@
 
 <body>
 
-<h2>Edit Ceramic Project</h2>
+<h2>Edit Your Project</h2>
 
-<form action="updateCeramicProject" method="post" enctype="multipart/form-data">
+<form action="editProject" method="post" enctype="multipart/form-data">
 
     <label for="name">Project Name:</label>
     <input type="text" id="name" name="name" value="${project.name}" required>
@@ -30,7 +30,7 @@
     <label for="glazes">Add Glazes:</label>
     <select id="glazes" name="glazes" multiple>
         <c:forEach var="glaze" items="${availableGlazes}">
-            <option value="${glaze}"
+            <option value="${glaze.name}"
                 <c:if test="${fn:contains(selectedGlazes, glaze)}">selected</c:if>
             >${glaze}</option>
         </c:forEach>
@@ -39,7 +39,7 @@
     <label for="tags">Add Tags:</label>
     <select id="tags" name="tags" multiple>
         <c:forEach var="tag" items="${availableTags}">
-            <option value="${tag}"
+            <option value="${tag.name}"
                 <c:if test="${fn:contains(selectedTags, tag)}">selected</c:if>
             >${tag}</option>
         </c:forEach>

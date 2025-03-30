@@ -5,6 +5,7 @@ import entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import persistence.GenericDao;
+import util.ServletHelper;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -48,14 +49,14 @@ public class AddProject extends HttpServlet {
 
         if (userName == null) {
             log.info("userName is null - User not logged in?");
-            resp.sendRedirect("login.jsp");
+            ServletHelper.sendToErrorPageWithMessage(req, resp, "Please log in first");
             return;
         }
 
         User user = userDao.getByPropertyEqual("username", userName).get(0);
         if (user == null) {
             log.info("User not in db");
-            resp.sendRedirect("login.jsp");
+            ServletHelper.sendToErrorPageWithMessage(req, resp, "Please log in first");
             return;
         }
 
