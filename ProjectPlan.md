@@ -114,17 +114,17 @@ For those using this as a model, continue adding weekly tasks by considering:
 
 DECIDED TO REMOVE ABILITY TO LET USER ADD GLAZE TO DB. KEEP IT ADMIN FOR NOW FOR SIMPLICITY
 #### User Add Glaze
-- [ ] Design Add Glaze JSP
-- [ ] Implement form to add new glaze (name, description)
-- [ ] Persist glaze data in the database
-- [ ] Test glaze creation functionality
-- [ ] Write unit tests for Add Glaze functionality
+- [X] Design Add Glaze JSP
+- [X] Implement form to add new glaze (name, description)
+- [X] Persist glaze data in the database
+- [X] Test glaze creation functionality
+- [X] Write unit tests for Add Glaze functionality
 
 #### User View Glazes
 - [ ] ~~Design View Glazes JSP~~ users will see glazes from dropdown list in prj
-- [ ] Implement functionality
-- [ ] Implement search for glazes
-- [ ] Test glaze view functionality
+- [X] Implement functionality
+- [X] ~~Implement search for glazes~~
+- [X] Test glaze view functionality
 - [X] Write unit tests for View Glazes functionality
 
 #### User Add Existing Tags to Project
@@ -148,42 +148,42 @@ DECIDED TO REMOVE ABILITY TO LET USER ADD GLAZE TO DB. KEEP IT ADMIN FOR NOW FOR
 
 ### Week 10
 #### Admin Add Glaze
-- [ ] Design Add Glaze JSP
-- [ ] Implement form to add new glaze (name, description)
-- [ ] Persist glaze data in the database
-- [ ] Test glaze creation functionality
+- [X] Design Add Glaze JSP
+- [X] Implement form to add new glaze (name, description)
+- [X] Persist glaze data in the database
+- [X] Test glaze creation functionality
 - [X] Write unit tests for Add Glaze functionality
 
 
 #### Admin Edit Glazes
-- [ ] Design Admin Edit Glaze JSP
-- [ ] Implement functionality to update glaze details
-- [ ] Test Admin Edit Glaze functionality
+- [X] Design Admin Edit Glaze JSP
+- [X] Implement functionality to update glaze details
+- [X] Test Admin Edit Glaze functionality
 - [X] Write unit tests for Admin Edit Glazes functionality
 
 #### Admin Delete Glazes
-- [ ] Design Admin Delete Glaze JSP
-- [ ] Implement functionality to delete glaze from library
-- [ ] Test Admin Delete Glaze functionality
+- [X] Design Admin Delete Glaze JSP
+- [X] Implement functionality to delete glaze from library
+- [X] Test Admin Delete Glaze functionality
 - [X] Write unit tests for Admin Delete Glazes functionality
 
 #### Admin Add New Tags
-- [ ] Design Admin Add Tag JSP
-- [ ] Implement functionality to add new tags to library
-- [ ] Test Admin Add Tag functionality
+- [X] Design Admin Add Tag JSP
+- [X] Implement functionality to add new tags to library
+- [X] Test Admin Add Tag functionality
 - [X] Write unit tests for Admin Add New Tags functionality
 
 ### Week 11
 #### Admin Edit Tags
-- [ ] Design Admin Edit Tag JSP
-- [ ] Implement functionality to update tags
-- [ ] Test Admin Edit Tag functionality
+- [X] Design Admin Edit Tag JSP
+- [X] Implement functionality to update tags
+- [X] Test Admin Edit Tag functionality
 - [X] Write unit tests for Admin Edit Tags functionality
 
 #### Admin Delete Tags
-- [ ] Design Admin Delete Tag JSP
-- [ ] Implement functionality to delete tags from library
-- [ ] Test Admin Delete Tag functionality
+- [X] Design Admin Delete Tag JSP
+- [X Implement functionality to delete tags from library
+- [X] Test Admin Delete Tag functionality
 - [X] Write unit tests for Admin Delete Tags functionality
 
 ### Week 12
