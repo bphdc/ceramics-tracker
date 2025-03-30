@@ -13,7 +13,7 @@
         <h3>Project Entries</h3>
         <ul>
             <c:forEach var="entry" items="${projectEntries}">
-                <li>${entry.createdAt} - ${entry.extryText}</li>
+                <li>${entry.createdAt} - ${entry.entryText}</li>
             </c:forEach>
         </ul>
         </c:if>

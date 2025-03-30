@@ -24,7 +24,7 @@
         <ul>
             <c:forEach var="project" items="${projects}">
                 <li>
-                    <a href="viewProject?projectId=${project.projectId}">{project.name}</a>
+                    <a href="viewProject?projectId=${project.projectId}">${project.name}</a>
                         ${project.description}
                 </li>
             </c:forEach>
