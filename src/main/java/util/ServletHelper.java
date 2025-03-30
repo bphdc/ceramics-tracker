@@ -1,6 +1,10 @@
 package util;
 
+import com.amazonaws.services.neptunedata.model.GremlinQueryStatus;
+import entity.Project;
 import entity.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import persistence.GenericDao;
 
 import javax.servlet.ServletException;
@@ -12,6 +16,8 @@ import java.io.IOException;
 public class ServletHelper {
 
     private static GenericDao<User> userDao = new GenericDao<>(User.class);
+    private static GenericDao<Project> projectDao = new GenericDao<>(Project.class);
+    private static Logger logger = LogManager.getLogger(ServletHelper.class);
 
     /**
      * is user admin?
@@ -25,6 +31,43 @@ public class ServletHelper {
         }
         return isAdmin;
     }
+
+    /**
+     * is user logged in?
+     * @param request
+     * @return boolean t or f
+     */
+    public static Boolean isLoggedIn (HttpServletRequest request) {
+        try {
+            getLoggedInUser(request);
+        }
+        catch (Exception e) {
+            logger.error("user might not be logged in: " + e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * is user logged in?
+     * @param request the req
+     * @param projectId project id
+     * @return boolean t or f
+     */
+    public static Boolean isLoggedInUserProjectOwner(HttpServletRequest request, int projectId) {
+        User user = getLoggedInUser(request);
+        Project project = projectDao.getById(projectId);
+        User projectUser = project.getUser();
+        if (user.getId() == projectUser.getId()) {
+            return true;
+        }
+        else {
+            logger.error("user is not owner of project: {}", projectId);
+            return false;
+        }
+    }
+
+
 
     /**
      * gets logged in user object via session
