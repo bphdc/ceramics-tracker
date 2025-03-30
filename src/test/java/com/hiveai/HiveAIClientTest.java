@@ -42,25 +42,25 @@ public class HiveAIClientTest {
         mockHiveAIClient = new HiveAIClient(restTemplate);
     }
 
-    @Test
-    @Ignore //ignore for now so i'm not constantly making api requests when i deploy my server
-    public void testGenerateImageFromRealServer() throws Exception {
-        // Make the actual API call through the HiveAIClient
-        Response response = hiveAIClient.generateImage("some hand thrown vases");
-        Logger logger = LogManager.getLogger(HiveAIClientTest.class);
-        logger.info(response.getOutput().get(0).getUrl());
-
-        // Verify the response is correctly deserialized into the POJOs
-        assertEquals("black-forest-labs/flux-schnell", response.getModel());
-        assertNotNull(response.getId());
-        assertEquals("1", response.getVersion());
-        assertEquals("some hand thrown vases", response.getInput().getPrompt());
-        assertEquals( 1024, (int) response.getInput().getImageSize().getWidth());
-        assertEquals(1024, (int) response.getInput().getImageSize().getHeight());
-        assertNotNull(response.getOutput().get(0).getUrl());
-        assertNotNull(response.getOutput().get(1).getUrl());
-
-    }
+//    @Test
+//    @Ignore //ignore for now so i'm not constantly making api requests when i deploy my server
+//    public void testGenerateImageFromRealServer() throws Exception {
+//        // Make the actual API call through the HiveAIClient
+//        Response response = hiveAIClient.generateImage("some hand thrown vases");
+//        Logger logger = LogManager.getLogger(HiveAIClientTest.class);
+//        logger.info(response.getOutput().get(0).getUrl());
+//
+//        // Verify the response is correctly deserialized into the POJOs
+//        assertEquals("black-forest-labs/flux-schnell", response.getModel());
+//        assertNotNull(response.getId());
+//        assertEquals("1", response.getVersion());
+//        assertEquals("some hand thrown vases", response.getInput().getPrompt());
+//        assertEquals( 1024, (int) response.getInput().getImageSize().getWidth());
+//        assertEquals(1024, (int) response.getInput().getImageSize().getHeight());
+//        assertNotNull(response.getOutput().get(0).getUrl());
+//        assertNotNull(response.getOutput().get(1).getUrl());
+//
+//    }
 
     @Test
     public void testGenerateImageFromMockServer() throws Exception {
