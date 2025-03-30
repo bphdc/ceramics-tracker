@@ -14,6 +14,19 @@ public class ServletHelper {
     private static GenericDao<User> userDao = new GenericDao<>(User.class);
 
     /**
+     * is user admin?
+     * @param user the user
+     * @return boolean t or f
+     */
+    public static Boolean isAdmin(User user) {
+        boolean isAdmin = false;
+        if (user.getRole().equals("admin")) {
+            isAdmin = true;
+        }
+        return isAdmin;
+    }
+
+    /**
      * gets logged in user object via session
      * @param request
      * @return
