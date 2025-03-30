@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Random;
 
 
 /**
@@ -28,9 +27,9 @@ import java.util.Random;
  */
 
 @WebServlet("/updateProfile")
-public class UpdateProfile extends HttpServlet {
+public class EditProfile extends HttpServlet {
     private static final String UPLOAD_DIR = "uploads";
-    private static final Logger log = LoggerFactory.getLogger(UpdateProfile.class);
+    private static final Logger log = LoggerFactory.getLogger(EditProfile.class);
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
