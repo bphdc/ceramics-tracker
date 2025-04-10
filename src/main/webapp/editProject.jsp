@@ -40,28 +40,29 @@
 
     <!-- Image Upload Section -->
     <fieldset>
-        <legend><h3>Images</h3></legend>
+    <legend><h3>Images</h3></legend>
+
+    <form action="addImages" method="post" enctype="multipart/form-data">
         <label for="fileUpload">Upload Images (up to 5 at a time):</label>
+        <input type="hidden" name="projectId" value="${project.projectId}">
         <input type="file" id="fileUpload" name="images" multiple accept="image/*" onchange="handleFileUpload()">
         <div class="image-preview" id="imagePreview"></div>
 
-        <div id="addMoreImages" class="hidden">
-            <p>Would you like to add more images?</p>
-            <button type="button" onclick="toggleAddMoreImages('yes')">Yes</button>
-            <button type="button" onclick="toggleAddMoreImages('no')">No</button>
-        </div>
+        <button type="submit">Upload Images</button>
+    </form>
 
-        <c:if test="${not empty images}">
-            <h4>Previously Uploaded Images</h4>
-            <div style="display: flex; flex-wrap: wrap;">
-                <c:forEach var="image" items="${images}">
-                    <div>
-                        <img src="${image.imageUrl}" alt="Uploaded Image" width="150" height="150" style="margin: 5px; border-radius: 5px;">
-                    </div>
-                </c:forEach>
-            </div>
-        </c:if>
-    </fieldset>
+    <c:if test="${not empty images}">
+        <h4>Previously Uploaded Images</h4>
+        <div style="display: flex; flex-wrap: wrap;">
+            <c:forEach var="image" items="${images}">
+                <div>
+                    <img src="${image.imageUrl}" alt="Uploaded Image" width="150" height="150" style="margin: 5px; border-radius: 5px;">
+                </div>
+            </c:forEach>
+        </div>
+    </c:if>
+</fieldset>
+
 
     <hr>
 
@@ -94,16 +95,19 @@
     function handleFileUpload() {
         let fileInput = document.getElementById("fileUpload");
         let preview = document.getElementById("imagePreview");
-        let addMoreDiv = document.getElementById("addMoreImages");
 
+        // Clear previous previews
         preview.innerHTML = "";
+
         let files = fileInput.files;
+
         if (files.length > 5) {
             alert("You can only upload up to 5 images at a time.");
-            fileInput.value = "";
+            fileInput.value = ""; // Reset input
             return;
         }
 
+        // Loop through selected files and create previews
         for (let i = 0; i < files.length; i++) {
             let img = document.createElement("img");
             img.src = URL.createObjectURL(files[i]);
@@ -111,18 +115,11 @@
             img.style.height = "100px";
             img.style.margin = "5px";
             img.style.borderRadius = "5px";
+            img.style.objectFit = "cover";
             preview.appendChild(img);
-        }
-
-        addMoreDiv.classList.remove("hidden");
-    }
-
-    function toggleAddMoreImages(choice) {
-        if (choice === 'yes') {
-            document.getElementById("fileUpload").value = "";
-            document.getElementById("addMoreImages").classList.add("hidden");
         }
     }
 </script>
+
 
 </html>
