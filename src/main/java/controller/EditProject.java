@@ -1,9 +1,6 @@
 package controller;
 
-import entity.Glaze;
-import entity.Project;
-import entity.Tag;
-import entity.User;
+import entity.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import persistence.GenericDao;
@@ -18,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.List;
 
 /**
  * A servlet to add the prj.
@@ -51,7 +49,7 @@ public class EditProject extends HttpServlet {
             int projectId = Integer.parseInt(projectIdStr);
             Project project = projectDao.getById(projectId);
             projectUserId = project.getUser().getId();
-
+            List<Image> images = project.getImages();
 
             //if the user isn't the project owner then bail
             if (!userId.equals(projectUserId)) {
@@ -61,6 +59,7 @@ public class EditProject extends HttpServlet {
             }
 
             req.setAttribute("project", project);
+            req.setAttribute("images", images);
             //pass all glazes and tags to the for selection
             req.setAttribute("availableGlazes", glazeDao.getAll()); //todo im unsure if igot this right. probably add in glaze/tag crud before coming back to this
             req.setAttribute("availableTags", tagDao.getAll());

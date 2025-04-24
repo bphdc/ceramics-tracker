@@ -22,7 +22,7 @@
         <h3>Image Gallery</h3>
         <div class="image-gallery">
             <c:forEach var="image" items="${projectImages}">
-                <img src="${projectImages.url}" alt="Project Image">
+                <img src="${image.imageUrl}" alt="Project Image">
             </c:forEach>
         </div>
         </c:if>

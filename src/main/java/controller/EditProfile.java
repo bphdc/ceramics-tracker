@@ -8,7 +8,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import persistence.GenericDao;
-import util.S3Uploader;
+import util.S3Helper;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -91,7 +91,7 @@ public class EditProfile extends HttpServlet {
                         File tempFile = new File(System.getProperty("java.io.tmpdir"), fileName);
                         item.write(tempFile);
 
-                        profilePictureUrl = S3Uploader.uploadFile(tempFile, "profile_pictures/" + fileName, ACCESS_KEY, SECRET_KEY);
+                        profilePictureUrl = S3Helper.uploadFile(tempFile, "profile_pictures/" + fileName, ACCESS_KEY, SECRET_KEY);
                         user.setProfilePicture(profilePictureUrl);
                     }
                 }

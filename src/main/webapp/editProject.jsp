@@ -45,7 +45,7 @@
     <form action="addImages" method="post" enctype="multipart/form-data">
         <label for="fileUpload">Upload Images (up to 5 at a time):</label>
         <input type="hidden" name="projectId" value="${project.projectId}">
-        <input type="file" id="fileUpload" name="images" multiple accept="image/*" onchange="handleFileUpload()">
+        <input type="file" id="fileUpload" name="images" multiple accept="image/*" onchange="handleFileUpload()" required>
         <div class="image-preview" id="imagePreview"></div>
 
         <button type="submit">Upload Images</button>
@@ -57,6 +57,7 @@
             <c:forEach var="image" items="${images}">
                 <div>
                     <img src="${image.imageUrl}" alt="Uploaded Image" width="150" height="150" style="margin: 5px; border-radius: 5px;">
+                    <a href="deleteImage?id=${image.imageId}&projectId=${project.projectId}">Delete</a>
                 </div>
             </c:forEach>
         </div>
@@ -83,7 +84,7 @@
                     <div class="blog-entry">
                         <p>${entry.entryText}</p>
                         <a href="editEntry?id=${entry.id}&projectId=${project.projectId}">Edit</a> |
-                        <a href="deleteEntry?id=${entry.id}&projectId=${project.projectId}" style="color: red;">Delete</a>
+                        <a href="deleteEntry?id=${entry.id}&projectId=${project.projectId}">Delete</a>
                     </div>
                 </c:forEach>
             </div>

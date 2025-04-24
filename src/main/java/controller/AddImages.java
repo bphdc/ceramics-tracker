@@ -9,7 +9,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import persistence.GenericDao;
-import util.S3Uploader;
+import util.S3Helper;
 import util.ServletHelper;
 
 import javax.servlet.ServletContext;
@@ -83,7 +83,7 @@ public class AddImages extends HttpServlet {
                     File tempFile = new File(System.getProperty("java.io.tmpdir"), fileName);
                     item.write(tempFile);
 
-                    String imageUrl = S3Uploader.uploadFile(tempFile, "project_images/" + fileName, ACCESS_KEY, SECRET_KEY);
+                    String imageUrl = S3Helper.uploadFile(tempFile, "project_images/" + fileName, ACCESS_KEY, SECRET_KEY);
 
                     Image image = new Image();
                     image.setProject(project);
