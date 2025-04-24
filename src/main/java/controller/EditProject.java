@@ -90,14 +90,13 @@ public class EditProject extends HttpServlet {
         String[] selectedTags = req.getParameterValues("tags");
 
         //get the project id/project
-        int projectId = Integer.parseInt(req.getParameter("projectId"));
+        String projectIdStr = req.getParameter("projectId");
+        int projectId = Integer.parseInt(projectIdStr);
         Project project = projectDao.getById(projectId);
 
         // Update the project fields
         project.setName(projectName);
         project.setDescription(projectDescription);
-
-        //TODO logic to handle images -s3 thing
 
 
         //TODO logic to associate selected glazes and tags
@@ -105,9 +104,8 @@ public class EditProject extends HttpServlet {
 
         projectDao.saveOrUpdate(project);
 
-        //handle entries
 
         req.setAttribute("project", project);
-        req.getRequestDispatcher("/editCeramicProject.jsp").forward(req, resp);
+        resp.sendRedirect("viewProject?projectId=" + projectId);
     }
 }

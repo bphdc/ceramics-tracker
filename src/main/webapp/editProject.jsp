@@ -11,7 +11,8 @@
     <!-- Basic Info Section -->
     <fieldset>
         <legend><h3>Basic Info</h3></legend>
-        <form action="editProject" method="post" enctype="multipart/form-data">
+        <form action="editProject" method="post">
+            <input type="hidden" name="projectId" value="${project.projectId}">
             <label for="name">Project Name:</label>
             <input type="text" id="name" name="name" value="${project.name}" required>
 
@@ -56,7 +57,7 @@
         <div style="display: flex; flex-wrap: wrap;">
             <c:forEach var="image" items="${images}">
                 <div>
-                    <img src="${image.imageUrl}" alt="Uploaded Image" width="150" height="150" style="margin: 5px; border-radius: 5px;">
+                    <img src="${image.imageUrl}" alt="Uploaded Image" width="150" height="150" style="margin: 5px; border-radius: 5px;"><br>
                     <a href="deleteImage?id=${image.imageId}&projectId=${project.projectId}">Delete</a>
                 </div>
             </c:forEach>

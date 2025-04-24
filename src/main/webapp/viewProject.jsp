@@ -22,7 +22,9 @@
         <h3>Image Gallery</h3>
         <div class="image-gallery">
             <c:forEach var="image" items="${projectImages}">
-                <img src="${image.imageUrl}" alt="Project Image">
+                <a href="${image.imageUrl}" target="_blank">
+                    <img src="${image.imageUrl}" alt="Project Image" width="150" height="150" style="margin: 5px; border-radius: 5px;">
+                </a>
             </c:forEach>
         </div>
         </c:if>
