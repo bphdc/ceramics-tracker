@@ -1,7 +1,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@include file="head.jsp"%>
 <%@include file="taglib.jsp"%>
-
+<%@include file="sidebar.jsp"%>
 
 <html>
 

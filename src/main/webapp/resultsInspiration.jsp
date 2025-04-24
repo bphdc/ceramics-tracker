@@ -1,5 +1,5 @@
-searchUsers.jspsearchUsers.jsp<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="sidebar.jsp"%>
 
 <html>
 
