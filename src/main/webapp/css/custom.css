@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === buttons === */
+.btn-primary {
+    @apply bg-amber-600 text-white px-5 py-2 rounded hover:bg-amber-700 transition;
+}
+
+.btn-secondary {
+    @apply bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition;
+}
+
+.btn-danger {
+    @apply bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition;
+}
+
+.btn-outline {
+    @apply border border-amber-600 text-amber-600 px-5 py-2 rounded hover:bg-amber-100 transition;
+}
+
+/* === Links === */
+.link-primary {
+    @apply text-blue-700 hover:underline;
+}
+
+.link-danger {
+    @apply text-red-600 hover:underline;
+}
+
+.link-muted {
+    @apply text-gray-500 hover:text-gray-700 hover:underline;
+}
+
+/* === sections === */
+.card {
+    @apply bg-white p-6 rounded-lg shadow-md space-y-4;
+}
+
+.section {
+    @apply max-w-3xl mx-auto px-6 py-12;
+}
+
+/* === text & headings === */
+.heading-main {
+    @apply text-4xl font-bold text-amber-900 mb-4;
+}
+
+.heading-sub {
+    @apply text-lg text-gray-700;
+}
+
+/* === forms === */
+.input {
+    @apply border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-amber-500;
+}
+
+.textarea {
+    @apply border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-amber-500;
+}
+
+.select {
+    @apply border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-amber-500;
+}
+
+.label {
+    @apply block text-gray-700 font-medium mb-2;
+}
+
+/* === images === */
+.image-thumbnail {
+    @apply w-36 h-36 object-cover rounded-md shadow-sm hover:shadow-md transition;
+}
+
+/* === other thigns === */
+.divider {
+    @apply my-4 border-t border-gray-300;
+}
+

@@ -27,6 +27,9 @@
     <script src="js/validator.js"></script>
     <script src="js/datepicker.js"></script> -->
 
+    <!-- tailwind stuff -->
+    <link href="css/custom.css" rel="stylesheet">
+
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
 

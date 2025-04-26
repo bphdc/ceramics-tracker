@@ -3,125 +3,91 @@
 <%@include file="taglib.jsp"%>
 <%@include file="sidebar.jsp"%>
 
-<html>
+<html lang="en">
+  <body class="bg-amber-50 text-gray-800 font-sans">
+    <div class="max-w-4xl mx-auto px-6 py-12 space-y-12">
 
-<body>
-    <h2>Edit Your Project</h2>
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-bold text-amber-900 mb-4">Edit Your Project</h2>
+      </div>
 
-    <!-- Basic Info Section -->
-    <fieldset>
-        <legend><h3>Basic Info</h3></legend>
-        <form action="editProject" method="post">
-            <input type="hidden" name="projectId" value="${project.projectId}">
-            <label for="name">Project Name:</label>
-            <input type="text" id="name" name="name" value="${project.name}" required>
+      <!-- Basic Info Section -->
+      <div class="bg-white p-6 rounded-lg shadow-md space-y-6">
+        <h3 class="text-2xl font-semibold text-amber-800 mb-4">Basic Info</h3>
+        <form action="editProject" method="post" class="space-y-4">
+          <input type="hidden" name="projectId" value="${project.projectId}">
 
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" rows="4" required>${project.description}</textarea>
+          <div>
+            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Project Name:</label>
+            <input type="text" id="name" name="name" value="${project.name}" required
+              class="w-full border-gray-300 rounded px-3 py-2 focus:ring-amber-500 focus:border-amber-500">
+          </div>
 
-            <label for="glazes">Add Glazes:</label>
-            <select id="glazes" name="glazes" multiple>
-                <c:forEach var="glaze" items="${availableGlazes}">
-                    <option value="${glaze.name}" <c:if test="${fn:contains(selectedGlazes, glaze)}">selected</c:if>>${glaze}</option>
-                </c:forEach>
+          <div>
+            <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Description:</label>
+            <textarea id="description" name="description" rows="4" required
+              class="w-full border-gray-300 rounded px-3 py-2 focus:ring-amber-500 focus:border-amber-500">${project.description}</textarea>
+          </div>
+
+          <div>
+            <label for="glazes" class="block text-sm font-medium text-gray-700 mb-1">Add Glazes:</label>
+            <select id="glazes" name="glazes" multiple
+              class="w-full border-gray-300 rounded px-3 py-2 focus:ring-amber-500 focus:border-amber-500">
+              <c:forEach var="glaze" items="${availableGlazes}">
+                <option value="${glaze.name}" <c:if test="${fn:contains(selectedGlazes, glaze)}">selected</c:if>>${glaze}</option>
+              </c:forEach>
             </select>
+          </div>
 
-            <label for="tags">Add Tags:</label>
-            <select id="tags" name="tags" multiple>
-                <c:forEach var="tag" items="${availableTags}">
-                    <option value="${tag.name}" <c:if test="${fn:contains(selectedTags, tag)}">selected</c:if>>${tag}</option>
-                </c:forEach>
+          <div>
+            <label for="tags" class="block text-sm font-medium text-gray-700 mb-1">Add Tags:</label>
+            <select id="tags" name="tags" multiple
+              class="w-full border-gray-300 rounded px-3 py-2 focus:ring-amber-500 focus:border-amber-500">
+              <c:forEach var="tag" items="${availableTags}">
+                <option value="${tag.name}" <c:if test="${fn:contains(selectedTags, tag)}">selected</c:if>>${tag}</option>
+              </c:forEach>
             </select>
+          </div>
 
-            <button type="submit">Save Changes</button>
+          <button type="submit" class="w-full bg-amber-600 text-white py-2 rounded hover:bg-amber-700 transition">
+            Save Changes
+          </button>
         </form>
-    </fieldset>
+      </div>
 
-    <hr>
+      <!-- Image Upload Section -->
+      <div class="bg-white p-6 rounded-lg shadow-md space-y-6">
+        <h3 class="text-2xl font-semibold text-amber-800 mb-4">Images</h3>
+        <form action="addImages" method="post" enctype="multipart/form-data" class="space-y-4">
+          <input type="hidden" name="projectId" value="${project.projectId}">
 
-    <!-- Image Upload Section -->
-    <fieldset>
-    <legend><h3>Images</h3></legend>
+          <div>
+            <label for="fileUpload" class="block text-sm font-medium text-gray-700 mb-1">Upload Images (up to 5 at a time):</label>
+            <input type="file" id="fileUpload" name="images" multiple accept="image/*" onchange="handleFileUpload()" required
+              class="w-full border-gray-300 rounded px-3 py-2 focus:ring-amber-500 focus:border-amber-500">
+            <div id="imagePreview" class="flex flex-wrap mt-4 gap-2"></div>
+          </div>
 
-    <form action="addImages" method="post" enctype="multipart/form-data">
-        <label for="fileUpload">Upload Images (up to 5 at a time):</label>
-        <input type="hidden" name="projectId" value="${project.projectId}">
-        <input type="file" id="fileUpload" name="images" multiple accept="image/*" onchange="handleFileUpload()" required>
-        <div class="image-preview" id="imagePreview"></div>
+          <button type="submit" class="w-full bg-amber-600 text-white py-2 rounded hover:bg-amber-700 transition">
+            Upload Images
+          </button>
+        </form>
 
-        <button type="submit">Upload Images</button>
-    </form>
-
-    <c:if test="${not empty images}">
-        <h4>Previously Uploaded Images</h4>
-        <div style="display: flex; flex-wrap: wrap;">
+        <c:if test="${not empty images}">
+          <h4 class="text-xl font-semibold text-gray-700 mt-6 mb-4">Previously Uploaded Images</h4>
+          <div class="flex flex-wrap gap-4">
             <c:forEach var="image" items="${images}">
-                <div>
-                    <img src="${image.imageUrl}" alt="Uploaded Image" width="150" height="150" style="margin: 5px; border-radius: 5px;"><br>
-                    <a href="deleteImage?id=${image.imageId}&projectId=${project.projectId}">Delete</a>
-                </div>
+              <div class="flex flex-col items-center">
+                <img src="${image.imageUrl}" alt="Uploaded Image" class="w-36 h-36 rounded object-cover shadow-sm">
+                <a href="deleteImage?id=${image.imageId}&projectId=${project.projectId}" class="text-red-600 hover:underline mt-2 text-sm">Delete</a>
+              </div>
             </c:forEach>
-        </div>
-    </c:if>
-</fieldset>
-
-
-    <hr>
-
-    <!-- Blog Entries Section -->
-    <fieldset>
-        <legend><h3>Project Blog</h3></legend>
-        <form action="addEntry" method="post">
-            <label for="newEntry">Add a new blog entry:</label>
-            <textarea id="newEntry" name="newEntry" rows="3" required></textarea>
-            <button type="submit">Add Entry</button>
-            <input type="hidden" name="projectId" value="${project.projectId}">
-        </form>
-
-        <c:if test="${not empty entries}">
-            <h4>Previous Entries</h4>
-            <div style="border: 1px solid #ddd; padding: 10px; border-radius: 5px;">
-                <c:forEach var="entry" items="${entries}">
-                    <div class="blog-entry">
-                        <p>${entry.entryText}</p>
-                        <a href="editEntry?id=${entry.id}&projectId=${project.projectId}">Edit</a> |
-                        <a href="deleteEntry?id=${entry.id}&projectId=${project.projectId}">Delete</a>
-                    </div>
-                </c:forEach>
-            </div>
+          </div>
         </c:if>
-    </fieldset>
-</body>
+      </div>
 
-<script>
-    function handleFileUpload() {
-        let fileInput = document.getElementById("fileUpload");
-        let preview = document.getElementById("imagePreview");
-
-        // Clear previous previews
-        preview.innerHTML = "";
-
-        let files = fileInput.files;
-
-        if (files.length > 5) {
-            alert("You can only upload up to 5 images at a time.");
-            fileInput.value = ""; // Reset input
-            return;
-        }
-
-        // Loop through selected files and create previews
-        for (let i = 0; i < files.length; i++) {
-            let img = document.createElement("img");
-            img.src = URL.createObjectURL(files[i]);
-            img.style.width = "100px";
-            img.style.height = "100px";
-            img.style.margin = "5px";
-            img.style.borderRadius = "5px";
-            img.style.objectFit = "cover";
-            preview.appendChild(img);
-        }
-    }
-</script>
-
-
-</html>
+      <!-- Blog Entries Section -->
+      <div class="bg-white p-6 rounded-lg shadow-md space-y-6">
+        <h3 class="text-2xl font-semibold text-amber-800 mb-4">Project Blog</h3>
+        <form action="addEntry" method="post" class="space-y-4">
+          <input type="hidden" name="project
