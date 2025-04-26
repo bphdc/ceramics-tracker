@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -97,9 +98,36 @@ public class EditProject extends HttpServlet {
         // Update the project fields
         project.setName(projectName);
         project.setDescription(projectDescription);
-
-
-        //TODO logic to associate selected glazes and tags
+        List<ProjectGlaze> projectGlazeList = new ArrayList<>();
+        List<ProjectTag> projectTagList = new ArrayList<>();
+        if(selectedGlazes != null) {
+            log.info("selected glazes: " + selectedGlazes.length);
+            for (String selectedGlaze : selectedGlazes) {
+                int glazeId = Integer.parseInt(selectedGlaze);
+                Glaze glaze = glazeDao.getById(glazeId);
+                log.info(glaze.toString());
+                ProjectGlaze projectGlaze = new ProjectGlaze();
+                projectGlaze.setGlaze(glaze);
+                projectGlaze.setProject(project);
+                projectGlazeList.add(projectGlaze);
+            }
+        }
+        if (selectedTags != null) {
+            for (String selectedTag : selectedTags) {
+                int tagId = Integer.parseInt(selectedTag);
+                Tag tag = tagDao.getById(tagId);
+                ProjectTag projectTag = new ProjectTag();
+                projectTag.setTag(tag);
+                projectTag.setProject(project);
+                projectTagList.add(projectTag);
+            }
+        }
+        if (projectGlazeList != null) {
+            project.setGlazes(projectGlazeList);
+        }
+        if (projectTagList != null) {
+            project.setTags(projectTagList);
+        }
 
 
         projectDao.saveOrUpdate(project);

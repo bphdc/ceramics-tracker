@@ -11,7 +11,7 @@
         <h2 class="text-3xl font-bold text-amber-900 mb-4">Edit Your Project</h2>
       </div>
 
-      <!-- Basic Info Section -->
+      <!-- basic info -->
       <div class="bg-white p-6 rounded-lg shadow-md space-y-6">
         <h3 class="text-2xl font-semibold text-amber-800 mb-4">Basic Info</h3>
         <form action="editProject" method="post" class="space-y-4">
@@ -34,7 +34,7 @@
             <select id="glazes" name="glazes" multiple
               class="w-full border-gray-300 rounded px-3 py-2 focus:ring-amber-500 focus:border-amber-500">
               <c:forEach var="glaze" items="${availableGlazes}">
-                <option value="${glaze.name}" <c:if test="${fn:contains(selectedGlazes, glaze)}">selected</c:if>>${glaze}</option>
+                <option value="${glaze.glazeId}" <c:if test="${fn:contains(selectedGlazes, glaze)}">selected</c:if>>${glaze.name}</option>
               </c:forEach>
             </select>
           </div>
@@ -44,7 +44,7 @@
             <select id="tags" name="tags" multiple
               class="w-full border-gray-300 rounded px-3 py-2 focus:ring-amber-500 focus:border-amber-500">
               <c:forEach var="tag" items="${availableTags}">
-                <option value="${tag.name}" <c:if test="${fn:contains(selectedTags, tag)}">selected</c:if>>${tag}</option>
+                <option value="${tag.tagId}" <c:if test="${fn:contains(selectedTags, tag)}">selected</c:if>>${tag.name}</option>
               </c:forEach>
             </select>
           </div>
@@ -55,7 +55,7 @@
         </form>
       </div>
 
-      <!-- Image Upload Section -->
+      <!-- images -->
       <div class="bg-white p-6 rounded-lg shadow-md space-y-6">
         <h3 class="text-2xl font-semibold text-amber-800 mb-4">Images</h3>
         <form action="addImages" method="post" enctype="multipart/form-data" class="space-y-4">
@@ -86,7 +86,7 @@
         </c:if>
       </div>
 
-      <!-- Blog Entries Section -->
+      <!-- blog -->
       <div class="bg-white p-6 rounded-lg shadow-md space-y-6">
         <h3 class="text-2xl font-semibold text-amber-800 mb-4">Project Blog</h3>
         <form action="addEntry" method="post" class="space-y-4">

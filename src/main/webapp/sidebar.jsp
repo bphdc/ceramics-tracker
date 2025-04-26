@@ -16,6 +16,7 @@
         <a href="viewProfile?userId=${userId}" class="block text-blue-700 hover:underline">My Profile</a>
         <a href="viewAllProfiles" class="block text-blue-700 hover:underline">Member Directory</a>
         <a href="addProject" class="block text-blue-700 hover:underline">Add Project</a>
+        <a href="searchProjects?searchType=myProjects" class="block text-blue-700 hover:underline">View My Projects</a>
         <a href="searchProjects" class="block text-blue-700 hover:underline">Search Projects</a>
         <a href="searchAI" class="block text-blue-400 italic hover:underline">Get Inspo</a>
         <a href="logout" class="block text-red-600 hover:underline">Log Out</a>

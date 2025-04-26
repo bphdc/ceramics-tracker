@@ -39,6 +39,42 @@
       </div>
     </c:if>
 
+    <c:if test="${not empty tags || not empty glazes}">
+  <div class="bg-white p-6 rounded-lg shadow-md space-y-6">
+    <h3 class="text-2xl font-semibold text-amber-800">Glazes and Tags</h3>
+
+    <c:if test="${not empty glazes}">
+      <div>
+        <h4 class="text-xl font-semibold text-amber-700 mb-2">Glazes</h4>
+        <ul class="list-disc list-inside space-y-2">
+          <c:forEach var="glaze" items="${glazes}">
+            <li class="text-gray-600">
+              <span class="block font-medium">${glaze.name}</span>
+              <span class="block text-sm">${glaze.type}</span>
+              <span class="block text-sm">${glaze.description}</span>
+            </li>
+          </c:forEach>
+        </ul>
+      </div>
+    </c:if>
+
+    <c:if test="${not empty tags}">
+      <div>
+        <h4 class="text-xl font-semibold text-amber-700 mb-2">Tags</h4>
+        <ul class="list-disc list-inside space-y-2">
+          <c:forEach var="tag" items="${tags}">
+            <li class="text-gray-600">
+              <span class="font-medium">${tag.name}</span>
+            </li>
+          </c:forEach>
+        </ul>
+      </div>
+    </c:if>
+
+  </div>
+</c:if>
+
+
     <div class="text-center space-y-4">
       <a href="searchProjects" class="text-amber-700 hover:underline font-medium block">
         ← Back to Search
