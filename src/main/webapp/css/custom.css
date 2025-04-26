@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* === buttons === */
 .btn-primary {
     @apply bg-amber-600 text-white px-5 py-2 rounded hover:bg-amber-700 transition;
@@ -55,6 +50,10 @@
     @apply text-lg text-gray-700;
 }
 
+.body-text {
+    @apply text-lg font-medium text-amber-800;
+}
+
 /* === forms === */
 .input {
     @apply border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-amber-500;
@@ -77,7 +76,52 @@
     @apply w-36 h-36 object-cover rounded-md shadow-sm hover:shadow-md transition;
 }
 
-/* === other thigns === */
+/* === layout === */
+.body-main {
+    @apply bg-amber-50 text-gray-800 font-sans;
+}
+
+.section-header {
+    @apply text-center mb-10;
+}
+
+.centered {
+    @apply text-center;
+}
+
+/* === links === */
+.link-list {
+    @apply grid gap-2;
+}
+
+.link-list-admin {
+    @apply space-y-2;
+}
+
+.link-green {
+    @apply text-green-700 hover:underline;
+}
+
+
+/* === sidebar === */
+.sidebar {
+    @apply bg-white w-64 min-h-screen shadow-md p-6 space-y-4 fixed top-0 left-0;
+}
+
+.sidebar-title {
+    @apply text-2xl font-bold text-amber-800 mb-6;
+}
+
+.sidebar-text {
+    @apply text-lg font-medium text-amber-800 block;
+}
+
+.link-list-sidebar {
+    @apply space-y-2;
+}
+
+
+/* === other things === */
 .divider {
     @apply my-4 border-t border-gray-300;
 }
