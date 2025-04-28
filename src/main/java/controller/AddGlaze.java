@@ -52,7 +52,7 @@ public class AddGlaze extends HttpServlet {
             glaze.setDescription(description);
             glaze.setType(type);
             glaze.setCreatedAt(Timestamp.from(Instant.now()));
-            glazeDao.insert(glaze);
+            glazeDao.saveOrUpdate(glaze);
             response.sendRedirect("glazeLibrary");
         }
         else {

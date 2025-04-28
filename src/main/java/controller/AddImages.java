@@ -88,7 +88,7 @@ public class AddImages extends HttpServlet {
                     Image image = new Image();
                     image.setProject(project);
                     image.setImageUrl(imageUrl);
-                    imageDao.insert(image);
+                    imageDao.saveOrUpdate(image);
                 }
 
 

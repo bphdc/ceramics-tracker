@@ -46,7 +46,7 @@ public class AddEntry extends HttpServlet {
                 entry.setProject(project);
                 entry.setEntryText(entryText);
                 entry.setCreatedAt(Timestamp.from(Instant.now()));
-                entryDao.insert(entry);
+                entryDao.saveOrUpdate(entry);
                 response.sendRedirect("viewProject?projectId=" + project.getProjectId());
             }
             else {
