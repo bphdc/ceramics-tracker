@@ -77,7 +77,7 @@
 
     <div class="text-center space-y-4">
       <a href="searchProjects" class="text-amber-700 hover:underline font-medium block">
-        ← Back to Search
+        Back to Search
       </a>
 
       <c:if test="${loggedInUser.id == projectUser.id}">

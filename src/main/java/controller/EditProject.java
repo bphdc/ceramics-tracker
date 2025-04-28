@@ -62,7 +62,7 @@ public class EditProject extends HttpServlet {
             req.setAttribute("project", project);
             req.setAttribute("images", images);
             //pass all glazes and tags to the for selection
-            req.setAttribute("availableGlazes", glazeDao.getAll()); //todo im unsure if igot this right. probably add in glaze/tag crud before coming back to this
+            req.setAttribute("availableGlazes", glazeDao.getAll());
             req.setAttribute("availableTags", tagDao.getAll());
 
             //also pass currently selected glazes and tags

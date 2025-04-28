@@ -1,7 +1,6 @@
 package controller;
 
-import entity.Project;
-import entity.User;
+import entity.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import persistence.GenericDao;
@@ -26,12 +25,20 @@ public class SearchProjects extends HttpServlet {
     private static final Logger log = LoggerFactory.getLogger(SearchProjects.class);
     private GenericDao<Project> projectDao;
     private GenericDao<User> userDao;
+    private GenericDao<Glaze> glazeDao;
+    private GenericDao<Tag> tagDao;
+    private GenericDao<ProjectTag> projectTagDao;
+    private GenericDao<ProjectGlaze> projectGlazeDao;
     User loggedInUser;
 
     @Override
     public void init() {
         projectDao = new GenericDao<>(Project.class);
         userDao = new GenericDao<>(User.class);
+        glazeDao = new GenericDao<>(Glaze.class);
+        tagDao = new GenericDao<>(Tag.class);
+        projectTagDao = new GenericDao<>(ProjectTag.class);
+        projectGlazeDao = new GenericDao<>(ProjectGlaze.class);
 
     }
 
@@ -40,6 +47,8 @@ public class SearchProjects extends HttpServlet {
         List<Project> projects = new ArrayList<>();
         int userId = (int) request.getSession().getAttribute("userId");
         loggedInUser = userDao.getById(userId);
+        request.setAttribute("availableGlazes", glazeDao.getAll());
+        request.setAttribute("availableTags", tagDao.getAll());
 
 
         //go to search projects page if a search request isn't made yet - otherwise go thru switch statement and send user to results page
@@ -56,12 +65,22 @@ public class SearchProjects extends HttpServlet {
                 projects = projectDao.getAll();
                 break;
             case "byTag":
-                String tag = request.getParameter("tag");
-                projects = projectDao.getByPropertyEqual("tag", tag);
+                String tagId = request.getParameter("tag");
+                Tag tag = tagDao.getById(Integer.parseInt(tagId));
+                List<ProjectTag> projectTags = projectTagDao.getByPropertyEqual("tag", tag);
+                for (ProjectTag projectTag : projectTags) {
+                    Project project = projectTag.getProject();
+                    projects.add(project);
+                }
                 break;
             case "byGlaze":
-                String glaze = request.getParameter("glaze");
-                projects = projectDao.getByPropertyEqual("glaze", glaze);
+                String glazeId = request.getParameter("glaze");
+                Glaze glaze = glazeDao.getById(Integer.parseInt(glazeId));
+                List<ProjectGlaze> projectGlazes = projectGlazeDao.getByPropertyEqual("glaze", glaze);
+                for (ProjectGlaze projectGlaze : projectGlazes) {
+                    Project project = projectGlaze.getProject();
+                    projects.add(project);
+                }
                 break;
             case "byKeyword":
                 String keyword = request.getParameter("keyword");

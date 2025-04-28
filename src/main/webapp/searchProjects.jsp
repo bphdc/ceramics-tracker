@@ -31,7 +31,22 @@
             <label for="tag" class="block text-amber-800 font-medium mb-1">Search by Tag:</label>
             <select name="tag" id="tag" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500">
               <c:forEach var="tag" items="${availableTags}">
-                <option value="${tag}">${tag}</option>
+                <option value="${tag.tagId}">${tag.name}</option>
+              </c:forEach>
+            </select>
+          </div>
+          <button type="submit" class="w-full bg-amber-600 text-white py-2 rounded hover:bg-amber-700 transition">
+            Search
+          </button>
+        </form>
+
+        <form action="searchProjects" method="get" class="space-y-4">
+          <input type="hidden" name="searchType" value="byGlaze">
+          <div class="form-group">
+            <label for="tag" class="block text-amber-800 font-medium mb-1">Search by Glaze:</label>
+            <select name="glaze" id="glaze" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500">
+              <c:forEach var="glaze" items="${availableGlazes}">
+                <option value="${glaze.glazeId}">${glaze.name}</option>
               </c:forEach>
             </select>
           </div>
