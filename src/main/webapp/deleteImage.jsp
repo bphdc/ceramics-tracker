@@ -4,15 +4,17 @@
 
 <html>
 
-<body>
-    <h2>Confirm Image Deletion</h2>
-    <p>Are you sure you want to delete your project image?</p>
-    <form action="deleteImage" method="post">
-        <input type="hidden" name="imageId" value="${image.imageId}">
-        <input type="hidden" name="projectId" value="${project.projectId}">
-        <input type="submit" value="Delete">
-        <a href="viewProject?${project.projectId}"><button type="button">Cancel</button></a>
-    </form>
-</body>
+<c:set var="customMessage" value="Are you sure you want to delete your project image?" />
+<c:set var="formAction" value="deleteImage" />
+<c:set var="hiddenName1" value="imageId" />
+<c:set var="hiddenValue1" value="${image.imageId}" />
+<c:set var="hiddenName2" value="projectId" />
+<c:set var="hiddenValue2" value="${project.projectId}" />
+<c:set var="cancelUrl" value="viewProject?projectId=${project.projectId}" />
+
+
+
+
+<%@include file="deleteConfirmation.jsp"%>
 
 </html>

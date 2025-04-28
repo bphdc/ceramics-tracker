@@ -4,15 +4,15 @@
 
 <html>
 
-<body>
-    <h2>Confirm Entry Deletion</h2>
-    <p>Are you sure you want to delete your project entry?</p>
-    <form action="deleteEntry" method="post">
-        <input type="hidden" name="entryId" value="${entry.id}">
-        <input type="hidden" name="projectId" value="${project.projectId}">
-        <input type="submit" value="Delete">
-        <a href="viewProject?${project.projectId}"><button type="button">Cancel</button></a>
-    </form>
-</body>
+<c:set var="customMessage" value="Are you sure you want to delete your project entry?" />
+<c:set var="formAction" value="deleteEntry" />
+<c:set var="hiddenName1" value="entryId" />
+<c:set var="hiddenValue1" value="${entry.id}" />
+<c:set var="hiddenName2" value="projectId" />
+<c:set var="hiddenValue2" value="${project.projectId}" />
+<c:set var="cancelUrl" value="viewProject?projectId=${project.projectId}" />
+
+
+<%@include file="deleteConfirmation.jsp"%>
 
 </html>

@@ -4,14 +4,14 @@
 
 <html>
 
-<body>
-    <h2>Confirm User Profile Deletion</h2>
-    <p>Are you sure you want to delete your profile? Your projects and pictures will also be deleted</p>
-    <form action="deleteUser" method="post">
-        <input type="hidden" name="userId" value="${user.id}">
-        <input type="submit" value="Delete">
-        <a href="viewProfile?id=${user.id}"><button type="button">Cancel</button></a>
-    </form>
-</body>
+<c:set var="customMessage" value="Are you sure you want to delete your profile? Your projects and pictures will also be deleted." />
+<c:set var="formAction" value="deleteUser" />
+<c:set var="hiddenName1" value="userId" />
+<c:set var="hiddenValue1" value="${user.id}" />
+<c:set var="cancelUrl" value="viewProfile?id=${user.id}" />
+
+
+
+<%@include file="deleteConfirmation.jsp"%>
 
 </html>

@@ -4,14 +4,12 @@
 
 <html>
 
-<body>
-<h2>Confirm Tag Deletion</h2>
-<p>Are you sure you want to delete <strong>${tag.name}</strong>? User projects may be effected.</p>
-<form action="deleteTag" method="post">
-    <input type="hidden" name="tagId" value="${tag.tagId}">
-    <input type="submit" value="Delete">
-    <a href="tagLibrary"><button type="button">Cancel</button></a>
-</form>
-</body>
+<c:set var="customMessage" value="Are you sure you want to delete ${tag.name}? User projects may be affected." />
+<c:set var="formAction" value="deleteTag" />
+<c:set var="hiddenName1" value="tagId" />
+<c:set var="hiddenValue1" value="${tag.tagId}" />
+<c:set var="cancelUrl" value="tagLibrary" />
+
+<%@include file="deleteConfirmation.jsp"%>
 
 </html>
