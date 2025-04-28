@@ -18,7 +18,7 @@ import java.sql.Timestamp;
 import java.time.Instant;
 
 /**
- * A servlet to add the glaze.
+ * A servlet to edit the glaze.
  * @author pete
  */
 

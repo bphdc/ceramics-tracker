@@ -15,6 +15,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * A servlet to view a project
+ * @author pete
+ */
 @WebServlet("/viewProject")
 public class ViewProject extends HttpServlet {
     private static final Logger log = LoggerFactory.getLogger(ViewProfile.class);

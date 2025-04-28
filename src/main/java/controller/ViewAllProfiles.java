@@ -16,6 +16,11 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
+
+/**
+ * A servlet to view all profiles
+ * @author pete
+ */
 @WebServlet("/viewAllProfiles")
 public class ViewAllProfiles extends HttpServlet {
     private static final Logger log = LoggerFactory.getLogger(ViewAllProfiles.class);

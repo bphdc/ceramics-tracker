@@ -18,6 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
+/**
+ * A servlet to delete a blog entry
+ * @author pete
+ */
 @WebServlet("/deleteEntry")
 public class DeleteEntry extends HttpServlet {
 

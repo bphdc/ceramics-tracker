@@ -38,7 +38,6 @@ public class DeleteProject extends HttpServlet {
             projectDao.delete(project);
             response.sendRedirect("error.jsp");
         } catch (Exception e) {
-            e.printStackTrace();
             response.sendRedirect("error.jsp");
         }
     }

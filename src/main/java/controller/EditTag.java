@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * A servlet to add the glaze.
+ * A servlet to edit a tag
  * @author pete
  */
 

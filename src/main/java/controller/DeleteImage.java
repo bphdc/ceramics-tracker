@@ -19,6 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
+/**
+ * A servlet to delete an image
+ * @author pete
+ */
 @WebServlet("/deleteImage")
 public class DeleteImage extends HttpServlet {
 

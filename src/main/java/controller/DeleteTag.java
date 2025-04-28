@@ -17,6 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
+/**
+ * A servlet to delete a tag
+ * @author pete
+ */
 @WebServlet("/deleteTag")
 public class DeleteTag extends HttpServlet {
 

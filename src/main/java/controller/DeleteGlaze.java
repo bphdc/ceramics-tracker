@@ -18,6 +18,10 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
+/**
+ * A servlet to delete a glaze
+ * @author pete
+ */
 @WebServlet("/deleteGlaze")
 public class DeleteGlaze extends HttpServlet {
 

@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A servlet to add the prj.
+ * A servlet to edit the prj.
  * @author pete
  */
 

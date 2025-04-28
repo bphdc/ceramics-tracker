@@ -22,7 +22,7 @@ import java.util.List;
 
 
 /**
- * A servlet to add the prj.
+ * A servlet to edit profile
  * @author pete
  */
 

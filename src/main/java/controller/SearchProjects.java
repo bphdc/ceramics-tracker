@@ -15,7 +15,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * A servlet to add the prj.
+ * A servlet to search for prj.
  * @author pete
  */
 

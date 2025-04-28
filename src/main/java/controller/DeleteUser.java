@@ -1,6 +1,6 @@
 package controller;
 
-import entity.Project;
+
 import entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,11 +17,16 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
+/**
+ * A servlet to delete a user
+ * @author pete
+ */
 @WebServlet("/deleteUser")
 public class DeleteUser extends HttpServlet {
 
     private static final Logger log = LoggerFactory.getLogger(DeleteUser.class);
     private static GenericDao<User> userDao = new GenericDao<>(User.class);
+
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext context = getServletContext();
@@ -39,10 +44,10 @@ public class DeleteUser extends HttpServlet {
             session.invalidate();
             response.sendRedirect("index.jsp");
         } catch (Exception e) {
-            e.printStackTrace();
             response.sendRedirect("error.jsp");
         }
     }
+
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);

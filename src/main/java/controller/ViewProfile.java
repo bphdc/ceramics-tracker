@@ -18,6 +18,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * A servlet to view a single profile
+ * @author pete
+ */
 @WebServlet("/viewProfile")
 public class ViewProfile extends HttpServlet {
     private static final Logger log = LoggerFactory.getLogger(ViewProfile.class);

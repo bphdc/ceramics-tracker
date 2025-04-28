@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A servlet to add the prj.
+ * A servlet to view projects
  * @author pete
  */
 
