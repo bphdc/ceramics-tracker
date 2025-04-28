@@ -40,7 +40,7 @@ public class AddEntry extends HttpServlet {
 
         if (ServletHelper.isLoggedInUserProjectOwner(request, project.getProjectId()) ) {
 
-            String entryText = request.getParameter("newEntry");
+            String entryText = request.getParameter("entryText");
             if (entryText != null && !entryText.trim().isEmpty()) {
                 ProjectEntry entry = new ProjectEntry();
                 entry.setProject(project);

@@ -90,4 +90,20 @@
       <div class="bg-white p-6 rounded-lg shadow-md space-y-6">
         <h3 class="text-2xl font-semibold text-amber-800 mb-4">Project Blog</h3>
         <form action="addEntry" method="post" class="space-y-4">
-          <input type="hidden" name="project
+          <input type="hidden" name="projectId" value="${project.projectId}">
+
+          <div>
+            <label for="entryText" class="block text-sm font-medium text-gray-700 mb-1">Blog Entry:</label>
+            <textarea id="entryText" name="entryText" rows="4" required
+              class="w-full border-gray-300 rounded px-3 py-2 focus:ring-amber-500 focus:border-amber-500"></textarea>
+          </div>
+
+          <button type="submit" class="w-full bg-amber-600 text-white py-2 rounded hover:bg-amber-700 transition">
+            Add Entry
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </body>
+</html>
