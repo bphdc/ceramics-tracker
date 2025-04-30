@@ -183,9 +183,9 @@ DECIDED TO REMOVE ABILITY TO LET USER ADD GLAZE AND TAGS TO DB. KEEP IT ADMIN FO
 
 ### Week 12
 #### ~~User Calculate Shrinkage (MVP)~~ Changed this to Hive AI image search
-- [ ] Hive JSP
-- [ ] Implement logic (based on user input)
-- [ ] Validate form
+- [X] Hive JSP
+- [X] Implement logic (based on user input)
+- [X] Validate form (error handling in client and servlet)
 - [X] Test external api
 - [X] Write unit tests for hiveai functionality
 
