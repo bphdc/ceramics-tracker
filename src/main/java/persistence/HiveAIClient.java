@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 @Service
-public class HiveAIClient implements PropertiesLoader {
+public class HiveAIClient {
     private Properties properties;
     private static final String API_URL = "https://api.thehive.ai/api/v3/black-forest-labs/flux-schnell";
     private final RestTemplate restTemplate;

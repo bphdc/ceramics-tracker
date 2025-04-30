@@ -30,7 +30,7 @@
         <div>
           <h3 class="text-lg font-semibold text-amber-300">Community</h3>
           <a href="viewAllProfiles" class="block text-indigo-300 hover:text-white transition-colors duration-200">Member Directory</a>
-          <a href="searchAI" class="block text-indigo-500 hover:text-white italic transition-colors duration-200">Get Inspo</a>
+          <a href="generateAIImage" class="block text-indigo-300 hover:text-white transition-colors duration-200">Get Inspo</a>
         </div>
 
 
