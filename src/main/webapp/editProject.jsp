@@ -20,19 +20,19 @@
           <div>
             <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Project Name:</label>
             <input type="text" id="name" name="name" value="${project.name}" required
-              class="w-full border-gray-300 rounded px-3 py-2 focus:ring-amber-500 focus:border-amber-500">
+              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500">
           </div>
 
           <div>
             <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Description:</label>
             <textarea id="description" name="description" rows="4" required
-              class="w-full border-gray-300 rounded px-3 py-2 focus:ring-amber-500 focus:border-amber-500">${project.description}</textarea>
+              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500">${project.description}</textarea>
           </div>
 
           <div>
             <label for="glazes" class="block text-sm font-medium text-gray-700 mb-1">Add Glazes:</label>
             <select id="glazes" name="glazes" multiple
-              class="w-full border-gray-300 rounded px-3 py-2 focus:ring-amber-500 focus:border-amber-500">
+              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500">
               <c:forEach var="glaze" items="${availableGlazes}">
                 <option value="${glaze.glazeId}" <c:if test="${fn:contains(selectedGlazes, glaze)}">selected</c:if>>${glaze.name}</option>
               </c:forEach>
@@ -42,7 +42,7 @@
           <div>
             <label for="tags" class="block text-sm font-medium text-gray-700 mb-1">Add Tags:</label>
             <select id="tags" name="tags" multiple
-              class="w-full border-gray-300 rounded px-3 py-2 focus:ring-amber-500 focus:border-amber-500">
+              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500">
               <c:forEach var="tag" items="${availableTags}">
                 <option value="${tag.tagId}" <c:if test="${fn:contains(selectedTags, tag)}">selected</c:if>>${tag.name}</option>
               </c:forEach>
@@ -64,7 +64,7 @@
           <div>
             <label for="fileUpload" class="block text-sm font-medium text-gray-700 mb-1">Upload Images (up to 5 at a time):</label>
             <input type="file" id="fileUpload" name="images" multiple accept="image/*" onchange="handleFileUpload()" required
-              class="w-full border-gray-300 rounded px-3 py-2 focus:ring-amber-500 focus:border-amber-500">
+              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500">
             <div id="imagePreview" class="flex flex-wrap mt-4 gap-2"></div>
           </div>
 
@@ -95,7 +95,7 @@
           <div>
             <label for="entryText" class="block text-sm font-medium text-gray-700 mb-1">Blog Entry:</label>
             <textarea id="entryText" name="entryText" rows="4" required
-              class="w-full border-gray-300 rounded px-3 py-2 focus:ring-amber-500 focus:border-amber-500"></textarea>
+              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea>
           </div>
 
           <button type="submit" class="w-full bg-amber-600 text-white py-2 rounded hover:bg-amber-700 transition">
