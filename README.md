@@ -25,7 +25,7 @@ If I decide to scale this up, I will also consider adding multi-user support wit
 * CSS
   * Tailwind
 * Data Validation
-  * Explore Hibernate Validator -- (went with Dao testing)
+  * Explore Hibernate Validator ?
 * Logging
   * Log4J2
 * Hosting

@@ -200,6 +200,7 @@ DECIDED TO REMOVE ABILITY TO LET USER ADD GLAZE AND TAGS TO DB. KEEP IT ADMIN FO
 #### Implement Feedback from Week 14 Review
 - [ ] Address any bugs or improvements from the review
 - [ ] Update documentation with new features and changes
+- [ ] Explore data val using hibernate validator
 - [ ] Final Testing
 
 ### Week 16
