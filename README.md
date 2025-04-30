@@ -17,27 +17,23 @@ If I decide to scale this up, I will also consider adding multi-user support wit
 * Database
   * MySQL 9.2
 * ORM Framework
-  * Hibernate Version TBD
+  * Hibernate Version 6.4.3.Final
 * Dependency Management
   * Maven
 * Web Services consumed using Java
-  * TBD
+  * HiveAi
 * CSS
-  * Bootstrap or Materialize
+  * Tailwind
 * Data Validation
-  * Bootstrap Validator for front end
-  * Explore Hibernate Validator?
+  * Explore Hibernate Validator -- (went with Dao testing)
 * Logging
   * Log4J2
 * Hosting
   * AWS
 * Tech I'd like to explore as part of this work
   * CI tools in AWS
-  * Materialize
-  * Calconic_ API
-  * Hibernate Validator
-  * Hibernate Search
-  * Project Lombok
+  * Tailwind
+  * HiveAi
 * Unit Testing
   * JUnit tests to cover all testable logic
 * IDE 
