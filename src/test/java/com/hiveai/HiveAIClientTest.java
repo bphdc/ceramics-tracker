@@ -89,7 +89,7 @@ public class HiveAIClientTest {
                 .andRespond(withSuccess(mockJsonResponse, MediaType.APPLICATION_JSON));
 
         // Make the actual API call through the HiveAIClient
-        Response response = mockHiveAIClient.generateImage("some hand thrown vases");
+        Response response = mockHiveAIClient.generateImage("some hand thrown vases", "12345");
         Logger logger = LogManager.getLogger(HiveAIClientTest.class);
         logger.info(response.getOutput().get(0).getUrl());
 

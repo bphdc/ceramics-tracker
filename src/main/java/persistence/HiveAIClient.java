@@ -17,7 +17,6 @@ import java.util.Properties;
 public class HiveAIClient implements PropertiesLoader {
     private Properties properties;
     private static final String API_URL = "https://api.thehive.ai/api/v3/black-forest-labs/flux-schnell";
-    private static String API_KEY = "oCaVF6fxiMId4mM7qDKMTnZ42JMPcDRH";
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
     private final Logger logger = LogManager.getLogger(this.getClass());
@@ -31,7 +30,7 @@ public class HiveAIClient implements PropertiesLoader {
         this.objectMapper = new ObjectMapper();
     }
 
-    public Response generateImage(String prompt) throws Exception {
+    public Response generateImage(String prompt, String API_KEY) throws Exception {
         // Create request body
         String requestJson = "{\n" +
                 "  \"input\": {\n" +
