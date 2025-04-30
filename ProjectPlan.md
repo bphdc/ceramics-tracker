@@ -40,22 +40,22 @@ For those using this as a model, continue adding weekly tasks by considering:
 
 ### Week 7 (check point 2 so do that too)
 #### User Sign Up (MVP)
-- [] ~~Design Sign Up JSP~~
+- [] ~~Design Sign Up JSP~~ (aws)
 - [X] Implement Sign Up form (name, email, password)
 - [X] Implement AWS Cognito sign-up functionality
-- [ ] ~~Validate Sign Up form~~
+- [ ] ~~Validate Sign Up form~~ (aws)
 - [X] Test user creation in AWS Cognito
 - [ ] ~~Write unit tests for Sign Up functionality~~ not needed bc it's through aws
 - [X] Integrate with backend services (AWS Cognito)
 
 #### User Sign In (MVP)
-- [ ] ~~Design Sign In JSP~~
-- [ ] ~~Implement Sign In form (email, password)~~
+- [ ] ~~Design Sign In JSP~~ (aws)
+- [ ] ~~Implement Sign In form (email, password)~~ (aws)
 - [X] Implement AWS Cognito sign-in functionality
-- [ ] ~~Validate Sign In form~~
+- [ ] ~~Validate Sign In form~~ (aws)
 - [X] Test user login via AWS Cognito
-- [ ] ~~Write unit tests for Sign In functionality~~
-
+- [ ] ~~Write unit tests for Sign In functionality~~ (aws)
+ 
 ^^ most of this doesn't apply as it's via Cognito
 
 #### User Create New Project (MVP)
@@ -112,13 +112,8 @@ For those using this as a model, continue adding weekly tasks by considering:
 - [X] Write unit tests for View Projects  (dao)
 
 
-DECIDED TO REMOVE ABILITY TO LET USER ADD GLAZE TO DB. KEEP IT ADMIN FOR NOW FOR SIMPLICITY
-#### User Add Glaze
-- [X] Design Add Glaze JSP
-- [X] Implement form to add new glaze (name, description)
-- [X] Persist glaze data in the database
-- [X] Test glaze creation functionality
-- [X] Write unit tests for Add Glaze functionality
+DECIDED TO REMOVE ABILITY TO LET USER ADD GLAZE AND TAGS TO DB. KEEP IT ADMIN FOR NOW FOR SIMPLICITY
+
 
 #### User View Glazes
 - [ ] ~~Design View Glazes JSP~~ users will see glazes from dropdown list in prj
@@ -128,22 +123,22 @@ DECIDED TO REMOVE ABILITY TO LET USER ADD GLAZE TO DB. KEEP IT ADMIN FOR NOW FOR
 - [X] Write unit tests for View Glazes functionality
 
 #### User Add Existing Tags to Project
-- [ ] Design Add Tags JSP
-- [ ] Implement form to select and add tags to projects
-- [ ] Implement backend logic to associate tags with projects
-- [ ] Test tag addition functionality
+- [X] Design Add Tags JSP
+- [X] Implement form to select and add tags to projects
+- [X] Implement backend logic to associate tags with projects
+- [X] Test tag addition functionality
 - [X] Write unit tests for Add Tags functionality
 
 #### User Search Projects by Tag
-- [ ] Implement tag-based search functionality
-- [ ] Update View Projects JSP to support filtering by tags
-- [ ] Test tag search functionality
+- [X] Implement tag-based search functionality
+- [X] Update Search Projects JSP to support filtering by tags
+- [X] Test tag search functionality
 - [X] Write unit tests for Search by Tag functionality
 
 #### User Search Projects by Glaze
-- [ ] Implement glaze-based search functionality
-- [ ] Update View Projects JSP to support filtering by glaze
-- [ ] Test glaze search functionality
+- [X] Implement glaze-based search functionality
+- [X] Update Search Projects JSP to support filtering by glaze
+- [X] Test glaze search functionality
 - [X] Write unit tests for Search by Glaze functionality
 
 ### Week 10
@@ -192,7 +187,7 @@ DECIDED TO REMOVE ABILITY TO LET USER ADD GLAZE TO DB. KEEP IT ADMIN FOR NOW FOR
 - [ ] Implement logic (based on user input)
 - [ ] Validate form
 - [X] Test external api
-- [X] Write unit tests for Shrinkage Calculator functionality
+- [X] Write unit tests for hiveai functionality
 
 ### Week 13-14
 #### Testing and Refinement
