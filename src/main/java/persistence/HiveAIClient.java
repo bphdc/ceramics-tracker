@@ -1,12 +1,14 @@
 package persistence;
 
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.hiveai.Response;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import util.PropertiesLoader;
 
@@ -31,7 +33,6 @@ public class HiveAIClient implements PropertiesLoader {
     }
 
     public Response generateImage(String prompt, String API_KEY) throws Exception {
-        // Create request body
         String requestJson = "{\n" +
                 "  \"input\": {\n" +
                 "    \"prompt\": \"" + prompt + "\",\n" +
@@ -48,12 +49,41 @@ public class HiveAIClient implements PropertiesLoader {
         headers.set("Authorization", "Bearer " + API_KEY);
 
         HttpEntity<String> requestEntity = new HttpEntity<>(requestJson, headers);
-        ResponseEntity<String> response = restTemplate.exchange(API_URL, HttpMethod.POST, requestEntity, String.class);
 
-        // Map JSON response to pojo
-        Response objectResponse = objectMapper.readValue(response.getBody(), Response.class);
+        try {
+            ResponseEntity<String> response = restTemplate.exchange(API_URL, HttpMethod.POST, requestEntity, String.class);
 
-        return objectResponse;
+            JsonNode jsonNode = objectMapper.readTree(response.getBody());
+
+            if (jsonNode.has("status_code")) {
+                int statusCode = jsonNode.get("status_code").asInt();
+                String message = jsonNode.has("message") ? jsonNode.get("message").asText() : "Unknown error";
+
+                switch (statusCode) {
+                    case 451:
+                        logger.warn("Moderation filter triggered: {}", message);
+                        throw new Exception("Image failed moderation: " + message);
+                    case 429:
+                        logger.error("Rate limit exceeded: {}", message);
+                        throw new Exception("Too many requests: " + message);
+                    case 405:
+                        logger.error("Organization account issue: {}", message);
+                        throw new Exception("Organization is paused or out of credits: " + message);
+                    default:
+                        logger.error("Unhandled API error: {} - {}", statusCode, message);
+                        throw new Exception("Unhandled API error: " + message);
+                }
+            }
+
+            return objectMapper.treeToValue(jsonNode, Response.class);
+
+        } catch (HttpClientErrorException e) {
+            logger.error("HTTP Error: {}", e.getMessage(), e);
+            throw new Exception("HTTP error from Hive AI API: " + e.getStatusCode());
+        } catch (Exception e) {
+            logger.error("Unexpected error during image generation", e);
+            throw e;
+        }
     }
 }
 
