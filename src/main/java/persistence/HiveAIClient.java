@@ -27,25 +27,8 @@ public class HiveAIClient implements PropertiesLoader {
     }
 
     public HiveAIClient(RestTemplate restTemplate) {
-        loadProperties();
         this.restTemplate = restTemplate;
         this.objectMapper = new ObjectMapper();
-    }
-
-    /**
-     * Read in the props file and get/set the client id, secret, and required urls
-     * for authenticating a user.
-     */
-    // TODO This code appears in a couple classes, consider using a startup servlet similar to adv java project
-    private void loadProperties() {
-        try {
-            properties = loadProperties("/hiveai.properties");
-            API_KEY = properties.getProperty("apikey");
-        } catch (IOException ioException) {
-            logger.error("Cannot load properties...{}", ioException.getMessage(), ioException);
-        } catch (Exception e) {
-            logger.error("Error loading properties{}", e.getMessage(), e);
-        }
     }
 
     public Response generateImage(String prompt) throws Exception {
