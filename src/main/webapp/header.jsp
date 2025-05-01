@@ -7,7 +7,7 @@
         <!-- logo/home -->
         <a href="index.jsp" class="flex items-center gap-2">
             <i class="bi bi-cup-fill text-xl text-[#cff245]"></i>
-            <span class="text-lg font-semibold">Ceramics Studio Tracker</span>
+            <span class="text-lg font-semibold">Pottr</span>
         </a>
 
         <!-- responsive hamburger -->
