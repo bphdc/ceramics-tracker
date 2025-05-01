@@ -1,6 +1,6 @@
 <%@include file="head.jsp"%>
 <%@include file="taglib.jsp"%>
-<%@include file="sidebar.jsp"%>
+<%@include file="header.jsp"%>
 <html lang="en">
 <body class="bg-amber-50 text-gray-800 font-sans">
 <div class="max-w-3xl mx-auto px-6 py-12">

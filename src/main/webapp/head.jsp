@@ -9,7 +9,22 @@
 
     <!-- tailwind stuff -->
 
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="//unpkg.com/alpinejs" defer=""></script>
+    <link rel="icon" type="image/x-icon" href="./images/favico.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+            rel="stylesheet">
+    <style>
+        .inter {
+            font-family: "Inter", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+    </style>
 
 
 

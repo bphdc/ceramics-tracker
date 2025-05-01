@@ -1,5 +1,5 @@
 <%@include file="head.jsp"%>
-<%@include file="sidebar.jsp"%>
+<%@include file="header.jsp"%>
 <%@ page isErrorPage="true" %>
 
 <html lang="en">
