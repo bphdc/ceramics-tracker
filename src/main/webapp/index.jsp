@@ -11,10 +11,10 @@
 
         <div class="text-center">
             <h1 class="text-5xl font-semibold tracking-tighter mb-4">
-                Welcome to the Pottr
+                Welcome to Pottr
             </h1>
             <p class="text-xl text-gray-400">
-                Track your ceramic projects, glazes, and more with our easy-to-use tool.
+                Track your ceramic projects, glazes, and more.
             </p>
         </div>
 
@@ -33,17 +33,15 @@
 
             <c:otherwise>
                 <div class="bg-[#ebebeb]/5 p-8 rounded-2xl border border-gray-800 shadow-xl space-y-6">
-                    <p class="text-xl font-medium text-[#cff245]">
+                    <p class="text-xl font-medium text-[#cff245] text-center">
                         Welcome, <c:out value="${userName}" />! We're glad you're here.
                     </p>
 
                     <p class="text-lg text-gray-300">
                         Use the sidebar to manage your profile, add new projects, explore the glaze/tag libraries, and get inspired.
-                    </p>
-
-                    <p class="text-lg text-gray-300">
                         Whether you're tracking your latest ceramic project or mixing your own glazes, everything you need is right here.
                     </p>
+
                 </div>
             </c:otherwise>
         </c:choose>

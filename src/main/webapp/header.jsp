@@ -21,7 +21,7 @@
         <nav class="hidden md:flex gap-6 text-sm items-center">
             <c:choose>
                 <c:when test="${empty userName}">
-                    <a href="logIn" class="hover:underline text-[#cff245]">Log In</a>
+                    <a href="logIn" class="text-sm py-1 px-4 border rounded-xl">Log In/Sign Up</a>
                 </c:when>
                 <c:otherwise>
                     <span class="text-gray-400">Hi, <c:out value="${userName}" /></span>
@@ -104,7 +104,7 @@
                         setupDropdowns();
                     </script>
 
-                    <a href="logout" class="text-red-500 hover:text-white">Log Out</a>
+                    <a href="logout"  class="text-sm py-1 px-4 border rounded-xl">Log Out</a>
                 </c:otherwise>
             </c:choose>
         </nav>
