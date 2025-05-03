@@ -29,7 +29,7 @@ public class TagLibrary extends HttpServlet {
     private static ServletHelper servletHelper = new ServletHelper();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = ServletHelper.getLoggedInUser(request);
+        User user = ServletHelper.getLoggedInUser(request, response);
 
         if (user.getRole().equals("admin")) {
             List<Tag> tags = tagDao.getAll();

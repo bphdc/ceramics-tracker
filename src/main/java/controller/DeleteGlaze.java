@@ -30,7 +30,7 @@ public class DeleteGlaze extends HttpServlet {
     private static Glaze glaze = new Glaze();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = ServletHelper.getLoggedInUser(request);
+        User user = ServletHelper.getLoggedInUser(request, response);
 
         if (ServletHelper.isAdmin(user)) {
             String glazeIdParam = request.getParameter("glazeId");

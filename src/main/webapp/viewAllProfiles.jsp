@@ -3,16 +3,19 @@
 <%@include file="header.jsp"%>
 
 <html lang="en">
-  <body class="bg-amber-50 text-gray-800 font-sans">
-
+  <body class="bg-[#0d0e11] text-white font-sans">
     <div class="max-w-6xl mx-auto px-6 py-12">
-      <h2 class="text-3xl font-bold text-amber-900 text-center mb-8">Member Directory</h2>
+      <h2 class="text-3xl font-bold text-[#cff245] text-center mb-8">Member Directory</h2>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <c:choose>
-          <c:when test="${not empty users}">
+      <c:choose>
+        <%@include file="youMustBeLoggedIn.jsp"%>
+        <c:when test="${empty users}">
+          <p class="text-center text-gray-600">No users found.</p>
+        </c:when>
+        <c:otherwise>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             <c:forEach var="user" items="${users}">
-              <div class="bg-white p-6 rounded-lg shadow-md text-center">
+              <div class="bg-[#2d2f37] p-6 rounded-lg shadow-md text-center hover:shadow-lg transition">
                 <a href="viewProfile?userId=${user.id}">
                   <c:choose>
                     <c:when test="${empty user.profilePicture}">
@@ -22,17 +25,13 @@
                       <img src="${user.profilePicture}" alt="Profile Picture" class="w-24 h-24 rounded-full mx-auto mb-4">
                     </c:otherwise>
                   </c:choose>
-                  <p class="text-lg font-semibold text-gray-800">${user.username}</p>
+                  <p class="text-lg font-semibold text-[#cff245]">${user.username}</p>
                 </a>
               </div>
             </c:forEach>
-          </c:when>
-          <c:otherwise>
-            <p class="text-center text-gray-600">No users found.</p>
-          </c:otherwise>
-        </c:choose>
-      </div>
+          </div>
+        </c:otherwise>
+      </c:choose>
     </div>
-
   </body>
 </html>

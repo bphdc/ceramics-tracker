@@ -16,12 +16,13 @@
     </div>
 
     <div class="text-center">
-        <img src="images/brokenpottery.png" alt="Error Image" class="w-full max-w-2xl mx-auto rounded-lg shadow-lg mb-8 border border-gray-700">
+        <img src="images/brokenpottery.png" alt="Error Image" class="w-full max-w-sm mx-auto rounded-lg shadow-lg mb-8 border border-gray-700">
+
     </div>
 
     <div class="bg-[#ebebeb]/5 p-6 rounded-2xl shadow-md border border-gray-800 space-y-4">
-        <p class="text-lg text-gray-300 mb-4">${message}</p>
-        <a href="index.jsp" class="text-[#cff245] hover:underline font-medium text-lg">Go Home</a>
+        <p class="text-lg text-gray-300 mb-4 text-center">${message}</p>
+        <a href="index.jsp" class="text-[#cff245] hover:underline font-medium text-lg text-center">Go Home</a>
     </div>
 
 </div>

@@ -29,7 +29,7 @@ public class GlazeLibrary extends HttpServlet {
     private static GenericDao<Glaze> glazeDao = new GenericDao<>(Glaze.class);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       User user = ServletHelper.getLoggedInUser(request);
+       User user = ServletHelper.getLoggedInUser(request, response);
 
         if (user.getRole().equals("admin")) {
             List<Glaze> glazes = glazeDao.getAll();

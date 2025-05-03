@@ -39,7 +39,7 @@ public class DeleteImage extends HttpServlet {
         int projectId = Integer.parseInt(request.getParameter("projectId"));
         Project project = projectDao.getById(projectId);
 
-        if (ServletHelper.isLoggedInUserProjectOwner(request, project.getProjectId()) ) {
+        if (ServletHelper.isLoggedInUserProjectOwner(request, response , project.getProjectId()) ) {
             String imageIdParam = request.getParameter("imageId");
             image = imageDao.getById(Integer.parseInt(imageIdParam));
             imageDao.delete(image);

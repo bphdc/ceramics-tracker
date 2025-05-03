@@ -41,7 +41,7 @@ public class EditGlaze extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = ServletHelper.getLoggedInUser(request);
+        User user = ServletHelper.getLoggedInUser(request, response);
 
         if (ServletHelper.isAdmin(user)) {
 

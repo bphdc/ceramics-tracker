@@ -38,7 +38,7 @@ public class AddImages extends HttpServlet {
         String SECRET_KEY = (String) context.getAttribute("SECRET_KEY");
         GenericDao<Project> projectDao = new GenericDao<>(Project.class);
         GenericDao<Image> imageDao = new GenericDao<>(Image.class);
-        User user = ServletHelper.getLoggedInUser(request);
+        User user = ServletHelper.getLoggedInUser(request, response);
 
         //because the multiform thing is weird
 

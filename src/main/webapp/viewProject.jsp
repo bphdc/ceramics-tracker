@@ -4,22 +4,26 @@
 
 <html lang="en">
 
-<body class="bg-amber-50 text-gray-800 font-sans">
+<body class="bg-[#0d0e11] text-white font-sans">
   <div class="max-w-4xl mx-auto px-6 py-12 space-y-8">
 
-    <div class="bg-white p-8 rounded-lg shadow-md">
-      <h2 class="text-4xl font-bold text-amber-900 mb-4">${project.name}</h2>
-      <p class="text-gray-700 text-lg">${project.description}</p>
+  <c:choose>
+        <%@include file="youMustBeLoggedIn.jsp"%>
+        <c:otherwise>
+
+    <div class="bg-[#2d2f37] p-8 rounded-lg shadow-md">
+      <h2 class="text-4xl font-bold text-[#cff245] mb-4">${project.name}</h2>
+      <p class="text-gray-400 text-lg">${project.description}</p>
     </div>
 
     <c:if test="${not empty projectEntries}">
-      <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
-        <h3 class="text-2xl font-semibold text-amber-800">Project Entries</h3>
+      <div class="bg-[#2d2f37] p-6 rounded-lg shadow-md space-y-4">
+        <h3 class="text-2xl font-semibold text-[#cff245]">Project Entries</h3>
         <ul class="list-disc list-inside space-y-2">
           <c:forEach var="entry" items="${projectEntries}">
             <li>
               <span class="text-gray-500 text-sm">${entry.createdAt}</span> -
-              <span class="text-gray-700">${entry.entryText}</span>
+              <span class="text-gray-400">${entry.entryText}</span>
             </li>
           </c:forEach>
         </ul>
@@ -27,8 +31,8 @@
     </c:if>
 
     <c:if test="${not empty projectImages}">
-      <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
-        <h3 class="text-2xl font-semibold text-amber-800">Image Gallery</h3>
+      <div class="bg-[#2d2f37] p-6 rounded-lg shadow-md space-y-4">
+        <h3 class="text-2xl font-semibold text-[#cff245]">Image Gallery</h3>
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
           <c:forEach var="image" items="${projectImages}">
             <a href="${image.imageUrl}" target="_blank" class="block">
@@ -40,43 +44,42 @@
     </c:if>
 
     <c:if test="${not empty tags || not empty glazes}">
-  <div class="bg-white p-6 rounded-lg shadow-md space-y-6">
-    <h3 class="text-2xl font-semibold text-amber-800">Glazes and Tags</h3>
+      <div class="bg-[#2d2f37] p-6 rounded-lg shadow-md space-y-6">
+        <h3 class="text-2xl font-semibold text-[#cff245]">Glazes and Tags</h3>
 
-    <c:if test="${not empty glazes}">
-      <div>
-        <h4 class="text-xl font-semibold text-amber-700 mb-2">Glazes</h4>
-        <ul class="list-disc list-inside space-y-2">
-          <c:forEach var="glaze" items="${glazes}">
-            <li class="text-gray-600">
-              <span class="block font-medium">${glaze.name}</span>
-              <span class="block text-sm">${glaze.type}</span>
-              <span class="block text-sm">${glaze.description}</span>
-            </li>
-          </c:forEach>
-        </ul>
+        <c:if test="${not empty glazes}">
+          <div>
+            <h4 class="text-xl font-semibold text-[#cff245] mb-2">Glazes</h4>
+            <ul class="list-disc list-inside space-y-2">
+              <c:forEach var="glaze" items="${glazes}">
+                <li class="text-gray-400">
+                  <span class="block font-medium">${glaze.name}</span>
+                  <span class="block text-sm">${glaze.type}</span>
+                  <span class="block text-sm">${glaze.description}</span>
+                </li>
+              </c:forEach>
+            </ul>
+          </div>
+        </c:if>
+
+        <c:if test="${not empty tags}">
+          <div>
+            <h4 class="text-xl font-semibold text-[#cff245] mb-2">Tags</h4>
+            <ul class="list-disc list-inside space-y-2">
+              <c:forEach var="tag" items="${tags}">
+                <li class="text-gray-400">
+                  <span class="font-medium">${tag.name}</span>
+                </li>
+              </c:forEach>
+            </ul>
+          </div>
+        </c:if>
+
       </div>
     </c:if>
-
-    <c:if test="${not empty tags}">
-      <div>
-        <h4 class="text-xl font-semibold text-amber-700 mb-2">Tags</h4>
-        <ul class="list-disc list-inside space-y-2">
-          <c:forEach var="tag" items="${tags}">
-            <li class="text-gray-600">
-              <span class="font-medium">${tag.name}</span>
-            </li>
-          </c:forEach>
-        </ul>
-      </div>
-    </c:if>
-
-  </div>
-</c:if>
-
 
     <div class="text-center space-y-4">
-      <a href="searchProjects" class="text-amber-700 hover:underline font-medium block">
+      <a href="searchProjects" class="text-[#cff245] hover:underline font-medium block">
         Back to Search
       </a>
 
@@ -91,6 +94,9 @@
         </div>
       </c:if>
     </div>
+
+    </c:otherwise>
+    </c:choose>
 
   </div>
 </body>

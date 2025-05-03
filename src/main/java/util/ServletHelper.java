@@ -32,21 +32,7 @@ public class ServletHelper {
         return isAdmin;
     }
 
-    /**
-     * is user logged in?
-     * @param request
-     * @return boolean t or f
-     */
-    public static Boolean isLoggedIn (HttpServletRequest request) {
-        try {
-            getLoggedInUser(request);
-        }
-        catch (Exception e) {
-            logger.error("user might not be logged in: " + e.getMessage());
-            return false;
-        }
-        return true;
-    }
+
 
     /**
      * is user logged in?
@@ -54,8 +40,8 @@ public class ServletHelper {
      * @param projectId project id
      * @return boolean t or f
      */
-    public static Boolean isLoggedInUserProjectOwner(HttpServletRequest request, int projectId) {
-        User user = getLoggedInUser(request);
+    public static Boolean isLoggedInUserProjectOwner(HttpServletRequest request, HttpServletResponse response ,int projectId) throws ServletException, IOException {
+        User user = getLoggedInUser(request, response);
         Project project = projectDao.getById(projectId);
         User projectUser = project.getUser();
         if (user.getId() == projectUser.getId()) {
@@ -74,10 +60,12 @@ public class ServletHelper {
      * @param request
      * @return
      */
-    public static User getLoggedInUser(HttpServletRequest request) {
+    public static User getLoggedInUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         Integer userId = (Integer) session.getAttribute("userId");
-        return userDao.getById(userId);
+        if (userId == null) {sendToErrorPageWithMessage(request, response, "Please log in to continue");}
+        User user = userDao.getById(userId);
+        return user;
     }
 
     /**

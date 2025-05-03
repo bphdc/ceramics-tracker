@@ -29,7 +29,7 @@ public class DeleteTag extends HttpServlet {
     private static Tag tag = new Tag();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = ServletHelper.getLoggedInUser(request);
+        User user = ServletHelper.getLoggedInUser(request, response);
 
         if (ServletHelper.isAdmin(user)) {
             String tagIdParam = request.getParameter("tagId");

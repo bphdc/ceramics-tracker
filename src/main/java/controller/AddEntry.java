@@ -38,7 +38,7 @@ public class AddEntry extends HttpServlet {
         Project project = projectDao.getById(projectId);
 
 
-        if (ServletHelper.isLoggedInUserProjectOwner(request, project.getProjectId()) ) {
+        if (ServletHelper.isLoggedInUserProjectOwner(request, response , project.getProjectId()) ) {
 
             String entryText = request.getParameter("entryText");
             if (entryText != null && !entryText.trim().isEmpty()) {
