@@ -5,9 +5,7 @@
 <html lang="en">
 
   <body class="bg-[#0d0e11] text-white font-sans">
-
     <div class="max-w-7xl mx-auto px-6 py-12 space-y-6 flex flex-col items-center">
-
       <h1 class="text-3xl font-bold text-[#cff245] text-center mb-6">Glaze Library</h1>
 
       <c:choose>
@@ -28,7 +26,7 @@
                 </thead>
                 <tbody class="bg-[#1c1f26]">
                   <c:forEach var="glaze" items="${glazes}">
-                    <tr class="border-b hover:bg-amber-50">
+                    <tr class="border-b hover:bg-gray-800">
                       <td class="px-4 py-2">${glaze.name}</td>
                       <td class="px-4 py-2">${glaze.description}</td>
                       <td class="px-4 py-2">${glaze.type}</td>

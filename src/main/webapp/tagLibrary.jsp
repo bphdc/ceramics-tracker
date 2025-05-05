@@ -24,7 +24,7 @@
                         </thead>
                         <tbody class="bg-white">
                         <c:forEach var="tag" items="${tags}">
-                            <tr class="border-b hover:bg-amber-50">
+                            <tr class="border-b hover:bg-gray-800">
                                 <td class="px-4 py-2">${tag.name}</td>
                                 <td class="px-4 py-2">
                                     <a href="editTag?tagId=${tag.tagId}" class="text-amber-600 hover:underline mr-2">Edit</a>
