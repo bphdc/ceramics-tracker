@@ -16,7 +16,7 @@
     </div>
 
     <div class="text-center">
-        <img src="images/brokenpottery.png" alt="Error Image" class="w-full max-w-sm mx-auto rounded-lg shadow-lg mb-8 border border-gray-700">
+        <img src="${pageContext.request.contextPath}/images/brokenpottery.png" alt="Error Image" class="w-full max-w-sm mx-auto rounded-lg shadow-lg mb-8 border border-gray-700">
 
     </div>
 
