@@ -3,42 +3,51 @@
 <%@include file="header.jsp"%>
 
 <html lang="en">
-<body class="bg-[#0d0e11] text-white font-sans">
-<div class="max-w-7xl mx-auto px-6 py-12 space-y-6 flex flex-col items-center">
+  <body class="bg-[#0d0e11] text-white font-sans">
+    <main class="pl-64 min-h-screen px-8 py-20 flex items-center justify-center">
+      <div class="w-full max-w-5xl bg-[#ebebeb]/5 border border-gray-800 p-10 rounded-2xl shadow-xl space-y-10">
 
-    <h1 class="text-3xl font-bold text-[#cff245] text-center mb-6">Tag Library</h1>
+        <div class="text-center">
+          <h1 class="text-4xl font-semibold text-[#cff245] mb-2">Tag Library</h1>
+        </div>
 
-    <c:choose>
-        <%@include file="youMustBeLoggedIn.jsp"%>
-        <c:otherwise>
-            <a href="addTag" class="inline-block text-white bg-amber-600 py-2 px-4 rounded hover:bg-amber-700 transition mb-6">Add a New Tag to Library</a>
+        <c:choose>
+          <%@include file="youMustBeLoggedIn.jsp"%>
+          <c:otherwise>
 
-            <div class="flex justify-center px-6">
-                <div class="overflow-x-auto bg-[#2d2f37] shadow-md rounded-lg w-full max-w-7xl">
-                    <table class="min-w-full table-auto text-center">
-                        <thead>
-                        <tr class="bg-amber-600 text-white">
-                            <th class="px-4 py-2">Name</th>
-                            <th class="px-4 py-2">Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody class="bg-white">
-                        <c:forEach var="tag" items="${tags}">
-                            <tr class="border-b hover:bg-gray-800">
-                                <td class="px-4 py-2">${tag.name}</td>
-                                <td class="px-4 py-2">
-                                    <a href="editTag?tagId=${tag.tagId}" class="text-amber-600 hover:underline mr-2">Edit</a>
-                                    <a href="deleteTag?tagId=${tag.tagId}" class="text-red-600 hover:underline">Delete</a>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="text-right">
+              <a href="addTag"
+                 class="inline-block text-white bg-amber-600 py-2 px-5 rounded-lg hover:bg-amber-700 transition font-medium">
+                + Add New Tag
+              </a>
             </div>
-        </c:otherwise>
-    </c:choose>
 
-</div>
-</body>
+            <div class="overflow-x-auto mt-6">
+              <table class="min-w-full text-sm text-center bg-[#2d2f37] rounded-xl shadow-md overflow-hidden">
+                <thead class="bg-amber-600 text-white text-base">
+                  <tr>
+                    <th class="px-6 py-4">Name</th>
+                    <th class="px-6 py-4">Actions</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-700 bg-[#1c1f26]">
+                  <c:forEach var="tag" items="${tags}">
+                    <tr class="hover:bg-[#3a3d47] transition">
+                      <td class="px-6 py-4 text-[#cff245] font-medium">${tag.name}</td>
+                      <td class="px-6 py-4">
+                        <a href="editTag?tagId=${tag.tagId}" class="text-[#cff245] hover:underline mr-4">Edit</a>
+                        <a href="deleteTag?tagId=${tag.tagId}" class="text-red-500 hover:underline">Delete</a>
+                      </td>
+                    </tr>
+                  </c:forEach>
+                </tbody>
+              </table>
+            </div>
+
+          </c:otherwise>
+        </c:choose>
+
+      </div>
+    </main>
+  </body>
 </html>

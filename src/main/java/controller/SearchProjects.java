@@ -4,6 +4,7 @@ import entity.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import persistence.GenericDao;
+import util.ServletHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,8 +46,7 @@ public class SearchProjects extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String searchType = request.getParameter("searchType");
         List<Project> projects = new ArrayList<>();
-        int userId = (int) request.getSession().getAttribute("userId");
-        loggedInUser = userDao.getById(userId);
+        loggedInUser = ServletHelper.getLoggedInUser(request, response);
         request.setAttribute("availableGlazes", glazeDao.getAll());
         request.setAttribute("availableTags", tagDao.getAll());
 
@@ -98,7 +98,7 @@ public class SearchProjects extends HttpServlet {
         }
 
         request.setAttribute("projects", projects);
-        request.getRequestDispatcher("resultsProjects.jsp").forward(request, response);
+        request.getRequestDispatcher("viewProjectResults.jsp").forward(request, response);
     }
 }
 
