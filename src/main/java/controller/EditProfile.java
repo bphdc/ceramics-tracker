@@ -47,7 +47,7 @@ public class EditProfile extends HttpServlet {
 
         if (!ServletFileUpload.isMultipartContent(request)) {
             log.error("Form must have enctype=multipart/form-data.");
-            response.sendRedirect("updateProfile.jsp?error=invalidForm");
+            response.sendRedirect("editProfile.jsp?error=invalidForm");
             return;
         }
 
@@ -116,7 +116,7 @@ public class EditProfile extends HttpServlet {
             response.sendRedirect("viewProfile?userId=" + userId);
         } catch (Exception ex) {
             log.error("Error processing form: ", ex);
-            response.sendRedirect("updateProfile.jsp?error=uploadFailed");
+            response.sendRedirect("editProfile.jsp?error=uploadFailed");
         }
     }
 
@@ -134,7 +134,7 @@ public class EditProfile extends HttpServlet {
             if (user.getProfilePicture() == null) {
                 user.setProfilePicture("images/noprofilepicture.png");
             }
-            request.getRequestDispatcher("/updateProfile.jsp").forward(request, response);
+            request.getRequestDispatcher("/editProfile.jsp").forward(request, response);
         } else {
             response.sendRedirect("login.jsp");
         }

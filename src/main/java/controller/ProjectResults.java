@@ -27,7 +27,7 @@ public class ProjectResults extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Project> projects = (List<Project>) request.getAttribute("projects");
         request.setAttribute("projects", projects);
-        request.getRequestDispatcher("resultsProjects.jsp").forward(request, response);
+        request.getRequestDispatcher("viewProjectResults.jsp").forward(request, response);
     }
 }
 
