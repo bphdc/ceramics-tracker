@@ -20,9 +20,9 @@
 
     </div>
 
-    <div class="bg-[#ebebeb]/5 p-6 rounded-2xl shadow-md border border-gray-800 space-y-4">
+    <div class="bg-[#ebebeb]/5 p-6 rounded-2xl shadow-md border border-gray-800 space-y-4 text-center">
         <p class="text-lg text-gray-300 mb-4 text-center">${message}</p>
-        <a href="index.jsp" class="text-[#cff245] hover:underline font-medium text-lg text-center">Go Home</a>
+        <a href="index.jsp" class="text-[#cff245] hover:underline font-medium text-lg">Go Home</a>
     </div>
 
 </div>
