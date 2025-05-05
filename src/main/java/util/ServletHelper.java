@@ -69,6 +69,19 @@ public class ServletHelper {
     }
 
     /**
+     * is a user logged in
+     * @param request the req
+     * @param response the resp
+     * @return
+     */
+    public static Boolean isLoggedIn (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Integer userId = (Integer) session.getAttribute("userId");
+        if (userId == null) {sendToErrorPageWithMessage(request, response, "Please log in to continue");}
+        return true;
+    }
+
+    /**
      * sends user to error page with a note
      * @param request
      * @return
