@@ -21,9 +21,9 @@
     <awsSDK-version>1.12.782</awsSDK-version>
     <awsS3-version>2.31.6</awsS3-version>
     <fileupload-version>1.4</fileupload-version>
-
     <cognito-version>2.31.9</cognito-version>
     <hibernate-version>6.4.3.Final</hibernate-version>
+    <hibernate-val-version>6.2.5.Final</hibernate-val-version>
     <commons-io-version>2.11.0</commons-io-version>
     <junit-platform-runner-version>1.0.0</junit-platform-runner-version>
     <maven-compiler-plugin-version>3.8.1</maven-compiler-plugin-version>
@@ -95,6 +95,12 @@
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-c3p0</artifactId>
       <version>${hibernate-version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>${hibernate-val-version}</version>
     </dependency>
 
     <!-- for parsing access token -->
