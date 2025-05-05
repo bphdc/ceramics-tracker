@@ -120,6 +120,10 @@ public class Auth extends HttpServlet implements PropertiesLoader {
                 logger.error("Error getting token from Cognito oauth url {}", e.getMessage(), e);
                 ServletHelper.sendToErrorPageWithMessage(req, resp, "There was a problem logging in. Please try again and reach out to site admin if problem persists.");
             }
+            catch (Exception e) {
+                logger.error("Exception was found {}", e.getMessage(), e);
+                ServletHelper.sendToErrorPageWithMessage(req, resp, "There was a problem logging in. Please try again and reach out to site admin if problem persists.");
+            }
         }
         RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
         dispatcher.forward(req, resp);
@@ -220,6 +224,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         userMap.put("userName", userName);
         userMap.put("userRole", user.getRole());
         userMap.put("user", user);
+        logger.debug("here's the user: {}", user);
 
         return userMap;
     }
@@ -240,6 +245,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             user.setUsername(userName);
             //user.setName(name);
             user.setEmail(email);
+            user.setRole("USER"); // default in a new user as a user role - site manager can change to admin later if needed
             user.setCreatedAt(Timestamp.from(Instant.now()));
             int userId = userDao.insert(user);
             return userId;
