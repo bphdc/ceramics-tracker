@@ -63,8 +63,8 @@ public class ServletHelper {
     public static User getLoggedInUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         Integer userId = (Integer) session.getAttribute("userId");
+        User user = (User) session.getAttribute("loggedInUser");
         if (userId == null) {sendToErrorPageWithMessage(request, response, "Please log in to continue");}
-        User user = userDao.getById(userId);
         return user;
     }
 
@@ -78,5 +78,43 @@ public class ServletHelper {
         request.getRequestDispatcher("error.jsp").forward(request, response);
     }
 
+    /**
+     * Checks if string param is valid
+     *
+     * @param request
+     * @param paramName
+     * @param response
+     * @return
+     * @throws IOException
+     */
+    public static String getStringParam(HttpServletRequest request,  HttpServletResponse response, String paramName) throws ServletException, IOException {
+        String value = request.getParameter(paramName);
+        if (value == null || value.isBlank()) {
+            sendToErrorPageWithMessage(request, response, "Sorry something went wrong. If the problem persists, reach out to the site administrator.");
+            return null;
+        }
+        return value;
+    }
 
+    /**
+     * Checks if int param is valid
+     * @param request
+     * @param paramName
+     * @param response
+     * @return
+     * @throws IOException
+     */
+    public static Integer getIntParam(HttpServletRequest request,  HttpServletResponse response, String paramName) throws IOException, ServletException {
+        String value = getStringParam(request,  response, paramName);
+        if (value == null) return null;
+
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            sendToErrorPageWithMessage(request, response, "Sorry something went wrong. If the problem persists, reach out to the site administrator.");
+            return null;
+        }
+    }
 }
+
+

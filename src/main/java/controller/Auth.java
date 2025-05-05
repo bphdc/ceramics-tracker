@@ -15,6 +15,7 @@ import org.hibernate.SessionFactory;
 import persistence.GenericDao;
 import persistence.SessionFactoryProvider;
 import util.PropertiesLoader;
+import util.ServletHelper;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -95,7 +96,8 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         String email = null;
 
         if (authCode == null) {
-            //TODO forward to an error page or back to the login
+            logger.error("Auth code is null");
+            ServletHelper.sendToErrorPageWithMessage(req, resp, "There was a problem logging in. Please try again and reach out to site admin if problem persists.");
         } else {
             HttpRequest authRequest = buildAuthRequest(authCode);
             try {
@@ -104,17 +106,19 @@ public class Auth extends HttpServlet implements PropertiesLoader {
                 userName = userMap.get("userName").toString();
                 userRole = userMap.get("userRole").toString();
                 userId = Integer.parseInt(userMap.get("userId").toString());
+                User user = (User )userMap.get("user");
                 req.setAttribute("userName", userName);
                 HttpSession session = req.getSession();
                 session.setAttribute("userRole", userRole);
                 session.setAttribute("userName", userName);
                 session.setAttribute("userId", userId);
+                session.setAttribute("loggedInUser", user);
             } catch (IOException e) {
                 logger.error("Error getting or validating the token: {}", e.getMessage(), e);
-                //TODO forward to an error page
+                ServletHelper.sendToErrorPageWithMessage(req, resp, "There was a problem logging in. Please try again and reach out to site admin if problem persists.");
             } catch (InterruptedException e) {
                 logger.error("Error getting token from Cognito oauth url {}", e.getMessage(), e);
-                //TODO forward to an error page
+                ServletHelper.sendToErrorPageWithMessage(req, resp, "There was a problem logging in. Please try again and reach out to site admin if problem persists.");
             }
         }
         RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
@@ -177,7 +181,6 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         BigInteger modulus = new BigInteger(1, org.apache.commons.codec.binary.Base64.decodeBase64(matchingKey.getN()));
         BigInteger exponent = new BigInteger(1, org.apache.commons.codec.binary.Base64.decodeBase64(matchingKey.getE()));
 
-        // TODO the following is "happy path", what if the exceptions are caught?
         // Create a public key
         PublicKey publicKey = null;
         try {
@@ -203,11 +206,8 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         DecodedJWT jwt = verifier.verify(tokenResponse.getIdToken());
         String userName = jwt.getClaim("cognito:username").asString();
         String email = jwt.getClaim("email").asString();
-        //i think i'll just have users add their name in profile and not bother trying to scrape this from aws first
-        //String name = jwt.getClaim("name").asString();
 
         logger.debug("here's the username: {}", userName);
-        //logger.debug("here's the name: {}", name);
         logger.debug("here's the email: {}", email);
         logger.debug("here are all the available claims: {}", jwt.getClaims());
 
@@ -219,6 +219,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         userMap.put("userId", userId);
         userMap.put("userName", userName);
         userMap.put("userRole", user.getRole());
+        userMap.put("user", user);
 
         return userMap;
     }
