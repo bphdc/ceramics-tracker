@@ -2,7 +2,11 @@ package entity;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,16 +25,23 @@ public class Project {
     @Column(name = "project_id")
     private int projectId;
 
-
+    @NotNull(message = "User must not be null")
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @NotNull(message = "Project name must not be null")
+    @Length(max = 100, message = "Name must be at most 100 characters")
     private String name;
+
+    @Length(max = 500, message = "Description must be at most 500 characters")
     private String description;
 
+    @NotNull(message = "Created timestamp must not be null")
+    @PastOrPresent(message = "Created timestamp must be in the past or present")
     @Column(name = "created_at")
     private Timestamp createdAt;
+
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Image> images = new ArrayList<>();

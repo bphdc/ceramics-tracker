@@ -2,6 +2,8 @@ package entity;
 
 import jakarta.persistence.*;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * The type Project glaze.
  */
@@ -12,11 +14,13 @@ public class ProjectGlaze {
     @Id
     @ManyToOne
     @JoinColumn(name = "project_id")
+    @NotNull(message = "Project must not be null")
     private Project project;
 
     @Id
     @ManyToOne
     @JoinColumn(name = "glaze_id")
+    @NotNull(message = "Glaze must not be null")
     private Glaze glaze;
 
     /**

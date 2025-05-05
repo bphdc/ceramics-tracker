@@ -1,8 +1,13 @@
 package entity;
 
+import com.mysql.cj.protocol.x.XMessage;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
 import java.sql.Timestamp;
 
 /**
@@ -18,13 +23,18 @@ public class ProjectEntry {
     @Column(name = "entry_id")
     private int id;
 
+    @NotNull(message = "project must not be null")
     @ManyToOne
     @JoinColumn(name ="project_id", nullable = false)
     private Project project;
 
+    @NotBlank(message = "entry can't be blank")
+    @Length(max = 5000, message = "Description must be at most 5000 characters")
     @Column(name = "entry_text")
     private String entryText;
 
+    @NotNull(message = "Created timestamp must not be null")
+    @PastOrPresent(message = "Created timestamp must be in the past or present")
     @Column(name = "created_at")
     private Timestamp createdAt;
 

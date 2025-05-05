@@ -2,7 +2,11 @@ package entity;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +24,18 @@ public class Tag {
     @GenericGenerator(name = "native", strategy = "native")
     @Column(name = "tag_id")
     private int tagId;
+
+    @NotBlank(message = "Name must not be blank")
+    @Length(max = 100, message = "Name must be at most 100 characters")
     private String name;
+
+
+    @NotNull(message = "Created timestamp must not be null")
+    @PastOrPresent(message = "Created timestamp must be in the past or present")
     @Column(name="created_at")
     private Timestamp createdAt;
 
+    @NotNull(message = "Project must not be null")
     @OneToMany(mappedBy = "tag", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<ProjectTag> projects = new ArrayList<>();
 

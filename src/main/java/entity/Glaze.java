@@ -2,7 +2,12 @@ package entity;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Pattern;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +25,22 @@ public class Glaze {
     @GenericGenerator(name = "native", strategy = "native")
     @Column(name = "glaze_id")
     private int glazeId;
+
+    @NotBlank(message = "Name must not be blank")
+    @Length(max = 100, message = "Name must be at most 100 characters")
     private String name;
+
+    @NotBlank(message = "Description must not be blank")
+    @Length(max = 500, message = "Description must be at most 500 characters")
     private String description;
+
+    @NotBlank(message = "Type must not be blank")
+    @Pattern(regexp = "underglaze|overglaze", flags = Pattern.Flag.CASE_INSENSITIVE,
+            message = "Type must be 'underglaze' or 'overglaze'")
     private String type; // "underglaze" or "overglaze"
+
+    @NotNull(message = "Created timestamp must not be null")
+    @PastOrPresent(message = "Created timestamp must be in the past or present")
     @Column(name= "created_at")
     private Timestamp createdAt;
 

@@ -2,7 +2,10 @@ package entity;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.URL;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
 import java.sql.Timestamp;
 
 /**
@@ -18,13 +21,17 @@ public class Image {
     @Column(name = "image_id")
     private int imageId;
 
+    @NotNull(message = "Project must not be null")
     @ManyToOne
     @JoinColumn(name ="project_id", nullable = false)
     private Project project;
 
+    @URL(message = "Image url must be valid")
     @Column(name = "image_url")
     private String imageUrl;
 
+    @NotNull(message = "Created timestamp must not be null")
+    @PastOrPresent(message = "Created timestamp must be in the past or present")
     @Column(name = "uploaded_at")
     private Timestamp uploadedAt;
 

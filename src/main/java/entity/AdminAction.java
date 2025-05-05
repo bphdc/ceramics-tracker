@@ -3,6 +3,7 @@ package entity;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import javax.validation.constraints.*;
 import java.sql.Timestamp;
 
 
@@ -19,16 +20,21 @@ public class AdminAction {
     @Column(name = "action_id")
     private int id;
 
+    @NotEmpty(message = "User (admin) must not be null")
     @ManyToOne
     @JoinColumn(name ="admin_id", nullable = false)
     private User user;
 
+    @NotBlank(message = "Action type must not be blank")
     @Column(name = "action_type")
     private String actionType;
 
+    @Min(value = 1, message = "Target id must be greater than 1")
     @Column(name = "target_id")
     private int targetId;
 
+    @NotNull(message = "Created timestamp must not be null")
+    @PastOrPresent(message = "Created timestamp must be in the past or present")
     @Column(name = "timestamp")
     private Timestamp timestamp;
 

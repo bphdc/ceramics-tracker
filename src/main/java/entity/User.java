@@ -3,6 +3,10 @@ package entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import jakarta.persistence.*;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.URL;
+
+import javax.validation.constraints.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,18 +26,30 @@ public class User {
     @Column(name = "user_id")
     private int id;
 
+    @NotNull(message = "User name must not be null")
     private String username;
 
+    //name can be anything right now - don't validate yet
     private String name;
 
+    @Email(message = "Email must be valid")
     private String email;
 
+    @NotBlank(message = "bio can't be blank")
+    @Length(max = 1000, message = "bio must be at most 1000 characters")
     private String bio;
+
+    @URL(message = "profile picture must be valid url")
     @Column(name = "profile_picture")
     private String profilePicture;
 
-
+    @NotBlank(message = "Role must not be blank")
+    @Pattern(regexp = "admin|user", flags = Pattern.Flag.CASE_INSENSITIVE,
+            message = "Type must be 'admin ' or 'user'")
     private String role; // "admin" or "user"
+
+    @NotNull(message = "Created timestamp must not be null")
+    @PastOrPresent(message = "Created timestamp must be in the past or present")
     @Column(name = "created_at")
     private Timestamp createdAt;
 

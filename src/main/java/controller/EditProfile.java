@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import persistence.GenericDao;
 import util.S3Helper;
+import util.ServletHelper;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -116,7 +117,7 @@ public class EditProfile extends HttpServlet {
             response.sendRedirect("viewProfile?userId=" + userId);
         } catch (Exception ex) {
             log.error("Error processing form: ", ex);
-            response.sendRedirect("editProfile.jsp?error=uploadFailed");
+            ServletHelper.sendToErrorPageWithMessage(request, response, "Something went wrong with profile edit. If problem persists, reach out to web admin");
         }
     }
 
