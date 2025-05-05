@@ -115,8 +115,8 @@ public class EditProfile extends HttpServlet {
             log.info("Updated user: " + user);
 
             response.sendRedirect("viewProfile?userId=" + userId);
-        } catch (Exception ex) {
-            log.error("Error processing form: ", ex);
+        } catch (Exception e) {
+            log.error("Error processing form: ", e);
             ServletHelper.sendToErrorPageWithMessage(request, response, "Something went wrong with profile edit. If problem persists, reach out to web admin");
         }
     }

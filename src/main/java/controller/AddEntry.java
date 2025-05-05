@@ -6,6 +6,7 @@ import entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import persistence.GenericDao;
+import persistence.SessionFactoryProvider;
 import util.ServletHelper;
 
 import javax.servlet.RequestDispatcher;

@@ -3,6 +3,7 @@ package controller;
 import util.PropertiesLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import util.ServletHelper;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -38,11 +39,14 @@ public class LogIn extends HttpServlet implements PropertiesLoader {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // TODO if properties weren't loaded properly, route to an error page
         ServletContext context = getServletContext();
         CLIENT_ID = (String) context.getAttribute("CLIENT_ID");
         LOGIN_URL = (String) context.getAttribute("LOGIN_URL");
         REDIRECT_URL = (String) context.getAttribute("REDIRECT_URL");
+
+        if (CLIENT_ID == null || CLIENT_ID.isEmpty() || LOGIN_URL == null || LOGIN_URL.isEmpty() || REDIRECT_URL == null || REDIRECT_URL.isEmpty()) {
+            ServletHelper.sendToErrorPageWithMessage(req, resp, "Something went wrong - if problem persists, reach out to site administrator");
+        }
 
         String url = LOGIN_URL + "?response_type=code&client_id=" + CLIENT_ID + "&redirect_uri=" + REDIRECT_URL;
         resp.sendRedirect(url);
