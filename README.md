@@ -1,4 +1,5 @@
-# Student Presentation Topic Will Go Here
+# Link to final presentation:
+https://mad-ent-java-s25.slack.com/archives/C08A3NQGWMS/p1746558494227889
 
 ### Presentation Description/Overview
 
