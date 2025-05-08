@@ -17,7 +17,7 @@
             <form action="editTag" method="post" class="space-y-6">
               <div>
                 <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Tag Name:</label>
-                <input type="text" id="name" name="name" value="${tag.name}" required
+                <input type="text" id="name" name="name" value="${tag.name}" required maxlength="100"
                        class="w-full bg-transparent text-white border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#cff245]">
               </div>
 
