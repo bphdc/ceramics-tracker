@@ -22,13 +22,13 @@
 
                     <div>
                         <label for="name" class="block text-lg font-medium text-[#cff245] mb-2">Glaze Name:</label>
-                        <input type="text" id="name" name="name" required
+                        <input type="text" id="name" name="name" required maxlength="100"
                                class="w-full bg-transparent border border-gray-700 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#cff245]" />
                     </div>
 
                     <div>
                         <label for="description" class="block text-lg font-medium text-[#cff245] mb-2">Glaze Description:</label>
-                        <textarea id="description" name="description" rows="4" required
+                        <textarea id="description" name="description" rows="4" required maxlength="500"
                                   class="w-full bg-transparent border border-gray-700 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#cff245]"></textarea>
                     </div>
 
