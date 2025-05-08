@@ -37,7 +37,7 @@ public class AuthenticationFilter implements Filter {
         String path = req.getRequestURI();
 
         // skip auth check for public resources
-        if (path.endsWith("/") || path.contains("/index") || path.contains("/logIn") || path.contains("/css/") || path.contains("auth")) {
+        if (path.endsWith("/") || path.contains("/index") || path.contains("/logIn") || path.contains("/css/") || path.contains("/images/") || path.contains("auth")) {
             chain.doFilter(request, response); // allow through
             return;
         }
