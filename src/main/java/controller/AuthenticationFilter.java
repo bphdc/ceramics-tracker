@@ -12,11 +12,22 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter("/*") // Adjust this to the URL patterns you want to protect
+/**
+ * Filter when not logged in
+ */
+@WebFilter("/*") //
 public class AuthenticationFilter implements Filter {
 
     private static final Logger log = LoggerFactory.getLogger(AuthenticationFilter.class);
 
+    /**
+     * Filter when not logged in
+     * @param request the req
+     * @param response the res
+     * @param chain the chain
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
@@ -33,7 +44,7 @@ public class AuthenticationFilter implements Filter {
 
         Boolean isLoggedIn = false;
         isLoggedIn = ServletHelper.isLoggedIn(req, resp);
-        log.info("isLoggedIn from filter: " + isLoggedIn);
+        log.info("isLoggedIn from filter: {}", isLoggedIn);
 
         if (isLoggedIn) {
             chain.doFilter(request, response); // allow through
