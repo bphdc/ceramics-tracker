@@ -31,7 +31,7 @@
 
                     <div>
                         <label for="bio" class="block text-lg font-medium text-[#cff245] mb-2">Bio:</label>
-                        <textarea name="bio" id="bio" rows="4"
+                        <textarea name="bio" id="bio" rows="4" maxlength="1000"
                                   class="w-full bg-transparent border border-gray-700 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#cff245]">${user.bio}</textarea>
                     </div>
 
