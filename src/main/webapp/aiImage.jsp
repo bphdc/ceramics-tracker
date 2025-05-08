@@ -10,6 +10,7 @@
 
         <div class="text-center">
             <h2 class="text-3xl font-semibold text-[#cff245] mb-6">Generate an AI Image</h2>
+            <a href="https://thehive.ai/"class="block text-sm text-gray-300 hover:text-white">Powered by hive.ai</a>
         </div>
 
         <c:choose>
