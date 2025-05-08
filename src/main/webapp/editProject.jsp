@@ -24,13 +24,13 @@
 
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Project Name:</label>
-                        <input type="text" id="name" name="name" value="${project.name}" required
+                        <input type="text" id="name" name="name" value="${project.name}" required maxlength="100"
                                class="w-full border border-gray-700 bg-transparent text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#cff245]">
                     </div>
 
                     <div>
                         <label for="description" class="block text-sm font-medium text-gray-300 mb-1">Description:</label>
-                        <textarea id="description" name="description" rows="4" required
+                        <textarea id="description" name="description" rows="4" required maxlength="500"
                                   class="w-full border border-gray-700 bg-transparent text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#cff245]">${project.description}</textarea>
                     </div>
 
@@ -99,7 +99,7 @@
 
                     <div>
                         <label for="entryText" class="block text-sm font-medium text-gray-300 mb-1">Blog Entry:</label>
-                        <textarea id="entryText" name="entryText" rows="4" required
+                        <textarea id="entryText" name="entryText" rows="4" required maxlength="5000"
                                   class="w-full border border-gray-700 bg-transparent text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#cff245]"></textarea>
                     </div>
 

@@ -20,7 +20,7 @@
 
                     <div>
                         <label for="entryText" class="block text-lg font-medium text-gray-200 mb-2">Edit blog entry:</label>
-                        <textarea id="entryText" name="entryText" rows="6" required
+                        <textarea id="entryText" name="entryText" rows="6" required maxlength="5000"
                                   class="w-full border border-gray-700 bg-transparent rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#cff245]">{{entry.entryText}}</textarea>
                     </div>
 
