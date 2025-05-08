@@ -7,7 +7,13 @@
     <title>${title}</title>
 
 
-    <!-- tailwind stuff -->
+    <!-- tailwind stuff
+
+    https://lbegey78.gumroad.com/l/ysrmlq -- free personal/profession template used to inspire site
+
+     -->
+
+
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="//unpkg.com/alpinejs" defer=""></script>
