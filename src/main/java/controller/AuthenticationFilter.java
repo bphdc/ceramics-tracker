@@ -53,9 +53,16 @@ public class AuthenticationFilter implements Filter {
         }
     }
 
+    /**
+     * Init method
+     * @param filterConfig
+     */
     @Override
     public void init(FilterConfig filterConfig) {}
 
+    /**
+     * destroy method
+     */
     @Override
     public void destroy() {}
 }
