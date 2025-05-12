@@ -7,6 +7,7 @@ import entity.Project;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import persistence.GenericDao;
+import util.ServletHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -51,18 +52,18 @@ public class ViewProfile extends HttpServlet {
                 userId = Integer.parseInt(userIdParam); //view any user's profile
             } catch (NumberFormatException e) {
                 log.error("Invalid userId parameter: " + userIdParam);
-                response.sendRedirect("error.jsp");
+                ServletHelper.sendToErrorPageWithMessage(request, response, "Sorry there was a problem. try again");
                 return;
             }
         } else {
             userId = (Integer) session.getAttribute("userId"); //default to logged-in user
             if (userId == null) {
-                response.sendRedirect("login.jsp");
+                ServletHelper.sendToErrorPageWithMessage(request, response, "Sorry there was a problem try again");
                 return;
             }
         }
 
-        User user = userDao.getById(userId);
+        User user = ServletHelper.getLoggedInUser(request, response);
         if (user != null) {
             List<Project> projects = projectDao.getByPropertyEqual("user", user);
             request.setAttribute("user", user);

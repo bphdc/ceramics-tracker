@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import persistence.GenericDao;
 import util.CognitoService;
+import util.ServletHelper;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -41,8 +42,7 @@ public class DeleteUser extends HttpServlet {
         String ACCESS_KEY = (String) context.getAttribute("ACCESS_KEY");
         String SECRET_KEY = (String) context.getAttribute("SECRET_KEY");
         HttpSession session = request.getSession(false);
-        Integer loggedInUserId = (Integer) session.getAttribute("userId");
-        User user = userDao.getById(loggedInUserId);
+        User user  = ServletHelper.getLoggedInUser(request, response);
         String POOL_ID = context.getAttribute("POOL_ID").toString();
 
         try {
@@ -66,9 +66,7 @@ public class DeleteUser extends HttpServlet {
      * @throws IOException      if an input or output error is detected
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
-        Integer loggedInUserId = (Integer) session.getAttribute("userId");
-        User user = userDao.getById(loggedInUserId);
+        User user =ServletHelper.getLoggedInUser(request, response);
         request.setAttribute("user", user);
         request.getRequestDispatcher("/deleteUser.jsp").forward(request, response);
     }

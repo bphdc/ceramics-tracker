@@ -47,8 +47,7 @@ public class EditProfile extends HttpServlet {
         String ACCESS_KEY = (String) context.getAttribute("ACCESS_KEY");
         String SECRET_KEY = (String) context.getAttribute("SECRET_KEY");
         GenericDao<User> userDao = new GenericDao<>(User.class);
-        int userId = (int) session.getAttribute("userId");
-        User user = userDao.getById(userId);
+        User user = ServletHelper.getLoggedInUser(request, response);
 
         if (user == null) {
             response.sendRedirect("login.jsp");
@@ -142,9 +141,8 @@ public class EditProfile extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        int userId = (int) session.getAttribute("userId");
         GenericDao<User> userDao = new GenericDao<>(User.class);
-        User user = userDao.getById(userId);
+        User user =ServletHelper.getLoggedInUser(request, response);
 
         if (user != null) {
             request.setAttribute("user", user);

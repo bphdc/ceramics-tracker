@@ -49,8 +49,6 @@ public class EditProject extends HttpServlet {
         glazeDao = new GenericDao<>(Glaze.class);
         tagDao = new GenericDao<>(Tag.class);
         HttpSession session = req.getSession();
-        Integer userId = (Integer) session.getAttribute("userId");
-        User user = userDao.getById(userId);
         Integer projectUserId = -1;
 
 
@@ -62,7 +60,7 @@ public class EditProject extends HttpServlet {
             List<Image> images = project.getImages();
 
             //if the user isn't the project owner then bail
-            if (!userId.equals(projectUserId)) {
+            if (!ServletHelper.isLoggedInUserProjectOwner(req,resp,projectUserId)) {
                 log.info("user not project owner");
                 ServletHelper.sendToErrorPageWithMessage(req, resp, "user not project owner");
                 return;
@@ -98,8 +96,8 @@ public class EditProject extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        int userId = (int) session.getAttribute("userId");
-        User user = userDao.getById(userId);
+
+
 
         //get the project details from the form
         String projectName = req.getParameter("name");

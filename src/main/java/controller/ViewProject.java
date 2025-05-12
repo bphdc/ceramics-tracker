@@ -4,6 +4,7 @@ import entity.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import persistence.GenericDao;
+import util.ServletHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -74,7 +75,7 @@ public class ViewProject extends HttpServlet {
         List<ProjectGlaze> projectGlazes = project.getGlazes();
         List<ProjectTag> projectTags = project.getTags();
         log.info("projectTags is " + projectTags);
-        User loggedInUser = userDao.getById(userId);
+        User loggedInUser = ServletHelper.getLoggedInUser(request, response);
         User projectUser = project.getUser();
 
         List<Glaze> glazes = new ArrayList<>();
