@@ -43,13 +43,13 @@ public class AddEntry extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int projectId = Integer.parseInt(request.getParameter("projectId"));
+        int projectId = ServletHelper.getIntParam(request, response, "projectId");
         Project project = projectDao.getById(projectId);
 
 
         if (ServletHelper.isLoggedInUserProjectOwner(request, response , project.getProjectId()) ) {
 
-            String entryText = request.getParameter("entryText");
+            String entryText = ServletHelper.getStringParam(request, response, "entryText");
             if (entryText != null && !entryText.trim().isEmpty()) {
                 ProjectEntry entry = new ProjectEntry();
                 entry.setProject(project);

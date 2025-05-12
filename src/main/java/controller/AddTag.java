@@ -58,7 +58,7 @@ public class AddTag extends HttpServlet {
         User user = ServletHelper.getLoggedInUser(request, response);
 
         if (ServletHelper.isAdmin(user)) {
-            String name = request.getParameter("name");
+            String name = ServletHelper.getStringParam(request,response,"name");
             tag.setName(name);
             tag.setCreatedAt(Timestamp.from(Instant.now()));
             tagDao.saveOrUpdate(tag);

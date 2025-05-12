@@ -44,7 +44,7 @@ public class DeleteEntry extends HttpServlet {
         Project project = projectDao.getById(projectId);
 
         if (ServletHelper.isLoggedInUserProjectOwner(request, response , project.getProjectId()) ) {
-            String entryIdParam = request.getParameter("entryId");
+            String entryIdParam = ServletHelper.getStringParam(request,response,"entryId");
             entry = entryDao.getById(Integer.parseInt(entryIdParam));
             entryDao.delete(entry);
             response.sendRedirect("viewProject?projectId=" + projectId);
@@ -63,9 +63,9 @@ public class DeleteEntry extends HttpServlet {
      * @throws IOException      if an input or output error is detected
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String entryIdParam = request.getParameter("id");
-        entry = entryDao.getById(Integer.parseInt(entryIdParam));
-        int projectId = Integer.parseInt(request.getParameter("projectId"));
+        int entryIdParam = ServletHelper.getIntParam(request,response,"entryId");
+        entry = entryDao.getById((entryIdParam));
+        int projectId = ServletHelper.getIntParam(request,response,"projectId");
         Project project = projectDao.getById(projectId);
         request.setAttribute("entry", entry);
         request.setAttribute("project", project);

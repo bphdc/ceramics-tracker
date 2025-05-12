@@ -109,6 +109,30 @@
                 </form>
             </div>
 
+            <c:if test="${not empty entries}">
+                <h4 class="text-xl font-semibold text-gray-300 mt-6 mb-4">Previous Entries</h4>
+                <div class="space-y-6">
+                    <c:forEach var="entry" items="${entries}">
+                        <div class="bg-[#1a1b1f] p-4 rounded-xl border border-gray-700">
+                            <form action="editEntry" method="post" class="space-y-2">
+                                <input type="hidden" name="entryId" value="${entry.id}">
+                                <input type="hidden" name="projectId" value="${project.projectId}">
+
+                                <textarea name="entryText" rows="3" class="w-full bg-transparent border border-gray-600 text-white rounded-lg px-3 py-2 focus:ring-2 focus:ring-[#cff245]">${entry.entryText}</textarea>
+
+                                <div class="flex justify-between items-center mt-2">
+                                    <button type="submit" class="bg-[#cff245] text-black px-4 py-1 rounded-lg font-medium hover:bg-lime-400 transition">
+                                        Save
+                                    </button>
+                                    <a href="deleteEntry?entryId=${entry.id}&projectId=${project.projectId}"
+                                       class="text-red-500 hover:underline text-sm">Delete</a>
+                                </div>
+                            </form>
+                        </div>
+                    </c:forEach>
+                </div>
+            </c:if>
+
         </c:otherwise>
     </c:choose>
 

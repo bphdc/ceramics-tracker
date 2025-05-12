@@ -1,6 +1,5 @@
 <%@include file="head.jsp"%>
 <%@include file="taglib.jsp"%>
-<%@include file="header.jsp"%>
 
 <body class="inter antialiased bg-[#0d0e11] text-white">
 

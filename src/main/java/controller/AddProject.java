@@ -76,8 +76,8 @@ public class AddProject extends HttpServlet {
             return;
         }
 
-        String projectName = req.getParameter("name");
-        String projectDescription = req.getParameter("description");
+        String projectName = ServletHelper.getStringParam(req, resp, "name");
+        String projectDescription = ServletHelper.getStringParam(req, resp, "description");
 
         Project project = new Project();
         project.setUser(user);

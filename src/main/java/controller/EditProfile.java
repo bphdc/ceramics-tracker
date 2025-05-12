@@ -121,7 +121,7 @@ public class EditProfile extends HttpServlet {
             //shoot that to the DB
             userDao.saveOrUpdate(user);
             log.info("Updated user: " + user);
-
+            int userId = (int) session.getAttribute("userId");
             response.sendRedirect("viewProfile?userId=" + userId);
         } catch (Exception e) {
             log.error("Error processing form: ", e);

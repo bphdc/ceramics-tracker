@@ -60,7 +60,7 @@ public class EditProject extends HttpServlet {
             List<Image> images = project.getImages();
 
             //if the user isn't the project owner then bail
-            if (!ServletHelper.isLoggedInUserProjectOwner(req,resp,projectUserId)) {
+            if (!ServletHelper.isLoggedInUserProjectOwner(req,resp,projectId)) {
                 log.info("user not project owner");
                 ServletHelper.sendToErrorPageWithMessage(req, resp, "user not project owner");
                 return;

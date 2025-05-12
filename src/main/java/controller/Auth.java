@@ -89,7 +89,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String authCode = req.getParameter("code");
+        String authCode = ServletHelper.getStringParam(req,resp,"code");
         String userName = null;
         String userRole = "user";
         int userId = -1;
