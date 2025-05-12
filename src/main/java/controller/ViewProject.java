@@ -56,7 +56,7 @@ public class ViewProject extends HttpServlet {
                 log.info("project id is " + projectId);
             } catch (NumberFormatException e) {
                 log.error("Invalid userId parameter: " + projectIdParam);
-                response.sendRedirect("error.jsp"); //need to make this still I think TODO
+                ServletHelper.sendToErrorPageWithMessage(request, response, "Please try again and if problem persists reach out to site admin");
                 return;
             }
         } else {
@@ -106,7 +106,7 @@ public class ViewProject extends HttpServlet {
             request.getRequestDispatcher("/viewProject.jsp").forward(request, response);
         } else {
             log.error("User not found with ID: " + userId);
-            response.sendRedirect("error.jsp");
+            ServletHelper.sendToErrorPageWithMessage(request, response, "Please try again and if problem persists reach out to site admin");
         }
     }
 }

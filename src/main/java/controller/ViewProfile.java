@@ -71,7 +71,7 @@ public class ViewProfile extends HttpServlet {
             request.getRequestDispatcher("/viewProfile.jsp").forward(request, response);
         } else {
             log.error("User not found with ID: " + userId);
-            response.sendRedirect("error.jsp");
+            ServletHelper.sendToErrorPageWithMessage(request, response, "Please try again and if problem persists reach out to site admin");
         }
     }
 }

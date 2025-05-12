@@ -52,7 +52,8 @@ public class DeleteUser extends HttpServlet {
             session.invalidate();
             response.sendRedirect("index.jsp");
         } catch (Exception e) {
-            response.sendRedirect("error.jsp");
+            log.error(e.getMessage());
+            ServletHelper.sendToErrorPageWithMessage(request, response, "Please try again and if problem persists reach out to site admin");
         }
     }
 

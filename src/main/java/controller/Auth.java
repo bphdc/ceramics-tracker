@@ -51,7 +51,7 @@ import java.util.stream.Collectors;
 @WebServlet(
         urlPatterns = {"/auth"}
 )
-// TODO if something goes wrong it this process, route to an error page. Currently, errors are only caught and logged.
+
 /**
  * Inspired by: https://stackoverflow.com/questions/52144721/how-to-get-access-token-using-client-credentials-using-java-code
  */

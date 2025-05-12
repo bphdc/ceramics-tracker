@@ -5,6 +5,7 @@ import entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import persistence.GenericDao;
+import util.ServletHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,14 +44,13 @@ public class DeleteProject extends HttpServlet {
 
         try {
             if (!loggedInUserId.equals(projectUserId)) {
-                log.info("logged in user doesn't match project user id"); //TODO create some error pages ?
-                response.sendRedirect("error.jsp");
+                log.info("logged in user doesn't match project user id");
+                ServletHelper.sendToErrorPageWithMessage(request, response, "Pleae try again and if problem persists reach out to site admin");
                 return;
             }
             projectDao.delete(project);
-            response.sendRedirect("error.jsp");
         } catch (Exception e) {
-            response.sendRedirect("error.jsp");
+            ServletHelper.sendToErrorPageWithMessage(request, response, "Pleae try again and if problem persists reach out to site admin");
         }
     }
 
