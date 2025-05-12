@@ -52,6 +52,7 @@ public class Tag {
      * @param createdAt the created at
      */
     public Tag(String name, Timestamp createdAt) {
+        this();
         this.name = name;
         this.createdAt = createdAt;
     }

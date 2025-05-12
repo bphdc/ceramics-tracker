@@ -78,6 +78,7 @@ public class User {
      * @param createdAt      The timestamp when the user was created.
      */
     public User(int id, String username, String email, String name, String bio, String profilePicture, String role, Timestamp createdAt) {
+        this();
         this.id = id;
         this.username = username;
         this.email = email;

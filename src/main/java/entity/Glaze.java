@@ -63,6 +63,7 @@ public class Glaze {
 
      */
     public Glaze(String name, String description, String type, Timestamp createdAt) {
+        this();
         this.name = name;
         this.description = description;
         this.type = type;

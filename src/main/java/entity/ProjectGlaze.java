@@ -36,6 +36,7 @@ public class ProjectGlaze {
      * @param glaze   the glaze
      */
     public ProjectGlaze(Project project, Glaze glaze) {
+        this();
         this.project = project;
         this.glaze = glaze;
     }

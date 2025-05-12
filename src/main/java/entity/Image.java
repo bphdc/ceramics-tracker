@@ -50,6 +50,7 @@ public class Image {
      * @param uploadedAt the uploaded at
      */
     public Image(int imageId, Project project, String imageUrl, Timestamp uploadedAt) {
+        this();
         this.imageId = imageId;
         this.project = project;
         this.imageUrl = imageUrl;

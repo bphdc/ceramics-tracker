@@ -53,6 +53,7 @@ public class ProjectEntry {
      * @param createdAt the created at
      */
     public ProjectEntry(int id, Project project, String entryText, Timestamp createdAt) {
+        this();
         this.id = id;
         this.project = project;
         this.entryText = entryText;

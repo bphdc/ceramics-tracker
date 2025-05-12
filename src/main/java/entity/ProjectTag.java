@@ -36,6 +36,7 @@ public class ProjectTag {
      * @param tag     the tag
      */
     public ProjectTag(Project project, Tag tag) {
+        this();
         this.project = project;
         this.tag = tag;
     }

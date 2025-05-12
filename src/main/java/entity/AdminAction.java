@@ -53,6 +53,7 @@ public class AdminAction {
      * @param timestamp   time stamp
      */
     public AdminAction(User user, String actionType, int targetId, Timestamp timestamp) {
+        this();
         this.user = user;
         this.actionType = actionType;
         this.targetId = targetId;

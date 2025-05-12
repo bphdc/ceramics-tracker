@@ -72,6 +72,7 @@ public class Project {
      * @param createdAt      the created at
      */
     public Project(int projectId, User user, String name, String description, Timestamp createdAt) {
+        this();
         this.projectId = projectId;
         this.user = user;
         this.name = name;
