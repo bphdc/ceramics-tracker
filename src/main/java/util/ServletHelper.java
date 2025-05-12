@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * set of methods to help in servlets
+ */
 public class ServletHelper {
 
     private static GenericDao<User> userDao = new GenericDao<>(User.class);

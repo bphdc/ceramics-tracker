@@ -15,6 +15,9 @@ import util.PropertiesLoader;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * hive ai class
+ */
 @Service
 public class HiveAIClient {
     private Properties properties;
@@ -23,15 +26,29 @@ public class HiveAIClient {
     private final ObjectMapper objectMapper;
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    /**
+     * construct a hive ai instance
+     */
     public HiveAIClient() {
         this(new RestTemplate());
     }
 
+    /**
+     * construct a hive ai instance
+     * @param restTemplate the restTemplate
+     */
     public HiveAIClient(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
         this.objectMapper = new ObjectMapper();
     }
 
+    /**
+     * generate a new image
+     * @param prompt user prompt
+     * @param API_KEY the api key
+     * @return
+     * @throws Exception
+     */
     public Response generateImage(String prompt, String API_KEY) throws Exception {
         String requestJson = "{\n" +
                 "  \"input\": {\n" +
