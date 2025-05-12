@@ -33,6 +33,14 @@ public class AddEntry extends HttpServlet {
     private GenericDao<ProjectEntry> entryDao = new GenericDao<>(ProjectEntry.class);
     private GenericDao<User> userDao;
 
+    /**
+     * Handles the HTTP POST request.
+     *
+     * @param request  the HttpServletRequest object that contains the request the client made
+     * @param response the HttpServletResponse object that contains the response the servlet returns
+     * @throws ServletException if the request could not be handled
+     * @throws IOException      if an input or output error is detected
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int projectId = Integer.parseInt(request.getParameter("projectId"));

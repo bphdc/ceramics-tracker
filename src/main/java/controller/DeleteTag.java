@@ -28,6 +28,15 @@ public class DeleteTag extends HttpServlet {
     private static GenericDao<Tag> tagDao = new GenericDao<>(Tag.class);
     private static Tag tag = new Tag();
 
+    /**
+     * Handles the HTTP POST request.
+     *
+     * @param request  the HttpServletRequest object that contains the request the client made
+     * @param response the HttpServletResponse object that contains the response the servlet returns
+     * @throws ServletException if the request could not be handled
+     * @throws IOException      if an input or output error is detected
+     */
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = ServletHelper.getLoggedInUser(request, response);
 
@@ -42,6 +51,15 @@ public class DeleteTag extends HttpServlet {
         }
     }
 
+    /**
+     * Handles the HTTP GET request.
+     *
+     * @param request  the HttpServletRequest object that contains the request the client made
+     * @param response the HttpServletResponse object that contains the response the servlet returns
+     * @throws ServletException if the request could not be handled
+     * @throws IOException      if an input or output error is detected
+     */
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String tagIdParam = request.getParameter("tagId");
         tag = tagDao.getById(Integer.parseInt(tagIdParam));

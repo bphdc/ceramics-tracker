@@ -4,8 +4,10 @@ import entity.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import persistence.GenericDao;
+import util.ServletHelper;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,7 +34,14 @@ public class EditProject extends HttpServlet {
     private GenericDao<Glaze> glazeDao;
     private GenericDao<Tag> tagDao;
 
-
+    /**
+     * Handles the HTTP GET request.
+     *
+     * @param req  the HttpServletRequest object that contains the request the client made
+     * @param resp the HttpServletResponse object that contains the response the servlet returns
+     * @throws ServletException if the request could not be handled
+     * @throws IOException      if an input or output error is detected
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         projectDao = new GenericDao<>(Project.class);
@@ -55,7 +64,7 @@ public class EditProject extends HttpServlet {
             //if the user isn't the project owner then bail
             if (!userId.equals(projectUserId)) {
                 log.info("user not project owner");
-                resp.sendRedirect("index.jsp"); //TODO maybe generic error page
+                ServletHelper.sendToErrorPageWithMessage(req, resp, "user not project owner");
                 return;
             }
 
@@ -78,6 +87,14 @@ public class EditProject extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 
+    /**
+     * Handles the HTTP POST request.
+     *
+     * @param req  the HttpServletRequest object that contains the request the client made
+     * @param resp the HttpServletResponse object that contains the response the servlet returns
+     * @throws ServletException if the request could not be handled
+     * @throws IOException      if an input or output error is detected
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();

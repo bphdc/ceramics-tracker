@@ -36,12 +36,28 @@ public class AddProject extends HttpServlet {
         userDao = new GenericDao<>(User.class);
     }
 
+    /**
+     * Handles the HTTP GET request.
+     *
+     * @param req  the HttpServletRequest object that contains the request the client made
+     * @param resp the HttpServletResponse object that contains the response the servlet returns
+     * @throws ServletException if the request could not be handled
+     * @throws IOException      if an input or output error is detected
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/addProject.jsp");
         dispatcher.forward(req, resp);
     }
 
+    /**
+     * Handles the HTTP POST request.
+     *
+     * @param req     the HttpServletRequest object that contains the request the client made
+     * @param resp the HttpServletResponse object that contains the response the servlet returns
+     * @throws ServletException if the request could not be handled
+     * @throws IOException      if an input or output error is detected
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();

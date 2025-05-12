@@ -30,6 +30,14 @@ public class EditEntry extends HttpServlet {
     private static GenericDao<Project> projectDao = new GenericDao<>(Project.class);
     private static ProjectEntry entry = new ProjectEntry();
 
+    /**
+     * Handles the HTTP GET request.
+     *
+     * @param request  the HttpServletRequest object that contains the request the client made
+     * @param response the HttpServletResponse object that contains the response the servlet returns
+     * @throws ServletException if the request could not be handled
+     * @throws IOException      if an input or output error is detected
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String entryIdParam = request.getParameter("id");
@@ -42,7 +50,14 @@ public class EditEntry extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-
+    /**
+     * Handles the HTTP POST request.
+     *
+     * @param request  the HttpServletRequest object that contains the request the client made
+     * @param response the HttpServletResponse object that contains the response the servlet returns
+     * @throws ServletException if the request could not be handled
+     * @throws IOException      if an input or output error is detected
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int projectId = Integer.parseInt(request.getParameter("projectId"));

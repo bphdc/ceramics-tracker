@@ -29,6 +29,15 @@ public class ViewProfile extends HttpServlet {
     private static GenericDao<User> userDao;
     private static GenericDao<Project> projectDao;
 
+    /**
+     * Handles the HTTP GET request.
+     *
+     * @param request  the HttpServletRequest object that contains the request the client made
+     * @param response the HttpServletResponse object that contains the response the servlet returns
+     * @throws ServletException if the request could not be handled
+     * @throws IOException      if an input or output error is detected
+     */
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String userIdParam = request.getParameter("userId");

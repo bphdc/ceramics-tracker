@@ -29,6 +29,15 @@ public class DeleteGlaze extends HttpServlet {
     private static GenericDao<Glaze> glazeDao = new GenericDao<>(Glaze.class);
     private static Glaze glaze = new Glaze();
 
+    /**
+     * Handles the HTTP POST request.
+     *
+     * @param request  the HttpServletRequest object that contains the request the client made
+     * @param response the HttpServletResponse object that contains the response the servlet returns
+     * @throws ServletException if the request could not be handled
+     * @throws IOException      if an input or output error is detected
+     */
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = ServletHelper.getLoggedInUser(request, response);
 
@@ -43,6 +52,14 @@ public class DeleteGlaze extends HttpServlet {
         }
     }
 
+    /**
+     * Handles the HTTP GET request.
+     *
+     * @param request  the HttpServletRequest object that contains the request the client made
+     * @param response the HttpServletResponse object that contains the response the servlet returns
+     * @throws ServletException if the request could not be handled
+     * @throws IOException      if an input or output error is detected
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String glazeIdParam = request.getParameter("glazeId");
         glaze = glazeDao.getById(Integer.parseInt(glazeIdParam));

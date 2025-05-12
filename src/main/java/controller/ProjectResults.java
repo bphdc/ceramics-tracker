@@ -24,6 +24,15 @@ public class ProjectResults extends HttpServlet {
 
     private static final Logger log = LoggerFactory.getLogger(ProjectResults.class);
 
+    /**
+     * Handles the HTTP GET request.
+     *
+     * @param request  the HttpServletRequest object that contains the request the client made
+     * @param response the HttpServletResponse object that contains the response the servlet returns
+     * @throws ServletException if the request could not be handled
+     * @throws IOException      if an input or output error is detected
+     */
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Project> projects = (List<Project>) request.getAttribute("projects");
         request.setAttribute("projects", projects);
