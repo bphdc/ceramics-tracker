@@ -42,8 +42,8 @@ public class DeleteGlaze extends HttpServlet {
         User user = ServletHelper.getLoggedInUser(request, response);
 
         if (ServletHelper.isAdmin(user)) {
-            String glazeIdParam = request.getParameter("glazeId");
-            glaze = glazeDao.getById(Integer.parseInt(glazeIdParam));
+            int glazeIdParam = ServletHelper.getIntParam(request, response, "glazeId"); //request.getParameter("glazeId");
+            glaze = glazeDao.getById(glazeIdParam);
             glazeDao.delete(glaze);
             response.sendRedirect("glazeLibrary");
         }
@@ -61,8 +61,8 @@ public class DeleteGlaze extends HttpServlet {
      * @throws IOException      if an input or output error is detected
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String glazeIdParam = request.getParameter("glazeId");
-        glaze = glazeDao.getById(Integer.parseInt(glazeIdParam));
+        int glazeIdParam = ServletHelper.getIntParam(request, response, "glazeId"); //request.getParameter("glazeId");
+        glaze = glazeDao.getById((glazeIdParam));
         request.setAttribute("glaze", glaze);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/deleteGlaze.jsp");
         dispatcher.forward(request, response);

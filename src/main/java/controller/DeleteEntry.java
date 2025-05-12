@@ -40,7 +40,7 @@ public class DeleteEntry extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int projectId = Integer.parseInt(request.getParameter("projectId"));
+        int projectId = ServletHelper.getIntParam(request,response, "projectId");     //Integer.parseInt(request.getParameter("projectId"));
         Project project = projectDao.getById(projectId);
 
         if (ServletHelper.isLoggedInUserProjectOwner(request, response , project.getProjectId()) ) {

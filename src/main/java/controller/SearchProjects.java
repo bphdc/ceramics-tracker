@@ -53,7 +53,7 @@ public class SearchProjects extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String searchType = request.getParameter("searchType");
+        String searchType = request.getParameter("searchType"); //don't use helper here - need to know if search type is null to direct ppl to search page landing
         List<Project> projects = new ArrayList<>();
         loggedInUser = ServletHelper.getLoggedInUser(request, response);
         request.setAttribute("availableGlazes", glazeDao.getAll());
@@ -74,8 +74,8 @@ public class SearchProjects extends HttpServlet {
                 projects = projectDao.getAll();
                 break;
             case "byTag":
-                String tagId = request.getParameter("tag");
-                Tag tag = tagDao.getById(Integer.parseInt(tagId));
+                int tagId = ServletHelper.getIntParam(request,response,"tag");
+                Tag tag = tagDao.getById(tagId);
                 List<ProjectTag> projectTags = projectTagDao.getByPropertyEqual("tag", tag);
                 for (ProjectTag projectTag : projectTags) {
                     Project project = projectTag.getProject();
@@ -83,8 +83,8 @@ public class SearchProjects extends HttpServlet {
                 }
                 break;
             case "byGlaze":
-                String glazeId = request.getParameter("glaze");
-                Glaze glaze = glazeDao.getById(Integer.parseInt(glazeId));
+                int glazeId =ServletHelper.getIntParam(request,response,"glaze");
+                Glaze glaze = glazeDao.getById(glazeId);
                 List<ProjectGlaze> projectGlazes = projectGlazeDao.getByPropertyEqual("glaze", glaze);
                 for (ProjectGlaze projectGlaze : projectGlazes) {
                     Project project = projectGlaze.getProject();
@@ -92,7 +92,7 @@ public class SearchProjects extends HttpServlet {
                 }
                 break;
             case "byKeyword":
-                String keyword = request.getParameter("keyword");
+                String keyword = ServletHelper.getStringParam(request,response,"keyword");
                 List<Project> initialProjects;
                 initialProjects = (projectDao.getByPropertyLike("name", keyword));
                 initialProjects.addAll(projectDao.getByPropertyLike("description", keyword));

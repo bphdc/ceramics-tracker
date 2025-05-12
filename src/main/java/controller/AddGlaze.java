@@ -60,7 +60,7 @@ public class AddGlaze extends HttpServlet {
 
         if (ServletHelper.isAdmin(user)) {
 
-            String name = ServletHelper.getStringParam(request,response,"name");  //request.getParameter("name");
+            String name = ServletHelper.getStringParam(request,response,"name");
             String description = ServletHelper.getStringParam(request,response,"description");
             String type = ServletHelper.getStringParam(request,response,"glazeType");
 

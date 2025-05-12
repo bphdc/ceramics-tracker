@@ -45,12 +45,14 @@ public class DeleteProject extends HttpServlet {
         try {
             if (!loggedInUserId.equals(projectUserId)) {
                 log.info("logged in user doesn't match project user id");
-                ServletHelper.sendToErrorPageWithMessage(request, response, "Pleae try again and if problem persists reach out to site admin");
+                ServletHelper.sendToErrorPageWithMessage(request, response, "Please try again and if problem persists reach out to site admin");
                 return;
             }
             projectDao.delete(project);
+            response.sendRedirect("index.jsp");
+
         } catch (Exception e) {
-            ServletHelper.sendToErrorPageWithMessage(request, response, "Pleae try again and if problem persists reach out to site admin");
+            ServletHelper.sendToErrorPageWithMessage(request, response, "Please try again and if problem persists reach out to site admin");
         }
     }
 

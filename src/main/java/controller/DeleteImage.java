@@ -45,11 +45,11 @@ public class DeleteImage extends HttpServlet {
         String ACCESS_KEY = (String) context.getAttribute("ACCESS_KEY");
         String SECRET_KEY = (String) context.getAttribute("SECRET_KEY");
 
-        int projectId = Integer.parseInt(request.getParameter("projectId"));
+        int projectId = ServletHelper.getIntParam(request,response,"projectId");
         Project project = projectDao.getById(projectId);
 
         if (ServletHelper.isLoggedInUserProjectOwner(request, response , project.getProjectId()) ) {
-            String imageIdParam = request.getParameter("imageId");
+            String imageIdParam = ServletHelper.getStringParam(request,response,"imageId");
             image = imageDao.getById(Integer.parseInt(imageIdParam));
             imageDao.delete(image);
             response.sendRedirect("viewProject?projectId=" + projectId);
@@ -73,8 +73,8 @@ public class DeleteImage extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String imageIdParam = request.getParameter("id");
-        image = imageDao.getById(Integer.parseInt(imageIdParam));
+        int imageIdParam = ServletHelper.getIntParam(request,response,"id");
+        image = imageDao.getById(imageIdParam);
         int projectId = Integer.parseInt(request.getParameter("projectId"));
         Project project = projectDao.getById(projectId);
         request.setAttribute("image", image);

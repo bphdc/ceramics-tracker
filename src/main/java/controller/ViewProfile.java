@@ -63,7 +63,7 @@ public class ViewProfile extends HttpServlet {
             }
         }
 
-        User user = ServletHelper.getLoggedInUser(request, response);
+        User user = userDao.getById(userId); //this could be logged in user OR another so just make the db request
         if (user != null) {
             List<Project> projects = projectDao.getByPropertyEqual("user", user);
             request.setAttribute("user", user);
